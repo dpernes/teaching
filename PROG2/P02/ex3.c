@@ -17,21 +17,21 @@ int main()
     while(1)
     {
         for(i = 0; i < NSTRINGS; i++)
-    	{
-    		printf("[%d] ", i+1);
-    		if(v[i] == NULL)
-    			printf("(vazio)\n");
-    		else
-            	printf("%s\n", v[i]);
-    	}
+        {
+            printf("[%d] ", i+1);
+            if(v[i] == NULL)
+                printf("(vazio)\n");
+            else
+                printf("%s\n", v[i]);
+        }
 
-    	do
-    	{
+        do
+        {
             printf("Posicao para nova string (1 a %d): ", NSTRINGS);
             scanf("%d", &pos);
             getchar(); /* elimina \n */
-    	}
-    	while(pos < 0 || pos > NSTRINGS);
+        }
+        while(pos < 0 || pos > NSTRINGS);
 
         if (pos == 0)
             break;
@@ -42,7 +42,7 @@ int main()
 
         // allocate strlen(str)+1 bytes
         v[pos - 1] = realloc(v[pos - 1], strlen(str)+1);
-    	strcpy(v[pos - 1], str);
+        strcpy(v[pos - 1], str);
     }
 
     // free allocated memory
