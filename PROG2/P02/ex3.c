@@ -41,7 +41,6 @@ int main()
         str[strlen(str) - 1] = '\0';
 
         // allocate strlen(str)+1 bytes
-        printf("realloc\n");
         v[pos - 1] = realloc(v[pos - 1], strlen(str)+1);
     	strcpy(v[pos - 1], str);
     }
@@ -49,7 +48,7 @@ int main()
     // free allocated memory
     for(i = 0; i < NSTRINGS; i++)
     {
-        //free(v[i]);
+        free(v[i]);
         v[i] = NULL;
     }
     free(v);
