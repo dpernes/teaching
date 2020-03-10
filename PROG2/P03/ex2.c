@@ -10,6 +10,7 @@
 
 int main(int argc, char **argv)
 {
+    if(argc < 2) return -1;
     vetor *vec = vetor_novo();
     lista *lst = lista_nova();
     clock_t start_t, end_t;
@@ -100,8 +101,7 @@ int main(int argc, char **argv)
     /* Remover todos os elementos do vetor a partir do início */
     int vec_tamanho = vec->tamanho;
     start_t = clock();
-    int i;
-    for(i=0; i<vec_tamanho; i++)
+    for(int i=0; i<vec_tamanho; i++)
     {
         if(vetor_remove(vec, 0) == -1)
         {

@@ -35,11 +35,6 @@ int main(int argc, char **argv)
     printf("\n");
     /* FIM DO EX. 1. a) */
 
-    //DEBUG
-    lista_remove(lst, lista_elemento(lst, 0));
-    lista_imprime(lst, stdout);
-    //DEBUG
-
     lista *lst_ps2 = lista_pesquisa_substring(lst, "PS2");
     printf("Foram encontrados %d jogos da PS2:\n", lst_ps2->tamanho);
     lista_imprime(lst_ps2, stdout);
