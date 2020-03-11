@@ -322,32 +322,24 @@ lista *lista_pesquisa_substring(lista *lst, char *substring)
 }
 
 
-lista *lista_remove_substring(lista *lst, char *substring)
+lista* lista_remove_substring(lista *lst, char *substring)
 {
-    if(!lst || !substring) return NULL;
-    if(lst->tamanho == 0) return NULL;
+	if(!lst || !substring) return NULL;
 
-    int lst_tamanho = lst->tamanho, rm_conta = 0;
     l_elemento* l_elem;
-    l_elemento* l_rm_elem[lst_tamanho];
-    for(int i=0; i<lst_tamanho; i++)
+    for(int i=0; i<lst->tamanho; i++)
     {
         l_elem = lista_elemento(lst, i);
-        if(!l_elem) return NULL;
+		if(!l_elem) return NULL;
 
-        if(strstr(l_elem->str, substring))
-        {
-            l_rm_elem[rm_conta] = l_elem;
-            rm_conta++;
+        if (strstr(l_elem->str, substring))
+		{
+            lista_remove(lst, l_elem);
+			i--;
         }
     }
-
-    for(int i=0; i<rm_conta; i++)
-        lista_remove(lst, l_rm_elem[i]);
-
     return lst;
 }
-
 
 lista* lista_concatena(lista *lst1, lista *lst2)
 {
