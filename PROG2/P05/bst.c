@@ -233,8 +233,11 @@ int bst_altura (no_bst* no)
     if(!no)
         return -1;
 
-    return 1 + ((bst_altura(no->esquerda) > bst_altura(no->direita)) ?
-                bst_altura(no->esquerda) : bst_altura(no->direita));
+    int altura_esq = bst_altura(no->esquerda);
+    int altura_dir = bst_altura(no->direita);
+
+    return 1 + ((altura_esq > altura_dir) ?
+                altura_esq : altura_dir);
 }
 
 void bst_preordem_impl(no_bst* no)
