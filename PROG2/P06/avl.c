@@ -29,7 +29,7 @@ arvore_avl* avl_nova()
 
 void avl_apaga(arvore_avl* avl)
 {
-	if (!avl) return;
+    if (!avl) return;
     while(avl->raiz != NULL)
     {
         avl->raiz = avl_remove_impl(avl->raiz, avl->raiz->str);
@@ -208,27 +208,27 @@ no_avl* avl_insere_impl(no_avl *no, const char *str)
 
     if (balance > 1) {
         /* Arvore e' right-heavy */
-    	if (calc_balanceamento(no->direita) < 0) {
-    		/* Sub-arvore direita é left-heavy */
+        if (calc_balanceamento(no->direita) < 0) {
+            /* Sub-arvore direita é left-heavy */
             /* Rotacao RL */
-			no->direita = roda_direita(no->direita);
-			return roda_esquerda(no);
-    	} else {
-    		/* Rotacao L */
-    		return roda_esquerda(no);
-    	}
+            no->direita = roda_direita(no->direita);
+            return roda_esquerda(no);
+        } else {
+            /* Rotacao L */
+            return roda_esquerda(no);
+        }
     }
     else if (balance < -1) {
         /* Arvore e' left-heavy */
-    	if (calc_balanceamento(no->esquerda) > 0) {
+        if (calc_balanceamento(no->esquerda) > 0) {
             /* Sub-arvore esquerda é right-heavy */
-    		/* Rotacao LR */
-			no->esquerda = roda_esquerda(no->esquerda);
-			return roda_direita(no);
-    	} else {
-    		/* Rotacao R */
-    		return roda_direita(no);
-    	}
+            /* Rotacao LR */
+            no->esquerda = roda_esquerda(no->esquerda);
+            return roda_direita(no);
+        } else {
+            /* Rotacao R */
+            return roda_direita(no);
+        }
     }
     /* caso esteja balanceada retorna o apontador para o no (inalterado) */
     return no;

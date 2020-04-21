@@ -10,10 +10,10 @@
  */
 typedef struct no_avl_
 {
-	char *str;
-	struct no_avl_ *esquerda;
-	struct no_avl_ *direita;
-	int altura;
+    char *str;
+    struct no_avl_ *esquerda;
+    struct no_avl_ *direita;
+    int altura;
 } no_avl;
 
 /**
@@ -21,7 +21,7 @@ typedef struct no_avl_
  */
 typedef struct
 {
-	no_avl *raiz;
+    no_avl *raiz;
 } arvore_avl;
 
 /**

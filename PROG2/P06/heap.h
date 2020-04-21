@@ -6,18 +6,18 @@
 #define HEAP_H
 
 typedef struct {
-	int prioridade;
-	char *valor;
+    int prioridade;
+    char *valor;
 } elemento;
 
 typedef struct {
-	/* numero de elementos no vetor */
-	int tamanho;
-	/* tamanho maximo do vetor */
-	int capacidade;
+    /* numero de elementos no vetor */
+    int tamanho;
+    /* tamanho maximo do vetor */
+    int capacidade;
 
-	/* vetor de apontadores para elementos */
-	elemento ** elementos;
+    /* vetor de apontadores para elementos */
+    elemento ** elementos;
 } heap;
 
 /* cria nova heap */
