@@ -18,6 +18,9 @@ tabela_dispersao *ler_para_tabela(const char *nomef, int tamanho, hash_func *hfu
         return NULL;
 
     tabela_dispersao *td = tabela_nova(tamanho, hfunc);
+    if(!td)
+        return NULL;
+
     while(1)
     {
         char linha[TAMANHO_CHAVE+TAMANHO_VALOR+3];
