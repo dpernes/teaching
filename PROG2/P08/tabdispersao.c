@@ -154,9 +154,13 @@ const char* tabela_valor(tabela_dispersao *td, const char *chave)
         return NULL;
 
     int indice = td->hfunc(chave, td->tamanho);
-    elemento *elem = td->elementos[indice];
+    for(elemento *elem = td->elementos[indice]; elem; elem = elem->proximo)
+    {
+        if(strcmp(elem->obj->chave, chave) == 0)
+            return elem->obj->valor;
+    }
 
-    return elem->obj->valor;
+    return NULL;
 }
 
 int tabela_esvazia(tabela_dispersao *td)

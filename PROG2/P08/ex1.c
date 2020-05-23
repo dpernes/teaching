@@ -7,18 +7,17 @@
 #define NOME_FICHEIRO "englishwords.txt"
 #define TAMANHO_TAB_DISP 100000
 
-elemento *ler_para_lista(const char *nomef, int *tamanho_lista)
+elemento *ler_para_lista(const char *nomef, int *tamanho)
 {
+    if(!nomef)
+        return NULL;
+
     FILE *f = fopen(nomef, "r");
     if(!f)
         return NULL;
 
-    elemento *inicio = malloc(sizeof(elemento));
-    inicio->obj = NULL;
-    inicio->proximo = NULL;
-
-    elemento *anterior = inicio;
-    int tamanho = 0;
+    elemento *inicio = NULL, *anterior = NULL;
+    *tamanho = 0;
     while(1)
     {
         char palavra[TAMANHO_CHAVE+1];
@@ -30,28 +29,33 @@ elemento *ler_para_lista(const char *nomef, int *tamanho_lista)
         strcpy(obj->chave, palavra);
         strcpy(obj->valor, palavra);
 
-        elemento *elem = malloc(sizeof(elemento));
+        elemento *elem = (elemento *)malloc(sizeof(elemento));
         elem->obj = obj;
         elem->proximo = NULL;
 
-        anterior->proximo = elem;
+        if(*tamanho == 0)
+            inicio = elem;
+        else
+            anterior->proximo = elem;
+
+        (*tamanho)++;
         anterior = elem;
-        tamanho++;
     }
     fclose(f);
 
-    *tamanho_lista = tamanho;
     return inicio;
 }
 
 tabela_dispersao *ler_para_tabela(const char *nomef, int tamanho, hash_func *hfunc)
 {
+    if(!nomef || (tamanho < 1) || !hfunc)
+        return NULL;
+
     FILE *f = fopen(nomef, "r");
     if(!f)
         return NULL;
 
     tabela_dispersao *td = tabela_nova(tamanho, hfunc);
-
     while(1)
     {
         char palavra[TAMANHO_CHAVE+1];
@@ -66,16 +70,16 @@ tabela_dispersao *ler_para_tabela(const char *nomef, int tamanho, hash_func *hfu
     return td;
 }
 
-elemento *lista_pesquisa(elemento *inicio, const char *str)
+const char *lista_pesquisa(elemento *inicio, const char *chave)
 {
-    if(!inicio || !str)
+    if(!inicio || !chave)
         return NULL;
 
     elemento *elem = inicio;
     while(elem)
     {
-        if(!strcmp(elem->obj->valor, str))
-            return elem;
+        if(strcmp(elem->obj->chave, chave) == 0)
+            return elem->obj->valor;
 
         elem = elem->proximo;
     }
@@ -93,6 +97,11 @@ int main()
     int tamanho_lista;
     inicio = clock();
     elemento *lst = ler_para_lista(NOME_FICHEIRO, &tamanho_lista);
+    if(!lst)
+    {
+        printf("erro a ler para lista ligada\n");
+        return -1;
+    }
     fim = clock();
     tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
     printf("tempo em segundos: %lf\n", tempo);
@@ -101,13 +110,17 @@ int main()
     printf("Ler para tabela de dispersao (hash_djbm) - ");
     inicio = clock();
     tabela_dispersao *td_djbm = ler_para_tabela(NOME_FICHEIRO, TAMANHO_TAB_DISP, hash_djbm);
+    if(!td_djbm)
+    {
+        printf("erro a ler para tabela de dispersao\n");
+        return -1;
+    }
     fim = clock();
     tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
     printf("tempo em segundos: %lf\n", tempo);
     printf("#elementos: %d\n\n", tabela_numelementos(td_djbm));
 
     char chave[TAMANHO_CHAVE] = "perform";
-    printf("chave: %s, valor: %s\n\n", chave, tabela_valor(td_djbm, chave));
 
     printf("Ler para tabela de dispersao (hash_krm) - ");
     inicio = clock();
@@ -117,4 +130,19 @@ int main()
     printf("tempo em segundos: %lf\n", tempo);
     printf("#elementos: %d\n\n", tabela_numelementos(td_krm));
 
+    printf("Pesquisa em lista ligada - ");
+    inicio = clock();
+    printf("chave: %s, valor: %s\n", chave, lista_pesquisa(lst, chave));
+    fim = clock();
+    tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    printf("tempo em segundos: %lf\n\n", tempo);
+
+    printf("Pesquisa em tabela de dispersão (hash_djbm) - ");
+    inicio = clock();
+    printf("chave: %s, valor: %s\n", chave, tabela_valor(td_djbm, chave));
+    fim = clock();
+    tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    printf("tempo em segundos: %lf\n\n", tempo);
+
+    return 0;
 }
