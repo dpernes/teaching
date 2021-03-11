@@ -66,5 +66,8 @@ int main()
     for(int i=0; i<N_odd; i++) printf("%d ", V_odd[i]);
     printf("]\n");
 
+    free(V); free(V_even); free(V_odd);
+    V = NULL; V_even = NULL; V_odd = NULL;
+
     return 0;
 }
