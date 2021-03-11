@@ -101,4 +101,7 @@ int main()
     for(int i=0; i<vetor_tamanho(v_shuf); i++)
         printf("\"%s\", ", vetor_elemento(v_shuf, i));
     printf("]\n");
+
+    vetor_apaga(v_cat);
+    vetor_apaga(v_shuf);
 }
