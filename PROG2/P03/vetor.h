@@ -10,8 +10,7 @@
 */
 typedef struct
 {
-  char *str;
-
+    char *str;
 } v_elemento;
 
 /**
@@ -19,15 +18,12 @@ typedef struct
 */
 typedef struct
 {
-  /** numero de elementos do vetor */
-  int tamanho;
-
-  /** capacidade do vetor */
-  int capacidade;
-
-  /** array de elementos armazenados */
-  v_elemento* elementos;
-
+    /** numero de elementos do vetor */
+    int tamanho;
+    /** capacidade do vetor */
+    int capacidade;
+    /** array de elementos armazenados */
+    v_elemento* elementos;
 } vetor;
 
 /**

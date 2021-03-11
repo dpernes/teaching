@@ -15,7 +15,7 @@ l_elemento* novo_elemento(const char* valor)
         return NULL;
 
     /* aloca memoria para string */
-  item->str = (char *) malloc((strlen(valor)+1)*sizeof(char));
+    item->str = (char *) malloc((strlen(valor)+1)*sizeof(char));
     if(item->str == NULL)
     {
         free(item);
@@ -26,8 +26,8 @@ l_elemento* novo_elemento(const char* valor)
     strcpy(item->str, valor);
 
     /* item ainda nao tem proximo */
-  item->proximo = NULL;
-  item->anterior = NULL;
+    item->proximo = NULL;
+    item->anterior = NULL;
 
     return item;
 }
@@ -194,13 +194,13 @@ int lista_atribui(lista *lst, l_elemento *pos, const char* str)
     if(lst == NULL || pos == NULL || str == NULL)
         return -1;
 
-        /* realoca memoria para nova string */
-      pos->str = (char *) realloc(pos->str, (strlen(str)+1)*sizeof(char));
-        if(pos->str == NULL)
-            return -1;
-        strcpy(pos->str, str);
+    /* realoca memoria para nova string */
+    pos->str = (char *) realloc(pos->str, (strlen(str)+1)*sizeof(char));
+    if(pos->str == NULL)
+        return -1;
+    strcpy(pos->str, str);
 
-        return 0;
+    return 0;
 }
 
 

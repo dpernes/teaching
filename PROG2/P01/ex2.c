@@ -236,7 +236,8 @@ int main(int argc, char **argv){
     printf("Álbum: %s\n", album);
     printf("Ano: %s\n", year);
     printf("Comentário: %s\n", comment);
-    if(!(int)byte_zero) printf("Número: %d\n", (int)number);
+    if(!(int)byte_zero)
+        printf("Número: %d\n", (int)number);
     printf("Género: %s\n", genre);
 
     return 0;
