@@ -8,6 +8,11 @@
 int main()
 {
     vetor *v=vetor_novo();
+    if(!v)
+    {
+        printf("Erro a criar novo vetor\n");
+        return -1;
+    }
     char str[MAX_LEN];
 
     // ask the user for NSTRINGS strings
@@ -54,4 +59,6 @@ int main()
     for(int i=0; i<vetor_tamanho(v); i++)
         printf("\"%s\", ", vetor_elemento(v, i));
     printf("]\n");
+
+    vetor_apaga(v);
 }
