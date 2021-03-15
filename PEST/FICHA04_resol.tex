@@ -1,0 +1,234 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{fancybox}
+\usepackage{amsthm}
+\usepackage{graphicx}
+
+\usepackage[latin1]{inputenc}
+\selectlanguage{portuguese}
+
+%\usepackage{latexsym}
+
+%Tamanho da pagina
+\setlength{\oddsidemargin}{-0.54cm}
+\setlength{\topmargin}{-1.04cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{26cm}
+
+%Novos comandos
+\newcommand{\up}[1]{$^{\underline{\text{#1}}}$}
+\newcommand{\linespacing}[1]{\renewcommand{\baselinestretch}{#1}}
+%\renewcommand{\labelenumi}{\fbox{\textbf{\theenumi}} --- }
+%\renewcommand{\labelenumii}{\textbf{(\theenumii)}}
+\newcommand{\xx}{\ensuremath{\mathbf x }}
+\newcommand{\zz}{\ensuremath{\mathbf z }}
+\newcommand{\XX}{\ensuremath{\mathbf X }}
+\newcommand{\ww}{\ensuremath{\mathbf w }}
+\newcommand{\yy}{\ensuremath{\mathbf y }}
+\newcommand{\RR}{\ensuremath{\mathbf R }}
+\newcommand{\tb}{\textbf}
+\newcommand{\Exp}{\ensuremath{\mathbb E }}
+
+%Outros
+\linespacing{1.2}
+%\newtheorem{teorema}{Teorema}
+%\setlength{\footnotesep}{0.5cm}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\mytitle}[1]
+{\clearpage
+\begin{center}
+\fbox{\begin{minipage}{0.99\textwidth}
+\begin{center}
+\vspace{1ex} \textsc{\Large FEUP --- MIEEC \hspace{\stretch{1}}
+PEST  2018/2019 {\small(1\up{o} Semestre)}}
+\end{center}
+\end{minipage}}
+
+\vspace{1cm} 
+
+\textbf{\Large FICHA 04 -- resolução}\\
+%\textbf{Due: Tue, Oct 11, 23h59, by email to {\tt jaime.cardoso@fe.up.pt}}
+\vspace{2ex}
+\end{center}}
+
+
+\begin{document}
+\mytitle{1}
+
+DPC
+\begin{enumerate}
+
+\item A probabilidade $P(k)$ é dada pela distribuição binomial.
+Se $n=10$, para que valor de $p$ é P(3) máximo? Explique.
+
+\tb{Resolução:}\\
+	$P \equiv \text{Binom}(n, p) \Leftrightarrow P(k) = {n \choose k} p^k (1-p)^{n-k}$, $0 \leq p \leq 1$, $k \in \{0, 1, \cdots, n\}.$ Queremos encontrar o valor de $p$ que maximiza a probabilidade de obter 3 sucessos ($k=3$) em 10 repetições ($n=10$):
+	$$P(3) = {10 \choose 3} p^3 (1-p)^{7} = \mathcal{L}(p).$$
+	Seja $p^*$ o maximizante procurado. Visto que $\mathcal{L}$ é diferenciável, $p^*$ tem de satisfazer:
+	\begin{align*}
+		\frac{d\mathcal{L}}{dp}(p^*) = 0 &\Leftrightarrow 3{p^*}^2(1-{p^*})^7 - 7{p^*}^3(1-p^*)^6 = 0 \\
+		&\Leftrightarrow p^* = 0 \; \vee \; p^* = 1 \; \vee \; 3(1-p^*) - 7p^* = 0 \\
+		&\Leftrightarrow p^* = 0 \; \vee \; p^* = 1 \; \vee \; p^* = \frac{3}{10}.
+	\end{align*}
+	As soluções $p^* = 0$ e $p^* = 1$ são descartadas, pois são minimizantes (note que $\mathcal{L}(0) = \mathcal{L}(1) = 0$). Concluimos assim que o valor de $p$ que maximiza a probabilidade de obter $k=3$ sucessos em $n=10$ repetições independentes é $3/10$. Este resultado surpreende-o ou vai ao encontro da sua intuição inicial? Porquê?
+	
+\item Seja $X$ uma v.a.\ com distribuição binomial, baseada em 10 repetições de uma experiência. Se $p=0.3$, calcule:
+	\begin{enumerate}
+	\item $P(X \leq 8)$
+	\item $P(X= 7)$
+	\item $P(X> 6)$
+	\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item $P(X \leq 8) = 1 - P(X>8) = 1 - P(X = 10) - P(X = 9) \approx 0.9999 $
+	\item $P(X = 7) \approx 0.0090$
+	\item $P(X > 6) \approx 0.0106$
+	\end{enumerate} 
+
+\item Suponha que 5 por cento de todas as peças que saem de uma linha de montagem são defeituosas. Se 10 dessas peças forem escolhidas aleatoriamente e inspeccionadas, qual a probabilidade de que no máximo sejam encontradas 2 defeituosas?
+	
+\tb{Resolução:}\\
+	Como as peças inspecionadas são selecionadas aleatoriamente entre todas as peças produzidas, os defeitos nas peças selecionadas ocorrem de forma independente. Nestas condições, o número de defeitos  observados $X$ em $n = 10$ peças segue uma distribuição binomial de parâmetro $p=5\%$ ($X \sim \text{Binom}(10, 0.05)$). A probabilidade pedida é então $P(X \leq 2) \approx 0.9885$.
+
+\item Mostre que numa distribuição geométrica com parâmetro $p$, $E(X)=1/p$ e $V(X)=(1-p)/p^2$.
+
+\tb{Resolução:}\\
+	$X \sim \text{Geom}(p) \Leftrightarrow f_X(x) = (1-p)^{x-1}p$, $0 < p < 1$, $x \in \{1, 2, \cdots\}$.
+	\begin{align*}
+	E(X) &= \sum_{x=1}^\infty x(1-p)^{x-1}p \\
+	&= -p \sum_{x=1}^\infty \frac{d}{dp} (1-p)^x \tag*{\begin{small}(converge uniformemente -- teste da razão)\end{small}} \\
+	&= -p \frac{d}{dp} \left[\sum_{x=1}^\infty (1-p)^x \right] \\
+	&= -p \frac{d}{dp} \frac{1-p}{p} \tag*{\begin{small}(fórmula da série geométrica)\end{small}} \\
+	&= \frac{1}{p}.
+	\end{align*}
+	A variância de uma v.a.\ $X$ define-se por $V(X) = E\left[(X-E(X))^2\right]$. Assim,
+	\begin{align*}
+	V(X) &= \sum_{\forall x} (x-E(X))^2 f_X(x) \\
+	&= \sum_{x=1}^\infty \left(x - \frac{1}{p}\right)^2 (1-p)^{x-1} p \\
+	&= \sum_{x=1}^\infty x^2 (1-p)^{x-1} p - \frac{2}{p} \sum_{x=1}^\infty x (1-p)^{x-1} p + \frac{1}{p^2}\underbrace{\sum_{x=1}^\infty (1-p)^{x-1} p}_{\sum_{\forall x} f_X(x)~=~1} \\
+	&= p \sum_{x=1}^\infty (x+1)x(1-p)^{x-1} - \left(\frac{2}{p} + 1\right)\underbrace{\sum_{x=1}^\infty x (1-p)^{x-1} p}_{E(X)~=~1/p} + \frac{1}{p^2} \\
+	&= p \sum_{x=1}^\infty \frac{d^2}{dp^2} (1-p)^{x+1} - \frac{1}{p^2} - \frac{1}{p} \\
+	&= p \frac{d^2}{dp^2} \left[\sum_{x=1}^\infty (1-p)^{x+1} \right] - \frac{1}{p^2} - \frac{1}{p} \\
+	&= p \frac{d^2}{dp^2} \frac{(1-p)^2}{p} - \frac{1}{p^2} - \frac{1}{p} \\
+	&= p \frac{2}{p^3} - \frac{1}{p^2} - \frac{1}{p} \\
+	&= \frac{1-p}{p^2}. \quad \square
+	\end{align*}
+	
+\item De um lote que contém 25 peças, 5 são defeituosas.
+São escolhidas 4 peças ao acaso. Seja $X$ o número de peças defeituosas encontradas. Estabeleça a distribuição de probabilidade de $X$, quando:
+	\begin{enumerate}
+	\item as peças forem escolhidas com reposição.
+	\item as peças forem escolhidas sem reposição.
+	\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item Se as peças são retiradas com reposição, então a probabilidade de retirar uma peça defeituosa em cada repetição é constante e igual a $p = 5/25 = 0.2$. Como são retiradas $n = 4$ peças de forma independente, $X \sim \text{Binom}(4, 0.2)$, ou seja:
+	$$f_X(x) = {4 \choose x} 0.2^x 0.8^{4-x}, \quad x \in \{0, 1, \cdots, 4\}.$$
+	\item Quando as peças são retiradas sem reposição, a probabilidade de retirar uma peça defeituosa em cada repetição varia e depende das peças que foram retiradas nas repetições anteriores. De um total de $N = 25$ peças, existem $K = 5$ com defeito e irão ser retiradas aleatoriamente $n = 4$ peças sem reposição. Nestas condições, $X \sim \text{Hipergeom}(25, 5, 4)$, ou seja:
+	$$f_X(x) = \frac{{5 \choose x}{20 \choose 4-x}}{{25 \choose 4}}, \quad x \in \{0, 1, \cdots, 4\}.$$
+	\end{enumerate}
+
+\item Lançamos seis vezes uma moeda equilibrada de forma independente. Seja $Y$ a diferença entre o número de caras e coroas obtidas. Encontre a distribuição de $Y$.
+
+\tb{Resolução:}\\
+	Vamos definir duas v.a.\ auxiliares: $X -$ número de vezes que saiu ``cara", $Z -$ número de vezes que saiu ``coroa". Assim, $Y = X - Z$. Claramente, temos $X, Z \in \{0, 1, \cdots, 6\}$. É também garantido que $X + Z = 6$ (porquê?). Temos, assim:
+	\begin{equation*}
+	\left.\begin{aligned}
+	&Y = X - Z \\
+	&X + Z = 6
+	\end{aligned}\right\rbrace \implies Y = 2X - 6.
+	\end{equation*}
+	Note que $X \in \{0, 1, \cdots, 6\} \implies Y \in \{-6, -4, -2, \cdots, 6\}$. Conhecendo $f_{X}$ (ou $f_{Z}$) é imediato obter $f_Y$. Como a moeda é equilibrada, $X \sim \text{Binom}(6, 0.5)$, ou seja, $f_X(x) = {6 \choose x} 0.5^6$, $x \in \{0, 1, \cdots, 6\}$. Assim,
+	\begin{align*}
+	f_Y(y) &= P(Y=y) = P(2X - 6 = y) = P\left(X = \frac{y}{2}+3\right) \\ &=f_X\left(\frac{y}{2} + 3\right) = {6 \choose x} 0.5^6\biggr\rvert_{x = (y/2) + 3} \\
+	&= {6 \choose (y/2) + 3} 0.5^6, \quad y \in \{-6, -4, \cdots, 6\}.
+	\end{align*}
+	
+\item Uma experiência consiste em $n$ tentativas independentes. Admita-se que por causa da `aprendizagem' a probabilidade de obter um resultado favorável cresce com o número de tentativas realizadas.
+Especificamente, suponha que P(sucesso na i-ésima repetição) = $(i+1)/(i+2)$, $i=1,2,\cdots,n$.
+	\begin{enumerate}
+	\item Qual a probabilidade de ter ao menos 3 resultados favoráveis em 8 repetições?
+	\item Qual a probabilidade de que o primeiro resultado favorável ocorra na oitava repetição?
+	\end{enumerate}
+
+\tb{Resolução:}
+	
+	\begin{enumerate}
+		\item
+		Neste problema, apesar de as tentativas serem independentes, a probabilidade de sucesso em cada tentativa varia, pelo que a distribuição binomial não modela corretamente a distribuição do número de resultados favoráveis. Seja então $Y \in \{0, 1, \cdots, 8\}$ a v.a.\ que representa o número de resultados favoráveis em 8 repetições e $X_i \in \{0, 1\}$ a v.a.\ que representa sucesso ($X_i=1$) ou insucesso ($X_i=0$) na $i$-ésima repetição, $i \in \{1, 2, \cdots, 8\}$. Assim, $Y= \sum_{i=1}^8 X_i$ e o enunciado diz-nos que $P(X_i = 1) = (i+1)/(i+2)$, logo  $P(X_i = 0) = 1 - P(X_i = 1) = 1/(i+2)$.
+		\begin{align*}
+		&P(Y \geq 3) = 1 - P(Y=0) - P(Y=1) - P(Y=2), \\
+		&P(Y=0) = P\left(\sum_{i=1}^8 X_i = 0\right) = P(X_1=0 \wedge X_2=0 \wedge \cdots \wedge X_8=0) \\
+		&\hphantom{P(Y=0)} = \prod_{i=1}^8 P(X_i=0) = \prod_{i=1}^8 \frac{1}{i+2} \\
+		&\hphantom{P(Y=0)} = \frac{1}{3} \times \frac{1}{4} \times \cdots \times \frac{1}{10} \approx 5.5 \times 10^{-7},
+		\end{align*}
+		\begin{align*}
+		&P(Y=1) = P\left(\sum_{i=1}^8 X_i = 1\right) \\
+		&\hphantom{P(Y=1)} = P(X_1=1 \wedge X_2=0 \wedge \cdots \wedge X_8=0) \\
+		&\hphantom{P(Y=1) =} + P(X_1=0 \wedge X_2=1 \wedge \cdots \wedge X_8=0) \\
+		&\hphantom{P(Y=1) =} + \cdots \\
+		&\hphantom{P(Y=1) =} + P(X_1=0 \wedge X_2=0 \wedge \cdots \wedge X_8=1) \\
+		&\hphantom{P(Y=1)} = \sum_{j=1}^{8}\frac{j+1}{j+2} \prod_{i=1,\; i \neq j}^8 \frac{1}{i+2} \\
+		&\hphantom{P(Y=1)} \approx 2.43 \times 10^{-5},
+		\end{align*}
+		\begin{align*}
+		&P(Y=2) = P\left(\sum_{i=1}^8 X_i = 2\right) \\
+		&\hphantom{P(Y=2)} = \sum_{k=1}^{7}\frac{k+1}{k+2} \sum_{j=k+1}^{8}\frac{j+1}{j+2} \prod_{i=1,\; i \neq j,k}^8 \frac{1}{i+2} \quad \text{(verifique!)} \\
+		&\hphantom{P(Y=2)} \approx 4.55 \times 10^{-4}, \\
+		&P(Y \geq 3) \approx 1 - 4.8 \times 10^{-4}.
+		\end{align*}
+		\item $P(X_1 = 0 \wedge X_2 = 0 \wedge \cdots \wedge X_7 = 0 \wedge X_8 = 1) = \prod_{i=1}^7 \frac{1}{i+2} \times \frac{8+1}{8+2} \approx 4.96 \times 10^{-6}.$
+	\end{enumerate}
+
+\item O número de erros tipográficos numa página de determinado livro é uma variável aleatória com distribuição de Poisson de parâmetro 1/2. 
+	\begin{enumerate}
+	\item Encontre a probabilidade de que haja três ou mais erros tipográficos nesta página. 
+	\item Calcule a probabilidade anterior dado que há pelo menos um erro nesta página.	
+	\end{enumerate}
+
+\tb{Resolução:}\\
+	$X \sim \text{Pois}(\lambda) \Leftrightarrow f_X(x) = \frac{e^{-\lambda}\lambda^x}{x!}, \; \lambda > 0, \; x \in \{0, 1, 2, \cdots\}$. Neste caso, $\lambda = 1/2$.
+	\begin{enumerate}
+	\item $P(X \geq 3) = 1 - f_X(0) - f_X(1) - f_X(2) \approx 0.014.$
+	\item $P(X \geq 3 \mid X \geq 1) = P(X \geq 3 \wedge X \geq 1)/{P(X \geq 1)} = P(X \geq 3)/{P(X \geq 1)} \approx 0.0366.$
+	\end{enumerate}
+	
+\item Suponhamos que os navios chegam a um porto à razão de 2 navios /hora, e que essa razão é aproximada por um processo de Poisson. Observando o processo por um período de meia hora (t = 1/2), determine a probabilidade de:
+	\begin{enumerate}
+	\item  não chegar nenhum navio;
+	\item  chegarem 3 navios.
+	\end{enumerate}
+
+\tb{Resolução:}\\
+	$X_t -$ número de navios que chegam ao porto em $t$ horas. Em $t$ horas, chegam, em média, $2t$ navios ao porto, pelo que $X_t \sim \text{Pois}(2t)$, logo $X_{1/2} \sim \text{Pois}(1)$.
+	\begin{enumerate}
+	\item $P(X_{1/2} = 0) = e^{-1} \approx 0.37.$
+	\item $P(X_{1/2} = 3) = e^{-1}/3! \approx 0.061.$
+	\end{enumerate}
+	
+\item Uma máquina produz 9 peças defeituosas a cada 1000 peças produzidas. Calcule a probabilidade de que em um lote que contém:
+	\begin{enumerate}
+	\item 200 peças, sejam encontradas 8 peças defeituosas;
+	\item 500 peças, não haja nenhuma peça defeituosa.
+	\end{enumerate}
+
+\tb{Resolução:}\\
+	$X_n -$ número de peças defeituosas num lote com $n$ peças. Temos uma probabilidade de defeito em cada peça de $p = 9/1000=0.009$, logo, assumindo que os defeitos ocorrem de forma independente em cada peça, $X_n \sim \text{Binom}(n, 0.009)$.
+	\begin{enumerate}
+	\item Neste caso, $n=200$. Como temos $n$ ``grande" (digamos, $n \geq 100$), $p$ ``pequeno" (digamos, $p \leq 0.01$) e $np$ ``não muito grande", (digamos, $np \leq 20$)  a distribuição binomial é bem aproximada por uma distribuição de Poisson de parâmetro $\lambda = np = 1.8$. Seja então $\tilde{X}_{200} \sim \text{Pois}(1.8)$. Vamos calcular $P(X_{200} = 8)$ e $P(\tilde{X}_{200} = 8)$ para verificar que realmente têm valores aproximadamente iguais:
+	$$P(X_{200} = 8) \approx 4.18 \times 10^{-4}, \quad P(\tilde{X}_{200} = 8) \approx 4.52 \times 10^{-4}.$$
+	\item Agora, $n = 500$, pelo que a aproximação da distribuição binomial pela de Poisson se mantém válida, desta vez com parâmetro $\lambda = 4.5$. Assim, se $\tilde{X}_{500} \sim \text{Pois}(4.5)$, temos:
+	$$P(X_{500} = 0) \approx 0.0109, \quad P(\tilde{X}_{500} = 0) \approx 0.0111.$$
+	\end{enumerate}
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,246 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{fancybox}
+\usepackage{amsthm}
+\usepackage{graphicx}
+
+\usepackage[latin1]{inputenc}
+\selectlanguage{portuguese}
+
+%\usepackage{latexsym}
+
+%Tamanho da pagina
+\setlength{\oddsidemargin}{-0.54cm}
+\setlength{\topmargin}{-1.04cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{26cm}
+
+%Novos comandos
+\newcommand{\up}[1]{$^{\underline{\text{#1}}}$}
+\newcommand{\linespacing}[1]{\renewcommand{\baselinestretch}{#1}}
+%\renewcommand{\labelenumi}{\fbox{\textbf{\theenumi}} --- }
+%\renewcommand{\labelenumii}{\textbf{(\theenumii)}}
+\newcommand{\xx}{\ensuremath{\mathbf x }}
+\newcommand{\zz}{\ensuremath{\mathbf z }}
+\newcommand{\XX}{\ensuremath{\mathbf X }}
+\newcommand{\ww}{\ensuremath{\mathbf w }}
+\newcommand{\yy}{\ensuremath{\mathbf y }}
+\newcommand{\RR}{\ensuremath{\mathbf R }}
+\newcommand{\tb}{\textbf}
+
+%Outros
+\linespacing{1.2}
+%\newtheorem{teorema}{Teorema}
+%\setlength{\footnotesep}{0.5cm}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\mytitle}[1]
+{\clearpage
+\begin{center}
+\fbox{\begin{minipage}{0.99\textwidth}
+\begin{center}
+\vspace{1ex} \textsc{\Large FEUP --- MIEEC \hspace{\stretch{1}}
+PEST  2018/2019 {\small(1\up{o} Semestre)}}
+\end{center}
+\end{minipage}}
+
+\vspace{1cm} 
+
+\textbf{\Large FICHA 02 -- resolução}\\
+%\textbf{Due: Tue, Oct 11, 23h59, by email to {\tt jaime.cardoso@fe.up.pt}}
+\vspace{2ex}
+\end{center}}
+
+
+\begin{document}
+\mytitle{1}
+DPC
+
+\begin{enumerate}
+\item Considere os eventos A e B, com $P(A) > 0$ e $P(B) > 0$. Quais das seguintes afirmações são correctas? Justifique.
+	\begin{enumerate}
+		\item $P( A\cap B')=P(A\cup B) - P(B)$
+		\item Se A e B mutuamente exclusivos, então $P(A\mid B) = 0$
+		\item Se $P(A\mid B)>P(A)$, então $P(B\mid A) > P(B)$
+		\item $P(A \cap B\cap C) \geq P(A) + P(B) + P(C) -1$
+	\end{enumerate}	
+
+\tb{Resolução:}
+	\begin{enumerate}
+		\item \begin{equation*}
+		\left.\begin{aligned}
+			&P(A) = P(A \cap B) + P(A \cap B') \Leftrightarrow P(A \cap B') = P(A) - P(A \cap B) \\
+			&P(A \cap B) = P(A) + P(B) - P(A \cup B)
+		\end{aligned}\right\rbrace \Rightarrow P(A \cap B') = P(A \cup B) - P(B),
+		\end{equation*}
+		logo a afirmação é verdadeira.
+		\item $A$ e $B$ mutuamente exclusivos significa que $A \cap B = \emptyset$, logo $P(A \cap B) = 0$. Visto que $P(B) > 0$, temos $P(A\mid B) = \frac{P(A \cap B)}{P(B)} = 0$, pelo que a afirmação é verdadeira.
+		\item $$P(A\mid B) > P(A) \Leftrightarrow \frac{P(A \cap B)}{P(B)} > P(A)  \Leftrightarrow \frac{P(A \cap B)}{P(A)} > P(B) \Leftrightarrow P(B\mid A) > P(B),$$
+		logo a afirmação é verdadeira.
+		\item A afirmação é falsa. Contra-exemplo: Seja $\Omega$ o espaço amostral e $A = B = C = \Omega$. Neste caso, teríamos $P(A) = P(B) = P(C) = 1$ o que, se a desigualdade dada fosse verdadeira, implicaria $P(A \cap B \cap C) \geq 2$.
+	\end{enumerate}
+
+\item Um estudante deve responder a 12 de 14 perguntas de um teste.
+	\begin{enumerate}
+	\item Quantas possibilidades tem?
+	\item Quantas possibilidades tem, se tiver de responder às 4 primeiras?
+	\item Quantas possibilidades tem, se tiver de responder pelo menos 5 das 7 primeiras?
+	\end{enumerate}
+	\tb{Resolução:}
+	\begin{enumerate}
+		\item ${14 \choose 12} = 91$.
+		\item ${4 \choose 4} {10 \choose 8} = 45$.
+		\item ${7 \choose 5} {7 \choose 7} + {7 \choose 6} {7 \choose 6} + {7 \choose 7} {7 \choose 5} = 91$.
+	\end{enumerate}
+			
+
+	
+\item Um número é escolhido de $\{1,2,3, \cdots \}$ com probabilidade
+$$P[i]= \begin{cases}4/7 \quad i=1 \\ 2/7 \quad i=2 \\ (r)^{i-2} \quad i\geq 3\end{cases}$$
+	\begin{enumerate}
+	\item Calcule $r$ que forma a que $P[i]$ seja uma função de probabilidade.
+	\item Calcule a $P[i\geq 4]$.
+	\end{enumerate}
+	
+	\tb{Resolução:}
+	\begin{enumerate}
+	\item Para que $P$ seja uma função de probabilidade, $r$ deve ser tal que $0 \leq P[i] \leq 1$, $\forall i \in \{1, 2, 3, \cdots\}$, e $\sum_{i=1}^\infty P[i] = 1$. A primeira condição implica $ 0 \leq r \leq 1$. Utilizando agora a segunda, temos:
+	$$\sum_{i=1}^\infty P[i] = 1 \Leftrightarrow \sum_{i=3}^\infty r^{i-2} = \frac{1}{7} \Leftrightarrow \sum_{i=1}^\infty r^{i} = \frac{1}{7}.$$
+	A soma do lado esquerdo da igualdade é uma série geométrica, que sabemos ser convergente se e só se $\mid r\mid  < 1$, pelo que nos basta aplicar a respetiva fórmula:
+	$$\frac{1}{7} = \sum_{i=1}^\infty r^{i} = \frac{r}{1-r} \Leftrightarrow r = \frac{1}{8}.$$
+	Note que o valor encontrado é válido pois satisfaz as restrições impostas anteriormente ($ 0 \leq r \leq 1$ e $\mid r\mid  < 1$).
+	\item $$P[i \geq 4] = 1 - P[i \leq 3] = 1 - \frac{4}{7} - \frac{2}{7} - \frac{1}{8} = \frac{1}{56}.$$ 
+	\end{enumerate}
+	
+\item O comandante de um sistema anti-míssil afirma o seguinte: 
+	``Dispomos de três barreiras defensivas contra um míssil inimigo. A probabilidade de um míssil ser destruído na primeira barreira é de 15\%, na segunda é de 35\% e na terceira é de 50\%. Afigura-se pois impossível que um míssil penetre o nosso sistema de defesa, já que a soma daquelas três probabilidades é de 100\%.''
+Concorda?
+
+	\tb{Resolução:}\\
+	$D_i -$ míssil destruído na barreira $i$, $i \in \{1, 2, 3\}$. O enunciado dá-nos as probabilidades de o míssil ser destruído em cada barreira quando utilizada isoladamente (isto é, sem as outras duas), pelo que as probabilidades dadas são $P(D_1) = 0.15$, $P(D_2 \mid  D_1') = 0.35$ e $P(D_3 \mid  D_1' \cap D_2') = 0.50$. A probabilidade de um míssil penetrar no sistema de defesa é a probabilidade de não ser destruído em nenhuma das três barreiras, ou seja, é $P(D_1' \cap D_2' \cap D_3')$. Podemos utilizar a regra da cadeia do cálculo de probabilidades (ver ex.\ 10 da Ficha 1) para a obter imediatamente:
+	$$P(D_1' \cap D_2' \cap D_3') = P(D_1') P(D_2' \mid  D_1') P(D_3' \mid  D_1' \cap D_2') = (1-0.15)(1-0.35)(1-0.50) \approx 0.276 > 0,$$
+	pelo que a afirmação do comandante é falsa.
+
+\item Sabe-se que $0.001\%$ da população tem um dado tipo de cancro. Um paciente visita o médico queixando-se de sintomas que podem indicar a presença de cancro. O médico faz um exame sanguíneo que permite confirmar o cancro com probabilidade $0.99$ se o paciente tiver de facto cancro. Contudo, o teste também pode produzir falsos positivos, ou seja, dizer que uma pessoa tem cancro quando de facto não tem. Isto ocorre com probabilidade 0.2. 
+	\begin{enumerate}
+	\item Se o teste der positivo, qual é a probabilidade que a pessoa tenha cancro?
+	%sol = 4.95E-5
+	\item Refaça os cálculos assumindo que a probabilidade do doente ter cancro antes de saber o resultado do exame é de 0.5 (pois o paciente tem sintomas consistentes com o cancro).
+	%sol = 0.83
+	\end{enumerate}
+
+	\tb{Resolução:}\\
+	$C -$ ter cancro; $E -$ exame dá resultado positivo.
+	$$P(C \mid E) = \frac{P(E \cap C)}{P(E)} = \frac{P(E \cap C)}{P(E \cap C) + P(E \cap C')} = \frac{P(E \mid C)P(C)}{P(E \mid C)P(C) + P(E \mid C')P(C')}$$
+	\begin{enumerate}
+		\item Pelo enunciado, $P(C) = 0.001\% = 10^{-5}$, $P(E\mid C) = 0.99$ e $P(E\mid C') = 0.2$, logo $P(C\mid E) \approx 4.95 \times 10^{-5}$.
+		\item Agora, $P(C) = 0.5$ e as restantes mantêm-se, logo $P(C\mid E) \approx 0.83$.
+	\end{enumerate}
+	
+\item $-$
+	
+\item Um automobilista costuma fazer, ao fim-de-semana, o trajecto Porto - Póvoa de Varzim. A sua experiência anterior permite-lhe ter a certeza de que, na sua viagem, a Brigada de Trânsito (BT) irá aparecer. Existem três locais onde a BT poderá estar: A, B e C. O automobilista sabe, também por experiência passada, que a BT apenas aparece uma vez no trajecto. A probabilidade de a BT estar em qualquer um dos locais, A, B, ou C, é igual. A BT está equipada com radares de velocidade que falham em 10\% das vezes em A, 20\% em B e nunca em C.
+	\begin{enumerate}
+	\item Determine a probabilidade de o automobilista, em excesso de velocidade, ser apanhado no trajecto Porto - Póvoa de Varzim.
+	\item Calcule a probabilidade de o automobilista, circulando com velocidade excessiva, se ter cruzado com a BT no local A ou B, sabendo que foi multado.
+	\item Calcule a probabilidade de o automobilista ser multado, sabendo que viaja com excesso de velocidade e que se cruzou com a BT no local A ou B.
+	\item Resolva a alínea a) admitindo que o automobilista, em 40\% das viagens, faz um desvio evitando passar em B. Assuma que no desvio nunca se encontra com a BT.
+	\end{enumerate}
+	
+	\tb{Resolução:}\\
+	Sejam $A$, $B$ e $C$ os acontecimentos ``BT estar no local A/B/C", respetivamente, e seja $F$ o acontecimento ``radar falhar". Sabemos que a BT aparece sempre uma e uma só vez no trajeto, logo $P(A \cup B \cup C) = 1$ e $P(A \cap B) = P(B \cap C) = P(A \cap C) = 0$. Assim, temos necessariamente $P(A) + P(B) + P(C) = 1$. Sabemos também que a probabilidade de a BT estar em qualquer dos três locais é igual, logo $P(A) = P(B) = P(C) = 1/3$. O enunciado dá-nos ainda $P(F \mid A) = 0.10$, $P(F \mid B) = 0.20$ e $P(F \mid C) = 0$.
+	\begin{enumerate}
+	\item Como o automobilista faz todo o trajeto em excesso de velocidade, será multado desde que o radar não falhe (onde quer que este esteja). Assim, a probabilidade pedida é:
+	\begin{align*}
+	P(F') &= P(F' \cap A) + P(F' \cap B) + P(F' \cap C) \\
+	&= P(F' \mid A)P(A) + P(F' \mid B)P(B) + P(F' \mid C)P(C) \\
+	&= (1-0.10) \times \frac{1}{3} + (1-0.20) \times \frac{1}{3} + (1-0) \times \frac{1}{3} = 0.90.
+	\end{align*}
+	\item 
+	\begin{align*}
+	P(A \cup B \mid F') &= \frac{P((A \cup B) \cap F')}{P(F')} = \frac{P((A \cap F') \cup (B \cap F'))}{P(F')} \\
+	&= \frac{P(A \cap F') + P(B \cap F')}{P(F')} = \frac{P(F' \mid A)P(A) + P(F' \mid B)P(B)}{P(F')} \\
+	&= \frac{(1-0.10) \times 1/3 + (1-0.20) \times 1/3}{0.90} \approx 0.63.
+	\end{align*}
+	\item 
+	\begin{align*}
+	P(F' \mid A \cup B) &= \frac{P(F' \cap (A \cup B))}{P(A \cup B)} = \frac{P(F' \mid A)P(A) + P(F' \mid B)P(B)}{P(A) + P(B)} \\
+	&= \frac{(1-0.10) \times 1/3 + (1-0.20) \times 1/3}{1/3 + 1/3} = 0.85.
+	\end{align*}
+	\item Seja $D$ o acontecimento ``automobilista faz um desvio, evitando passar em B". Temos $P(D) = 0.40$. Se o automobilista faz o desvio, então nunca será multado em B, pelo que podemos considerar $P(F \mid B \cap D) = 1$ (ou seja, fazer o desvio é o mesmo que dizer que o radar falha sempre em B). Agora, temos:
+	$$P(F') = P(F' \cap D) + P(F' \cap D') = P(F' \mid D)P(D) + P(F' \mid D')P(D').$$
+	A probabilidade $P(F' \mid D')$ é a probabilidade de o automobilista ser multado (ou seja, de o radar não falhar) dado que não fez o desvio, que é precisamente a probabilidade calculada em (a), logo $P(F' \mid D') = 0.90$. Resta-nos calcular a probabilidade de ser multado quando faz o desvio, $P(F' \mid D)$:
+	\begin{align*}
+	P(F' \mid D) &= P(F' \mid A \cap D)P(A \mid D) + P(F' \mid B \cap D)P(B \mid D) + P(F' \mid C \cap D)P(C \mid D) \\
+	&= P(F' \mid A)P(A) + P(F' \mid B \cap D)P(B) + P(F' \mid C)P(C)\\
+	&= (1-0.10) \times \frac{1}{3} + (1-1) \times \frac{1}{3} + (1-0) \times \frac{1}{3} \approx 0.633.
+	\end{align*}
+	Finalmente, $P(F') = 0.633 \times 0.40 + 0.90 \times (1-0.40) \approx 0.79$.
+	\end{enumerate}
+
+\item Numa cadeira há 3 épocas de exame, I, II e III, só se podendo repetir o exame na época III. Sejam $1/2$, $2/3$ e $3/4$, respectivamente, as respectivas probabilidades de aprovação e $4/10$ e $5/10$ as proporções de alunos que vão a exame nas duas primeiras épocas. 
+Admita-se ainda que todos os alunos reprovados repetem o exame na época III.
+	\begin{enumerate}
+	\item Qual a probabilidade de um aluno passar ?
+	\item Encontra-se um aluno que já fez a cadeira. Qual a probabilidade de a ter feito na I época ?
+	\end{enumerate}
+
+	\tb{Resolução:}\\
+	$A -$ aluno aprovado (em qualquer época); $A_i-$ aluno aprovado na época $i$; $E_i -$ aluno faz o exame da época $i$, $i \in \{1, 2, 3\}$. Do enunciado, temos $P(A_1 \mid E_1) = 1/2$, $P(A_2 \mid E_2) = 2/3$, $P(A_3 \mid E_3) = 3/4$, $P(E_1) = 4/10$ e $P(E_2) = 5/10$.
+	\begin{enumerate}
+		\item A probabilidade de um aluno passar é a probabilidade do aluno ser aprovado em qualquer das épocas de exame, ou seja, a probabilidade pedida é:
+		\begin{align*}
+		P(A) &= P(A_1 \cup A_2 \cup A_3) \\
+		&= P(A_1) + P(A_2) + P(A_3) \tag*{\begin{small}($A_i \cap A_j = \emptyset$)\end{small}} \\
+		&= P(E_1\cap A_1) + P(E_2 \cap A_2) + P(E_3 \cap A_3) \tag*{\begin{small}($A_i \subset E_i$)\end{small}} \\
+		&= P(A_1 \mid  E_1)P(E_1) + P(A_2 \mid  E_2)P(E_2) + P(A_3 \mid  E_3)P(E_3)
+		\end{align*}
+		Todos os valores na expressão acima são dados, à exceção de $P(E_3)$, que teremos de calcular. O enunciado diz-nos que os alunos que fazem o exame da época $3$ são todos aqueles que não foram aprovados nas duas épocas anteriores. Entre estes, contam-se: os que foram à primeira época e não foram aprovados ($E_1 \cap A_1'$), os que foram à segunda época e não foram aprovados ($E_2 \cap A_2'$) e os que não realizaram qualquer dos exames das duas épocas anteriores ($E_1' \cap E_2'$). Assim, $$P(E_3) = P((E_1 \cap A_1') \cup (E_2 \cap A_2') \cup (E_1' \cap E_2')).$$ Como só se pode repetir o exame na terceira época, $E_1$ e $E_2$ são acontecimentos disjuntos, logo:
+		\begin{align*}
+		P(E_3) &= P(E_1 \cap A_1') + P(E_2 \cap A_2') + P(E_1' \cap E_2') \\
+		&= P(A_1' \mid  E_1)P(E_1) + P(A_2' \mid  E_2)P(E_2) + 1 - P(E_1) - P(E_2) = \frac{7}{15}.
+		\end{align*} 
+		Assim, $P(A) = 53/60$.
+		\item $P(A_1 \mid  A) = \frac{P(A_1)}{P(A)} = \frac{P(A_1 \mid  E_1)P(E_1)}{P(A)} = 12/53.$
+		
+	\end{enumerate}
+	
+\item \label{urna} Cada uma das $n$ urnas $urna_1, urna_2, \cdots, urna_n$ contém $\alpha$ bolas brancas e $\beta$ bolas pretas.
+Uma bola é retirada da $urna_1$ e posta na $urna_2$; em seguida, uma bola é retirada da $urna_2$ e posta na $urna_3$, e assim por diante. Finalmente, uma bola é retirada da $urna_n$. Se a primeira bola transferida for branca, qual será a probabilidade que a última bola escolhida seja branca? Que acontece se $n\rightarrow \infty$? [sugestão: faça $p_n$ =Prob(a n-ésima bola transferida seja branca) e exprima $p_n$ em termos de $p_{n-1}$]
+	
+	\tb{Resolução:}\\
+	$B_i -$ bola retirada da urna $i$ é branca, $i \in \{1, 2, \cdots, n\}.$ Seja então $p_n$ a probabilidade de a $n$-ésima bola ser branca, dado que a primeira era branca. Tem-se, assim:
+	\begin{align*}
+	p_n &= P(B_n \mid  B_1) \\
+	&= P(B_n \cap B_{n-1} \mid  B_1) + P(B_n \cap B_{n-1}' \mid  B_1) \\
+	&= P(B_n \mid  B_1 \cap B_{n-1}) P(B_{n-1} \mid B_1) + P(B_n \mid  B_1 \cap B_{n-1}') P(B_{n-1}' \mid B_1) \\
+	&= P(B_n \mid  B_1 \cap B_{n-1}) p_{n-1} + P(B_n \mid  B_1 \cap B_{n-1}') (1 - p_{n-1}).
+	\end{align*}
+	Observe que, para $n \geq 2$, temos $P(B_n \mid  B_1\cap B_{n-1}) = P(B_n \mid  B_{n-1})$ e $P(B_n \mid  B_1 \cap B_{n-1}') = P(B_n \mid  B_{n-1}')$ (porquê?). Para além disso, se a urna $n$ tem inicialmente $\alpha$ bolas brancas e $\beta$ bolas pretas, então passará a ter $\alpha+1$ bolas brancas quando $B_{n-1}$ e $\beta+1$ bolas pretas quando $B_{n-1}'$. Assim, $$P(B_n \mid  B_{n-1}) = \frac{\alpha+1}{\alpha+\beta+1}, \quad P(B_n \mid  B_{n-1}') = \frac{\alpha}{\alpha+\beta+1},$$
+	e, portanto,
+	$$p_n = \frac{\alpha+1}{\alpha+\beta+1}p_{n-1} + \frac{\alpha}{\alpha+\beta+1} (1-p_{n-1}) = \frac{1}{\alpha+\beta+1} p_{n-1} + \frac{\alpha}{\alpha+\beta+1}, \quad n \geq 2.$$
+	Pretende-se agora encontrar uma fórmula não recursiva para $p_n$. 
+	Para simplificar a notação, vamos definir $r = \frac{1}{\alpha+\beta+1}$ e, assim, $p_n = r p _{n-1} + \alpha r$. Temos,
+	\begin{align*}
+	&p_1 = 1, \\
+	&p_2 = r + \alpha r, \\
+	&p_3 = r^2 + \alpha r^2 + \alpha r, \\
+	&p_4 = r^3 + \alpha r^3 + \alpha r^2 + \alpha r, \\
+	&\vdots
+	\end{align*}
+	Torna-se assim evidente (e pode ser provado por indução) que:
+	$$p_n = r^{n-1} + \alpha \sum_{i=1}^{n-1} r^i = r^{n-1} + \alpha \frac{r^{n} - r}{r - 1}, \quad n \geq 2,$$
+	onde a segunda igualdade resulta do uso da fórmula da soma dos termos de uma progressão geométrica de razão $r \neq 1$.
+	
+	O exercício pede-nos ainda para estudarmos o limite da sucessão $p_n$:
+	$$\lim_{n \to \infty} p_n = \lim_{n \to \infty} \left( r^{n-1} + \alpha \frac{r^{n} - r}{r - 1} \right) = -\alpha \frac{r}{r-1} = \frac{\alpha}{\alpha+\beta},$$
+	onde a segunda igualdade resulta de $r^n \to 0$, visto que $0 < r < 1$. O limite obtido mostra que, quando $n$ é suficientemente grande, a probabilidade de retirar uma bola branca da $n$-ésima urna ($B_n$) dado que a bola retirada da primeira urna era branca ($B_1$) aproxima-se da proporção de bolas brancas inicialmente presentes na $n$-ésima urna. Assim, a informação de que a primeira bola era branca ($B_1$) torna-se menos relevante à medida que $n$ aumenta. Consegue encontrar uma explicação intuitiva para isto?
+\end{enumerate}
+
+\end{document}

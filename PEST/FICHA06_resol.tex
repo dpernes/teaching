@@ -1,0 +1,688 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{fancybox}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{centernot}
+
+\usepackage[latin1]{inputenc}
+\selectlanguage{portuguese}
+
+%\usepackage{latexsym}
+
+%Tamanho da pagina
+\setlength{\oddsidemargin}{-0.54cm}
+\setlength{\topmargin}{-1.04cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{26cm}
+
+%Novos comandos
+\newcommand{\up}[1]{$^{\underline{\text{#1}}}$}
+\newcommand{\linespacing}[1]{\renewcommand{\baselinestretch}{#1}}
+%\renewcommand{\labelenumi}{\fbox{\textbf{\theenumi}} --- }
+%\renewcommand{\labelenumii}{\textbf{(\theenumii)}}
+\newcommand{\xx}{\ensuremath{\mathbf x }}
+\newcommand{\zz}{\ensuremath{\mathbf z }}
+\newcommand{\XX}{\ensuremath{\mathbf X }}
+\newcommand{\ww}{\ensuremath{\mathbf w }}
+\newcommand{\yy}{\ensuremath{\mathbf y }}
+\newcommand{\RR}{\ensuremath{\mathbf R }}
+\newcommand{\tb}{\textbf}
+\newcommand{\dx}{\,dx}
+\newcommand{\dy}{\,dy}
+\newcommand{\cov}{\text{cov}}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
+%Outros
+\linespacing{1.2}
+%\newtheorem{teorema}{Teorema}
+%\setlength{\footnotesep}{0.5cm}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\mytitle}[1]
+{\clearpage
+\begin{center}
+\fbox{\begin{minipage}{0.99\textwidth}
+\begin{center}
+\vspace{1ex} \textsc{\Large FEUP --- MIEEC \hspace{\stretch{1}}
+PEST  2018/2019 {\small(1\up{o} Semestre)}}
+\end{center}
+\end{minipage}}
+
+\vspace{1cm} 
+
+\textbf{\Large FICHA 06 -- resolução}\\
+%\textbf{Due: Tue, Oct 11, 23h59, by email to {\tt jaime.cardoso@fe.up.pt}}
+\vspace{2ex}
+\end{center}}
+
+
+\begin{document}
+\mytitle{1}
+
+DPC
+\begin{enumerate}
+\item Seja $(X,Y)$ um par aleatório discreto associado à tabela seguinte:
+\begin{tabular}{|c|c|c|c|}
+\hline
+$X\backslash Y$ & 1 & 2&3\\
+\hline
+0 & 0 & 1/4 & 0\\
+\hline
+1 & 1/4& 3/8 & 0\\
+\hline
+2 & 0 & 0 & 1/8\\
+\hline
+\end{tabular}
+ 	\begin{enumerate}
+	\item Calcule as funções de probabilidade e as funções de distribuição marginais de $X$ e de $Y$.
+	\item Calcule a função de distribuição acumulada do par $(X,Y)$.
+	\item Determine o coeficiente de correlação entre $X$ e $Y$.
+	\end{enumerate}
+	
+\tb{Resolução:}
+	\begin{enumerate}
+	\item A tabela dá-nos a função de probabilidade conjunta do par $(X,Y)$: $f_{X,Y}(x,y) = P(X=x \wedge Y=y)$. As funções de probabilidade marginais de $X$ e $Y$ serão, respetivamente,
+	\begin{align*}
+	&f_X(x) = P(X=x) = \sum_{\forall y} P(X=x \wedge Y=y) = \sum_{\forall y} f_{X,Y}(x,y), \\
+	&f_Y(y) = P(Y=y) = \sum_{\forall x} P(X=x \wedge Y=y) = \sum_{\forall x} f_{X,Y}(x,y).
+	\end{align*}
+	Assim, no caso de a função de probabilidade conjunta ser dada por uma tabela, determinar as funções de probabilidade marginais resume-se a somar os valores ao longo de cada linha (obtendo, neste caso, $f_X$) e ao longo de cada coluna da tabela (obtendo, neste caso, $f_Y$). As funções de distribuição acumulada $F_X$ e $F_Y$ obtêm-se imediatamente a partir das funções de probabilidade marginais.
+	
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		$X\backslash Y$ & 1 & 2& 3 & $f_X$ & $F_X$\\
+		\hline
+		0 & 0 & 1/4 & 0 & 1/4 & 1/4\\
+		\hline
+		1 & 1/4 & 3/8 & 0 & 5/8  & 7/8\\
+		\hline
+		2 & 0 & 0 & 1/8 & 1/8 & 1\\
+		\hline
+		$f_Y$ & 1/4 & 5/8 & 1/8 & - & - \\
+		\hline
+		$F_Y$ & 1/4 & 7/8 & 1 & - & - \\
+		\hline
+	\end{tabular}
+	
+	\item A função de distribuição acumulada do par $(X,Y)$ é, por definição, $F_{X,Y}(x,y) = P(X \leq x \wedge Y \leq y)$. Assim, a respetiva tabela é:
+	
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		$X\backslash Y$ & 1 & 2&3\\
+		\hline
+		0 & 0 & 1/4 & 1/4\\
+		\hline
+		1 & 1/4& 5/8 & 7/8\\
+		\hline
+		2 & 1/4 & 7/8 & 1\\
+		\hline
+	\end{tabular}
+	
+	\item O coeficiente de correlação do par $(X, Y)$ é dado por:
+	$$\rho(X,Y) = \frac{\cov(X,Y)}{\sqrt{V(X)V(Y)}}, \quad \cov(X,Y) = E(XY) - E(X)E(Y).$$
+	Temos então de calcular os valores necessários:
+	\begin{align*}
+		E_{f_{X,Y}}(XY) &= \sum_{\forall x} \sum_{\forall y} xy f_{X,Y}(x,y) \\
+		&= 0 \times 2 \times \frac{1}{4} + 1 \times 1 \times \frac{1}{4} + 1 \times 2 \times \frac{3}{8} + 2 \times 3 \times \frac{1}{8} = \frac{7}{4},
+	\end{align*}
+	\begin{align*}
+		E_{f_{X,Y}}(X) &= \sum_{\forall x} \sum_{\forall y} x f_{X,Y}(x,y) \\
+		&= \sum_{\forall x} x \sum_{\forall y} f_{X,Y}(x,y) \\
+		&= \sum_{\forall x} x f_X(x) = E_{f_X}(X) \quad \text{(ver nota no final)}\\
+		&= 0 \times \frac{1}{4} + 1 \times \frac{5}{8} + 2 \times \frac{1}{8} = \frac{7}{8},
+	\end{align*}
+	\begin{align*}
+		&E_{f_{X,Y}}(Y) = E_{f_Y}(Y) = \sum_{\forall y} y f_Y(y) = 1 \times \frac{1}{4} + 2 \times \frac{5}{8} + 3 \times \frac{1}{8} = \frac{15}{8}, \\
+		&E_{f_{X,Y}}(X^2) = E_{f_X}(X^2) = 0^2 \times \frac{1}{4} + 1^2 \times \frac{5}{8} + 2^2 \times \frac{1}{8} = \frac{9}{8}, \\
+		&E_{f_{X,Y}}(Y^2) = E_{f_Y}(Y^2) = 1^2 \times \frac{1}{4} + 2^2 \times \frac{5}{8} + 3^2 \times \frac{1}{8} = \frac{31}{8}, \\
+		&V(X) = E(X^2) - \left(E(X)\right)^2 = \frac{9}{8}  - \left(\frac{7}{8}\right)^2 = \frac{23}{64}, \\
+		&V(Y) = E(Y^2) - \left(E(Y)\right)^2 = \frac{31}{8} - \left(\frac{15}{8}\right)^2 = \frac{23}{64}, \\
+		&\rho(X,Y) = \frac{7/4 - (7/8)(15/8)}{\sqrt{(23/64)(23/64)}} = \frac{7}{23}.
+	\end{align*}
+	
+	\underline{Nota:} Na resolução deste exercício, demonstrámos que $E_{f_{X,Y}}(X) = E_{f_X}(X)$ e, de igual modo, $E_{f_{X,Y}}(Y) = E_{f_Y}(Y)$. No caso geral, para qualquer função $g$, tem-se sempre $E_{f_{X,Y}}[g(X)] = E_{f_X}[g(X)]$ e $E_{f_{X,Y}}[g(Y)] = E_{f_Y}[g(Y)]$. Assim, quando a função $g$ cujo valor esperado queremos calcular depende apenas de uma das variáveis aleatórias ($X$ ou $Y$) podemos  utilizar sempre a função de probabilidade marginal da v.a.\ respetiva ($f_X$ ou $f_Y$) no cálculo desse valor esperado, em vez de utilizarmos a função de probabilidade conjunta ($f_{X,Y}$). Na prática, isso traduz-se em menos termos no somatório do valor esperado, facilitando os cálculos. Para além disso, este resultado demonstra que podemos utilizar as notações simplificadas $E[g(X)]$ e $E[g(Y)]$ sem ambiguidade.
+	
+	\end{enumerate}
+	
+\item Considere o vetor aleatório $(X,Y)$ com a seguinte função de probabilidade conjunta:
+$f(x,y)= \left(\frac{1}{4}\right)^{x+y}$, para $(x,y)= (0,2),(1,1), (2,0), (2,-1), (0,1),(1,0), (3,-1)$.
+Determine:
+ 	\begin{enumerate}
+	\item  As distribuições marginais de $X$ e $Y$.
+	\item O valor médio de $X$ e o valor médio de $Y$.
+	\item $E(X+Y)$, $V(X+Y)$, $E(XY)$ e $\rho(X,Y)$.
+	\item Analise a independência entre as variáveis.
+	\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item \begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		$X\backslash Y$ & -1 & 0 & 1 & 2 & $f_X$ \\
+		\hline
+		0 & 0 & 0 & 1/4 & 1/16 & 5/16 \\
+		\hline
+		1 & 0 & 1/4 & 1/16 & 0 & 5/16 \\
+		\hline
+		2 & 1/4 & 1/16 & 0 & 0 & 5/16 \\
+		\hline
+		3 & 1/16 & 0 & 0 & 0 & 1/16 \\
+		\hline
+		$f_Y$ & 5/16 & 5/16 & 5/16 & 1/16 & -\\
+		\hline
+	\end{tabular}
+	\item $E(X) = 9/8$, $E(Y) = 1/8$.
+	\item O valor esperado é um operador linear, ou seja, para quaisquer constantes $a, b, c \in \RR$, tem-se sempre $E(aX + bY + c) = aE(X) + bE(Y) + c$ (demonstre!). Assim, $E(X+Y) = E(X) + E(Y) = 5/4$.
+	$$E(XY) = \sum_{x=0}^{3} \sum_{y=-1}^2 xy f_{X,Y}(x,y) = -\frac{5}{8},$$
+	$$E(X^2) = \sum_{x=0}^{3}x^2 f_X(x) = \frac{17}{8}, \quad
+	E(Y^2) = \sum_{y=-1}^{2}y^2 f_Y(y) = \frac{7}{8},$$
+	\begin{align*}
+	V(X+Y) &= E[(X+Y)^2] - (E(X+Y))^2 \\
+	&= E(X^2) + E(Y^2) + 2E(XY) - (E(X)+E(Y))^2 \\
+	&= \frac{3}{16},
+	\end{align*}~
+	$$V(X) = E(X^2) - (E(X))^2 = \frac{55}{64}, \quad V(Y) = E(Y^2) - (E(Y))^2 = \frac{55}{64},$$
+	$$\rho(X,Y) = \frac{E(XY) - E(X)E(Y)}{\sqrt{V(X)V(Y)}} = -\frac{49}{55}.$$
+	
+	\item Duas v.a.\ $X$ e $Y$ dizem-se independentes se satisfazem $P(X=x \wedge Y=y) = P(X=x) P(Y=y)$ para todo o $(x,y)$. De forma equivalente, podemos dizer que $X$ e $Y$ são independentes se e só se $f_{X,Y}(x,y) = f_{X}(x) f_{Y}(y)$ para todo o $(x,y)$. Como $f_{X,Y}(0,0) = 0 \neq (5/16)(5/16) = f_X(0)f_Y(0)$, concluímos de imediato que $X$ e $Y$ não são independentes.
+	
+	O seguinte resultado também poderia ser utilizado para verificar que $X$ e $Y$ não são independentes:
+	$$X, Y \text{ independentes} \implies \rho(X,Y) = 0.$$
+	Como vimos que $\rho(X,Y) \neq 0$, concluímos que $X$ e $Y$ não são independentes. Note, no entanto, que a implicação é válida apenas num sentido! Assim, é possível termos $\rho(X,Y) = 0$ e $X, Y$ dependentes. 
+	
+	\end{enumerate}
+
+\item Retiram-se ao acaso e sem reposição duas cartas de uma caixa que contem  5 cartas numeradas  1, 1, 2, 2, 3. Seja $X$ a soma e $Y$ o máximo dos dois números retirados.
+ 	\begin{enumerate}
+	\item Calcular a função de probabilidade conjunta de $(X,Y)$ e as leis marginais de $X$ e de $Y$.
+	\item Calcular a função de probabilidade da variável aleatória $Z = XY$. Calcular o seu valor esperado. Deduzir $\cov(X,Y)$.
+	\item Sabendo-se que a maior carta extraída tinha o valor 2, diga qual a distribuição da soma das duas cartas.
+	\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item $C -$ conjunto de cartas retirado. Vamos construir a tabela de probabilidade de $C$ e, para cada conjunto de cartas, indicamos os valores de $X$ e $Y$ correspondentes:
+	
+	\begin{minipage}{0.6\linewidth}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		$C$ & $P(C)$ & $X=\text{soma}(C)$ & $Y=\max(C)$ \\
+		\hline
+		$\{1,1\}$ & 1/10 & 2 & 1 \\
+		\hline
+		$\{1,2\}$ & 2/5 & 3 & 2 \\
+		\hline
+		$\{1,3\}$ & 1/5 & 4 & 3 \\
+		\hline
+		$\{2,2\}$ & 1/10 & 4 & 2 \\
+		\hline
+		$\{2,3\}$ & 1/5 & 5 & 3 \\
+		\hline
+	\end{tabular} 
+	\end{minipage}
+	\begin{minipage}{0.35\linewidth}
+	ex.: $$P(C = \{1,3\}) = \frac{{2 \choose 1}{1 \choose 1}}{{5 \choose 2}} = \frac{1}{5}$$
+	\end{minipage}
+
+	Desta tabela, é imediato obter a tabela de probabilidade conjunta de $(X,Y)$ e as marginais de $X$ e de $Y$:
+	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$X \backslash Y$ & 1 & 2 & 3 & $f_X$\\
+		\hline
+		2 & 1/10 & 0 & 0 & 1/10 \\
+		\hline 
+		3 & 0 & 2/5 & 0 & 2/5 \\
+		\hline
+		4 & 0 & 1/10 & 1/5 & 3/10 \\
+		\hline
+		5 & 0 & 0 & 1/5 & 1/5 \\
+		\hline
+		$f_Y$ & 1/10 & 1/2 & 2/5 & - \\
+		\hline
+	\end{tabular} 
+	
+	\item
+	\begin{minipage}{0.35\linewidth}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		$X$ & $Y$ & $Z=XY$ & $f_Z$\\
+		\hline
+		2 & 1 & 2 & 1/10\\
+		\hline
+		3 & 2 & 6 & 2/5\\
+		\hline
+		4 & 3 & 12 & 1/5\\
+		\hline
+		4 & 2 & 8 & 1/10\\
+		\hline
+		5 & 3 & 15 & 1/5\\
+		\hline 
+	\end{tabular}
+	\end{minipage}
+	\begin{minipage}{0.55\linewidth}
+	\begin{align*}
+	&E(Z) = \sum_{z \in \{2, 6, 8, 12, 15\}} z f_Z(z) = \frac{44}{5},\\
+	&E(X) = \frac{18}{5}, \quad E(Y) = \frac{23}{10},\\
+	&\cov(X,Y) = E(XY) - E(X)E(Y) \\
+	&\hphantom{\cov(X,Y)} = E(Z) - E(X)E(Y) = \frac{13}{25}.
+	\end{align*}
+	\end{minipage}
+	
+	\item Queremos determinar $P(X=x \mid Y=2)$ para cada valor de $x$, ou seja, queremos a função de probabilidade condicional de $X$ dado $Y=2$, que vamos denotar por $f_{X \mid Y=2}$:
+	\begin{align*}
+	f_{X \mid Y=2}(x) &= P(X=x \mid Y=2) = \frac{P(X=x \wedge Y=2)}{P(Y=2)} = \frac{f_{X,Y}(x,2)}{f_{Y}(2)} = \frac{f_{X,Y}(x,2)}{1/2} \\
+	&= \begin{cases}
+	4/5, \text{ } x=3,\\
+	1/5, \text{ } x=4,\\
+	0,\text{ outros valores de $x$.}
+	\end{cases}
+	\end{align*}
+	\end{enumerate}
+
+\item Dado o par aleatório $(X,Y)$ com função densidade conjunta 
+$$f(x,y)=\begin{cases}kxy \quad 0<x<1 \wedge 0<y<1 \\ 0\quad \mbox{restantes valores em } \RR^2\end{cases}$$	
+ 	\begin{enumerate}
+	\item Determine o valor de $k$.
+	\item Determine $P( 0 < X + Y < 1 )$.
+	\item Determine $P( X \leq  Y  \mid  Y \leq (3/2)X )$.
+	\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item Neste caso, $X$ e $Y$ são v.a.\ contínuas, logo temos uma função densidade de probabilidade conjunta, que, por definição, satisfaz $\iint_{\RR^2} f_{X,Y}(x,y) \dx \dy = 1$. Vamos utilizar esta propriedade para determinar $k$. A primeira coisa a fazer será esboçar o suporte de $f_{X,Y}$, isto é, esboçar a região do plano onde $f_{X,Y}(x,y) > 0$:
+	
+	\begin{center}
+	\begin{tikzpicture}
+	\pgfmathsetmacro{\XSCALE}{2} 
+	\pgfmathsetmacro{\YSCALE}{2}
+	
+	\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:1, variable=\x] (0, 0) -- plot ({\x}, {1}) -- (1, 0) -- cycle;
+	
+	\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (1.3, 0) node[right] {$x$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 1.3) node[left] {$y$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (1, -0.2) -- (1, 1.3) node {};
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (1.08, 0) node[below]{$1$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (-0.2, 1) -- (1.3, 1) node {};
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (0, 0.91) node[left]{$1$};
+	\end{tikzpicture}
+	\end{center}
+	Assim,
+	$$1 = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f_{X,Y}(x,y) \dx \dy = \int_{0}^{1} \int_{0}^{1} kxy \dx \dy = \frac{k}{4} \implies k = 4.$$
+	
+	\item Agora, esboçamos a região $\{(x,y) \in \RR^2: f_{X,Y}(x,y) > 0 \wedge 0 < x+y < 1\}$ e de imediato calculamos a probabilidade pedida:
+	
+	\begin{minipage}{.4 \textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\pgfmathsetmacro{\XSCALE}{2} 
+	\pgfmathsetmacro{\YSCALE}{2}
+		
+	\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:1, variable=\x] (0, 0) -- plot ({\x}, {1-\x}) -- (1, 0) -- cycle;
+		
+	\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.5, 0) -- (1.5, 0) node[right] {$x$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.5) -- (0, 1.5) node[left] {$y$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (1, -0.5) -- (1, 1.5) node {};
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (1.08, 0) node[below]{$1$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (-0.5, 1) -- (1.5, 1) node {};
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (0, 0.91) node[left]{$1$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed, domain=-0.5:1.5, variable=\x] plot ({\x}, {1-\x});
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (0.5, 0.5) node[right]{$y = 1-x$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed, domain=-0.5:0.5, variable=\x] plot ({\x}, {-\x});
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (0.25, -0.25) node[right]{$y = -x$};
+	\end{tikzpicture}
+	\end{center}
+	\end{minipage}
+	\begin{minipage}{.4 \textwidth}
+	$$P(0 < X + Y < 1) = \int_{0}^{1} \int_{0}^{1-x} 4xy \dy \dx = \frac{1}{6}.$$
+	\end{minipage}
+	
+	\item $$P\left(X \leq Y \mid Y \leq \frac{3}{2}X\right) = \frac{P(X \leq Y \leq (3/2)X)}{P(Y \leq (3/2)X)}.$$
+	Agora, calculamos as probabilidades em numerador e em denominador separadamente e obtemos o resultado final.
+	
+	\begin{minipage}{.4 \textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\pgfmathsetmacro{\XSCALE}{2} 
+	\pgfmathsetmacro{\YSCALE}{2}
+			
+	\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:2/3, variable=\x] (0, 0) -- plot ({\x}, {1.5*\x}) -- (2/3, 0) -- cycle;
+	\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=2/3:1, variable=\x] (2/3, 0) -- plot ({\x}, {1}) -- (1, 0) -- cycle;
+			
+	\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (1.3, 0) node[right] {$x$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 1.3) node[left] {$y$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (1, -0.2) -- (1, 1.3) node {};
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (1.08, 0) node[below]{$1$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (-0.2, 1) -- (1.3, 1) node {};
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (0, 0.91) node[left]{$1$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed, domain=-0.4/3:0.8667, variable=\x] plot ({\x}, {1.5*\x});
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (1/2, 3/4) node[right]{$y = (3/2)x$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (2/3, 1) -- (2/3, 0) node[below] {$2/3$};
+	\end{tikzpicture}
+	\end{center} 
+	\end{minipage}
+	\begin{minipage}{.4 \textwidth}
+	$$P\left(Y \leq \frac{3}{2}X\right) = \int_{0}^{1} \int_{(2/3)y}^{1} 4xy \dx \dy = \frac{7}{9},$$
+	\end{minipage}
+
+	\begin{minipage}{.4 \textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\pgfmathsetmacro{\XSCALE}{2} 
+	\pgfmathsetmacro{\YSCALE}{2}
+			
+	\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:2/3, variable=\x] (0, 0) -- plot (2/3, 2/3) -- (2/3, 1) -- cycle;
+	\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=2/3:1, variable=\x] (2/3, 2/3) -- plot ({\x}, {1}) -- (1, 1) -- cycle;
+			
+	\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (1.3, 0) node[right] {$x$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 1.3) node[left] {$y$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (1, -0.2) -- (1, 1.3) node {};
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (1.08, 0) node[below]{$1$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (-0.2, 1) -- (1.3, 1) node {};
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (0, 0.91) node[left]{$1$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed, domain=-0.4/3:0.8667, variable=\x] plot ({\x}, {1.5*\x});
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (1/2, 3/4) node[right]{$y = (3/2)x$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dashed, domain=-0.2:1.3, variable=\x] plot ({\x}, {\x});
+	\draw[xscale=\XSCALE, yscale=\YSCALE] (1/5, 1/5) node[right]{$y = x$};
+	\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (2/3, 1) -- (2/3, 0) node[below] {$2/3$};
+	\end{tikzpicture}
+	\end{center} 
+	\end{minipage}
+	\begin{minipage}{.4 \textwidth}
+	$$P\left(X \leq Y \leq \frac{3}{2}X\right) = \int_{0}^{1} \int_{(2/3)y}^{y} 4xy \dx \dy = \frac{5}{18},$$
+	\end{minipage}	
+	$$P\left(X \leq Y \mid Y \leq \frac{3}{2}X\right) = \frac{5/18}{7/9} = \frac{5}{14}.$$
+
+	\end{enumerate}
+
+\item O vetor aleatório bidimensional $(X,Y)$ tem função densidade conjunta constante para os pontos pertencentes ao triângulo de vértices (0,0), (0,2) e (2,2). Determine:
+ 	\begin{enumerate}
+	\item A função densidade conjunta.
+	\item As funções densidade marginais de $X$ e de $Y$.
+	\item As seguintes probabilidades: $P( Y < 1 )$; $P( X < 1 \cap Y < 1 )$; $P( X < Y )$.
+	\item $E(X), E(Y), V(X), V(Y), \cov(X,Y)$ e $\rho(X,Y)$.
+	\end{enumerate}
+	
+\tb{Resolução:}
+	\begin{enumerate}
+	\item 
+		\begin{minipage}{.3\textwidth}
+		\begin{center}
+		\begin{tikzpicture}
+		\pgfmathsetmacro{\XSCALE}{0.8} 
+		\pgfmathsetmacro{\YSCALE}{0.8}
+				
+		\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:2/3, variable=\x] (0, 0) -- plot (0, 2) -- (2, 2) -- cycle;
+				
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (2.3, 0) node[right] {$x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 2.3) node[left] {$y$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (0, 0) -- (2, 2) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (0.3, 0.3) node[right] {$y=x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (2, 2) -- (0, 2) node[left] {2};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (2, 2) -- (2, 0) node[below] {2};
+		\end{tikzpicture}
+		\end{center} 
+		\end{minipage}
+		\begin{minipage}{.6\textwidth}
+		$f_{X,Y}(x,y) = k$ para todo o $(x,y)$ no interior do triângulo dado~ (e $f_{X,Y}(x,y) = 0$ para outros $(x,y) \in \RR^2$).
+		
+		$$1 = \int_{0}^{2} \int_{0}^{y} k \dx \dy = 2k \implies k = \frac{1}{2}.$$
+		\end{minipage}
+		\item $$f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \dy = \int_{x}^{2} \frac{1}{2} \dy = 1 - \frac{x}{2}, \quad 0 < x < 2,$$
+		$$f_Y(y) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \dx = \int_{0}^{y} \frac{1}{2} \dx = \frac{y}{2}, \quad 0 < y < 2.$$
+		\item $$P(Y < 1) = \int_{-\infty}^{1} f_Y(y) \dy = \int_{0}^{1} \frac{y}{2} \dy = \frac{1}{4},$$	
+		\begin{minipage}{.3\textwidth}
+		\begin{center}
+		\begin{tikzpicture}
+		\pgfmathsetmacro{\XSCALE}{0.8} 
+		\pgfmathsetmacro{\YSCALE}{0.8}
+				
+		\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:2/3, variable=\x] (0, 0) -- plot (0, 1) -- (1, 1) -- cycle;
+				
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (2.3, 0) node[right] {$x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 2.3) node[left] {$y$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (0, 0) -- (2, 2) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (0.3, 0.3) node[right] {$y=x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (2, 2) -- (0, 2) node[left] {2};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (2, 2) -- (2, 0) node[below] {2};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (1, 1) -- (0, 1) node[left] {1};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (1, 1) -- (1, 0) node[below] {1};
+		\end{tikzpicture}
+		\end{center} 
+		\end{minipage}
+		\begin{minipage}{.6\textwidth}
+		$$P( X < 1 \wedge Y < 1 ) = \int_0^1 \int_{0}^{y} \frac{1}{2} = \frac{1}{4},$$
+		\end{minipage}
+		\begin{minipage}{.3\textwidth}
+		\begin{center}
+		\begin{tikzpicture}
+		\pgfmathsetmacro{\XSCALE}{0.8} 
+		\pgfmathsetmacro{\YSCALE}{0.8}
+				
+		\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:2/3, variable=\x] (0, 0) -- plot (0, 2) -- (2, 2) -- cycle;
+				
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (2.3, 0) node[right] {$x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 2.3) node[left] {$y$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (0, 0) -- (2, 2) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (0.3, 0.3) node[right] {$y=x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (2, 2) -- (0, 2) node[left] {2};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (2, 2) -- (2, 0) node[below] {2};
+		\end{tikzpicture}
+		\end{center} 
+		\end{minipage}
+		\begin{minipage}{.6\textwidth}
+		Como vemos pela figura ao lado, a condição $X<Y$ não impõe nenhuma restrição adicional e, assim, a região de integração é exatamente a mesma que em (a), logo $P(X < Y) = 1.$
+		\end{minipage}		
+		
+		\item Tínhamos visto que, no caso discreto, $E_{f_{X,Y}}[g(X)] = E_{f_X}[g(X)]$ e $E_{f_{X,Y}}[g(Y)] = E_{f_Y}[g(Y)]$ (ver ex.\ 1). Estas propriedades mantêm-se válidas no caso contínuo.
+		\begin{align*}
+		&E(X) = \int_{-\infty}^{\infty} x f_X(x) \dx = \int_{0}^{2}x \left(1 - \frac{x}{2} \right) \dx = \frac{2}{3},\\
+		&E(Y) = \int_{-\infty}^{\infty} y f_Y(y) \dy = \int_{0}^{2}\frac{y^2}{2} \dy = \frac{4}{3},\\
+		&\cdots \; V(X)=V(Y)=\frac{2}{9}, \quad \cov(X,Y) = \frac{1}{9}, \quad \rho(X,Y) = \frac{1}{2}.
+		\end{align*}
+		
+	\end{enumerate}
+
+\item Seja $(X,Y)$ um par aleatório com f.d.p. conjunta 
+$$f_{X,Y}(x,y)=\begin{cases}ax \quad 0<2x<y<2 \\ 0\quad \mbox{restantes valores em } \RR^2\end{cases}$$	
+ 	\begin{enumerate}
+	\item Determine o valor da constante $a$.
+	\item $X$ e $Y$ serão independentes? Justifique.
+	\item Determine as funções densidade condicionais.
+	\item Sabe-se que a v.a.\ $X$ vale 0.5, qual a probabilidade da v.a.\ $Y$ estar entre 1 e 2?
+	\end{enumerate}
+	
+\tb{Resolução:}
+	\begin{enumerate}
+	\item
+		\begin{minipage}{.3\textwidth}
+		$$0 < 2x < y < 2 \Leftrightarrow 0 < 2x < y \; \wedge \; y < 2$$
+		\begin{center}
+		\begin{tikzpicture}
+		\pgfmathsetmacro{\XSCALE}{0.8} 
+		\pgfmathsetmacro{\YSCALE}{0.8}
+				
+		\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:2/3, variable=\x] (0, 0) -- plot (0, 2) -- (1, 2) -- cycle;
+				
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (1.3, 0) node[right] {$x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 2.3) node[left] {$y$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (0, 0) -- (1, 2) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (0.3, 0.6) node[right] {$y=2x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (1,2) -- (0, 2) node[left] {2};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (1,2) -- (1, 0) node[below] {1};
+		\end{tikzpicture}
+		\end{center} 
+		\end{minipage}
+		\begin{minipage}{.6\textwidth}
+		$$\int_{0}^{1} \int_{2x}^{2} ax \dy \dx = 1 \Leftrightarrow a = 3.$$
+		\end{minipage}
+	\item De forma análoga ao caso discreto, $X$ e $Y$ são independentes se e só se $f_{X,Y}(x,y) = f_X(x) f_Y(y)$ para todo o $(x,y) \in \RR^2$.
+	$$f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \dy = \int_{2x}^{2} 3x \dy = 6x(1-x), \quad 0 < x < 1,$$
+	$$f_Y(y) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \dx = \int_{0}^{y/2} 3x \dx = \frac{3}{8}y^2, \quad 0 < y < 2,$$
+	logo $f_X(x) f_Y(y) \neq f_{X,Y}(x,y)$, portanto $X$ e $Y$ não são independentes.
+	\item Existem duas funções densidade de probabilidade condicionais: a função densidade de probabilidade condicional de $X$ dado $Y$, denotada por $f_{X \mid Y}$, e a função densidade de probabilidade condicional de $Y$ dado $X$, denotada por $f_{Y \mid X}$.
+	
+	\begin{minipage}{0.47\linewidth}
+	\begin{align*}
+	f_{X|Y} (x,y) &= \frac{f_{X,Y}(x,y)}{f_Y(y)}, \; f_Y(y) \neq 0 \\
+	&= \frac{3x}{(3/8)y^2}, \; 0 < 2x < y < 2 \wedge 0 < y < 2 \\
+	&= \frac{8x}{y^2}, \; 0 < 2x < y < 2,
+	\end{align*}
+	\end{minipage}
+	\begin{minipage}{0.47\linewidth}
+	\begin{align*}
+	f_{Y|X} (x,y) &= \frac{f_{X,Y}(x,y)}{f_X(x)}, \; f_X(x) \neq 0 \\
+	&= \frac{3x}{6x(1-x)}, \; 0 < 2x < y < 2 \wedge 0 < x < 1 \\
+	&= \frac{1}{2(1-x)}, \; 0 < 2x < y < 2.
+	\end{align*}
+	\end{minipage}
+	
+	\underline{Nota:} Observe que, para cada $y$, a função densidade de probabilidade condicional de $X$ dado $Y=y$ é uma função densidade de probabilidade na v.a.\ $X$. De igual modo, para cada $x$, a função densidade de probabilidade condicional de $Y$ dado $X=x$ é uma função densidade de probabilidade na v.a.\ $Y$. Assim, temos sempre:
+	$$\int_{-\infty}^{\infty} f_{X|Y}(x,y) \dx = 1, \; \forall y, \quad \text{e} \quad \int_{-\infty}^{\infty} f_{Y|X}(x,y) \dy = 1, \; \forall x. \quad \text{(verifique!)}$$
+	Naturalmente, no caso de v.a.\ discretas, os resultados análogos aplicam-se às respetivas funções de probabilidade condicionais:
+	$$\sum_{\forall x} f_{X|Y}(x,y)= 1, \; \forall y, \quad \text{e} \quad \sum_{\forall y} f_{Y|X}(x,y) = 1, \; \forall x.$$
+	
+	\item $$P(1 \leq Y \leq 2 \mid X = 0.5) = \int_{1}^{2} f_{Y|X}(0.5,y) \dy = \int_{1}^{2} \frac{1}{2(1-x)}\bigg\rvert_{x=0.5} \dy = \int_{1}^{2} \dy = 1.$$
+	
+	\end{enumerate}	
+	
+\item Uma urna contém três bolas brancas e duas bolas vermelhas. Retiram-se duas bolas da urna, uma após a outra, sem reposição. Seja $X$ igual a 0 ou 1, conforme a primeira bola retirada seja vermelha ou branca, e seja $Y$ igual a 0 ou 1, conforme a segunda bola retirada seja vermelha ou branca. Determine:
+ 	\begin{enumerate}
+	\item a função de probabilidade conjunta de $X$ e $Y$.
+	\item as funções de distribuição marginais.
+	\item  se $X$ e $Y$ são independentes.
+	\item $E(2X+8Y)$.
+	\item a covariância entre $X$ e $Y$.
+	\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item
+	\item
+	\begin{minipage}{0.45\linewidth}
+	\begin{align*}
+		&f_{X,Y}(x,y) = P(X=x \,\wedge\, Y=y) = P(X=x) P(Y=y \mid X=x) \\
+		&f_{X,Y}(0,0) = P(X=0) P(Y=0 \mid X=0) = \frac{2}{5} \times \frac{1}{4} = \frac{1}{10}\\
+		&f_{X,Y}(1,0) = P(X=1) P(Y=0 \mid X=1) = \frac{3}{5} \times \frac{2}{4} = \frac{3}{10}\\
+		&\vdots
+	\end{align*} 
+	\end{minipage} 
+	\begin{minipage}{0.45\linewidth}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$X \backslash Y$ & 0 & 1 & $f_X$ & $F_X$ \\
+		\hline
+		0 & 1/10 & 3/10 & 2/5 & 2/5\\
+		\hline
+		1 & 3/10 & 3/10 & 3/5 & 1\\
+		\hline
+		$f_Y$ & 2/5 & 3/5 & - & -\\
+		\hline
+		$F_Y$ & 2/5 & 1 & - & -\\
+		\hline
+	\end{tabular}
+	\end{minipage}
+	\item Não são independentes, pois, por exemplo, $f_{X,Y}(0,0) \neq f_X(0)f_Y(0)$.
+	\item $E(X) = 3/5$, $E(Y) = 3/5$, $E(2X + 8Y) = 2E(X) + 8E(Y) = 6$.
+	\item $E(XY) = 3/10$, $\cov(X,Y) = -3/50$.
+	\end{enumerate}
+
+\item Uma farmácia possui uma quantidade $X$ de centenas de unidades de um certo remédio no início de cada mês. Durante o mês, vendem-se $Y$ centenas de unidades desse remédio. Suponha que a função densidade conjunta das variáveis aleatórias $X$ e $Y$  é dada por $f_{X,Y}(x,y)=\begin{cases} 2/9 \quad 0<y< x<3 \\ 0\quad  \mbox{caso contrario}\end{cases}$
+ 	\begin{enumerate}
+	\item Mostre que de facto $f_{X,Y}$ é uma função densidade de probabilidade conjunta.
+	\item Determine as funções de distribuição marginais.
+	\item  Calcule a probabilidade de que ao final do mês a farmácia tenha vendido pelo menos metade das unidades que havia inicialmente.
+	\item  Dado que foram vendidas cem unidades, qual a probabilidade de que havia pelo menos duzentas unidades no começo do mês?
+	\end{enumerate}	
+
+\tb{Resolução:}	
+	\begin{enumerate}
+	\item A função $f_{X,Y}$ é uma função densidade de probabilidade conjunta se satisfaz $f_{X,Y}(x,y) \geq 0, \; \forall (x,y) \in \RR^2$ e $\iint_{\RR^2} f_{X,Y}(x,y) \dx \dy = 1$. A primeira condição é obviamente satisfeita, resta-nos verificar a segunda:
+	
+	\begin{minipage}{.3\textwidth}
+		\begin{center}
+		\begin{tikzpicture}
+		\pgfmathsetmacro{\XSCALE}{0.5} 
+		\pgfmathsetmacro{\YSCALE}{0.5}
+				
+		\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:2/3, variable=\x] (0, 0) -- (3,3) -- (3,0) -- cycle;
+				
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (3.8, 0) node[right] {$x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 3.8) node[left] {$y$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (0, 0) -- (3,3) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (0.6, 0.6) node[right] {$y=x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (3,3) -- (0, 3) node[left] {3};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (3,3) -- (3, 0) node[below] {3};
+		\end{tikzpicture}
+		\end{center} 
+	\end{minipage}
+	\begin{minipage}{.6\textwidth}
+	$$\int_{-\infty}^{\infty} f_{X,Y}(x,y) \dx \dy = \int_{0}^{3} \int_{y}^{3} \frac{2}{9} \dx \dy = 1. \quad \square$$
+	\end{minipage}
+	\item
+	$$f_X(x) =  \int_{-\infty}^{\infty} f_{X,Y}(x,y) \dy = \int_{0}^{x} \frac{2}{9} \dy = \frac{2}{9}x, \quad 0 < x < 3,$$
+	$$f_Y(y) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \dx = \int_{y}^{3} \frac{2}{9} \dx = \frac{2}{9}(3-y), \quad 0 < y < 3,$$
+	$$F_X(x) = P(X \leq x) = \int_{-\infty}^{x} f_X(x') \dx' 
+	= \begin{cases}
+	0, \; x \leq 0,\\
+	\int_{0}^{x} (2/9)x' \dx' = x^2/9, \; 0 \leq x \leq 3,\\
+	1, \; x \geq 3.
+	\end{cases}$$
+	$$F_Y(y) = P(Y \leq y) = \int_{-\infty}^{y} f_Y(y') \dy'
+	= \begin{cases}
+	0, \; y \leq 0,\\
+	\int_{0}^{y} \frac{2}{9}(3-y') \dy' = (2/3)y - (y^2/9), \; 0 \leq y \leq 3,\\
+	1, \; y \geq 3.
+	\end{cases}$$
+	\item A probabilidade pedida é $P(Y \geq X/2)$:
+	
+	\begin{minipage}{.3\textwidth}
+		\begin{center}
+		\begin{tikzpicture}
+		\pgfmathsetmacro{\XSCALE}{0.8} 
+		\pgfmathsetmacro{\YSCALE}{0.8}
+				
+		\fill[xscale=\XSCALE, yscale=\YSCALE, gray!50, domain=0:2/3, variable=\x] (0, 0) -- (3,3/2) -- (3,3) -- cycle;
+				
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (3.8, 0) node[right] {$x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 3.8) node[left] {$y$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (0, 0) -- (3,3) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (2, 2) node[right] {$y=x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (0, 0) -- (3,1.5) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (1, 0.5) node[right] {$y=x/2$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (3, 3) -- (0, 3) node[left] {3};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (3, 3) -- (3, 0) node[below] {3};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (3, 1.5) -- (0, 1.5) node[left] {$3/2$};
+		\end{tikzpicture}
+		\end{center} 
+	\end{minipage}
+	\begin{minipage}{.6\textwidth}
+	$$P\left(Y \geq \frac{X}{2}\right) = \int_{0}^{3} \int_{x/2}^{x} \frac{2}{9} \dy \dx = \frac{1}{2}.$$
+	\end{minipage}
+	\item Agora, pede-se $P(X \geq 2 \mid Y=1)$. Começamos por calcular a função densidade de probabilidade de $X$ dado $Y=1$ e, a partir desta, calculamos a probabilidade pedida:
+	\begin{align*}
+	f_{X \mid Y = 1}(x) &= \frac{f_{X,Y}(x,1)}{f_Y(1)} = \frac{2/9}{\frac{2}{9}(3-y)}\bigg\rvert_{y=1} , \quad 0 < y < x < 3 \bigg\rvert_{y=1}\\
+	&= \frac{1}{2}, \quad 1 < x < 3.
+	\end{align*}
+	$$P(X \geq 2 \mid Y = 1) = \int_{2}^{\infty} f_{X \mid Y = 1}(x) \dx = \int_{2}^{3} \frac{1}{2} \dx = \frac{1}{2}.$$
+	\end{enumerate}
+	
+\end{enumerate}
+%{\bf Simulação Computacional}\\
+%\begin{enumerate}
+
+%\item {\bf Entropia} Define-se entropia de uma v.a.\ discreta X por $H(X)=E[\log_2\frac{1}{p(X)}] = \sum_x p(x_i)\log_2\frac{1}{p(x_i)}$. Por convenção $0\log_2\frac{1}{0}=0$
+% 	\begin{enumerate}
+%	\item Seja $p$ a probabilidade de sair Caras no lançamento de uma moeda. Por simulação para vários valores de $p$, estime que valor de $p$ maximiza a entropia da v.a.\ X binária.	
+%	\item Estime a entropia de v.a.\ geométrica com p=0.8
+%	\end{enumerate}
+%\end{enumerate}
+\end{document}

@@ -1,0 +1,237 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+%\usepackage{fancybox}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+
+\usepackage[latin1]{inputenc}
+\selectlanguage{portuguese}
+
+%\usepackage{latexsym}
+
+%Tamanho da pagina
+\setlength{\oddsidemargin}{-0.54cm}
+\setlength{\topmargin}{-1.04cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{26cm}
+
+%Novos comandos
+\newcommand{\up}[1]{$^{\underline{\text{#1}}}$}
+\newcommand{\linespacing}[1]{\renewcommand{\baselinestretch}{#1}}
+%\renewcommand{\labelenumi}{\fbox{\textbf{\theenumi}} --- }
+%\renewcommand{\labelenumii}{\textbf{(\theenumii)}}
+\newcommand{\xx}{\ensuremath{\mathbf x }}
+\newcommand{\zz}{\ensuremath{\mathbf z }}
+\newcommand{\XX}{\ensuremath{\mathbf X }}
+\newcommand{\ww}{\ensuremath{\mathbf w }}
+\newcommand{\yy}{\ensuremath{\mathbf y }}
+\newcommand{\RR}{\ensuremath{\mathbf R }}
+\newcommand{\tb}{\textbf}
+\newcommand{\dx}{\,dx}
+\newcommand{\dy}{\,dy}
+\newcommand{\dz}{\,dz}
+\newcommand{\cov}{\text{cov}}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
+%Outros
+\linespacing{1.2}
+%\newtheorem{teorema}{Teorema}
+%\setlength{\footnotesep}{0.5cm}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\mytitle}[1]
+{\clearpage
+\begin{center}
+\fbox{\begin{minipage}{0.99\textwidth}
+\begin{center}
+\vspace{1ex} \textsc{\Large FEUP --- MIEEC \hspace{\stretch{1}}
+PEST  2018/2019 {\small(1\up{o} Semestre)}}
+\end{center}
+\end{minipage}}
+
+\vspace{1cm} 
+
+\textbf{\Large FICHA 07 -- resolução}\\
+%\textbf{Due: Tue, Oct 11, 23h59, by email to {\tt jaime.cardoso@fe.up.pt}}
+\vspace{2ex}
+\end{center}}
+
+
+\begin{document}
+\mytitle{1}
+
+DPC
+\begin{enumerate}
+
+\item Suponha que $X$ seja uniformemente distribuída em $(1,3)$. 
+ 	\begin{enumerate}
+	\item Ache a fdp das seguintes variáveis aleatórias:
+		\begin{enumerate}
+		\item $Y=3X+4$
+		\item $Z=e^X$
+		\end{enumerate}
+	\item Calcule o valor esperado de $Z$ de duas formas diferentes: $E(Z)=\int_z zf_Z(z)\dz$ e $E(Z)=\int_x e^xf_X(x)\dx$
+	\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item O seguinte resultado (teorema) permite-nos resolver problemas deste tipo de forma rápida sempre que as respetivas condições se verifiquem:
+	
+	Seja $X$ uma v.a.\ contínua com função densidade de probabilidade $f_X$ e $g$ uma função contínua, diferenciável e injetiva. Nestas condições, a função densidade de probabilidade da v.a.\ $Y = g(X)$ é dada por:
+	$$f_Y(y) = f_X\left(g^{-1}(y)\right) \bigg\lvert \frac{d}{dy}g^{-1}(y) \bigg\rvert.$$
+	
+	\begin{enumerate}
+		\item $X \sim U(1,3) \Leftrightarrow f_X(x) = 1/2, \; 1 < x < 3.$ $Y=g_1(X)$ onde $g_1(x) = 3x+4$ é diferenciável e injetiva, logo podemos utilizar o teorema.
+		\begin{align*}
+		&g_1^{-1}(y) = \frac{y-4}{3}, \quad \frac{d}{dy}g_1^{-1}(y) = \frac{1}{3}, \\
+		&f_Y(y) = \frac{1}{2} \bigg\lvert \frac{1}{3} \bigg\rvert = \frac{1}{6}, \quad 1 < g_1^{-1}(y) < 3 \Leftrightarrow 7 <  y < 13.
+		\end{align*}
+		\item $Z = g_2(X)$ onde $g_2(x) = e^x$ é diferenciável e injetiva, logo podemos utilizar o teorema.
+		\begin{align*}
+		&g_2^{-1}(z) = \log(z), \quad \frac{d}{dz}g_2^{-1}(z) = \frac{1}{z}, \\
+		&f_Z(z) = \frac{1}{2} \bigg\lvert \frac{1}{z} \bigg\rvert = \frac{1}{2|z|}, \quad 1 < g_2^{-1}(z) < 3 \\
+		&\hphantom{f_Z(z)} = \frac{1}{2z}, \quad e < z < e^3.
+		\end{align*}
+	\end{enumerate}
+	\item O exercício pede-nos que calculemos os valores esperados $E_{f_Z}(Z)$ e $E_{f_X}[g_2(X)]$ que anteriormente (ex.\ 5 da Ficha 5) já vimos serem necessariamente iguais.
+	$$E(Z) = E_{f_Z}(Z) = \int_{-\infty}^{\infty} z f_Z(z) \dz = \int_{e}^{e^3} z \frac{1}{2z} \dz = \frac{e^3-e}{2},$$
+	$$E(Z) = E_{f_X}[g_2(X)] = \int_{-\infty}^{\infty} g_2(x) f_X(x) \dx = \int_{1}^{3} e^x \frac{1}{2} \dx = \frac{e^3-e}{2}.$$
+	\end{enumerate}
+	
+
+\item Uma corrente eléctrica $I$ pode ser considerada como uma variável aleatória uniformemente distribuída no intervalo $(9, 11)$. Se essa corrente passar numa resistência de 2 Ohms, qual será a fdp da potência $P=2I^2$?
+
+\tb{Resolução:}\\
+	$I \sim U(9, 11) \Leftrightarrow f_I(i) = 1/2, \; 9 < i < 11$. Temos $P = g(I)$ onde $g(i) = 2i^2$ é diferenciável e injetiva (no intervalo $9 < i < 11$).
+	\begin{align*}
+	&g^{-1}(p) = \sqrt{\frac{p}{2}}, \quad \frac{d}{dp}g^{-1}(p) = \frac{1}{4} \sqrt{\frac{2}{p}}, \\
+	&f_P(p) = \frac{1}{2} \bigg\lvert \frac{1}{4} \sqrt{\frac{2}{p}} \bigg\rvert = \frac{1}{8} \sqrt{\frac{2}{p}}, \quad 9 < g^{-1}(p) < 11 \Leftrightarrow 162 < p < 242.
+	\end{align*}
+		
+\item Suponha que  $X$ seja uniformemente distribuída em $(-1,1)$. Seja $Y=4-X^2$. Ache a fdp de $Y$, $f_Y(y)$. Verifique que $f_Y(y)$ é de facto uma fdp. Sugestão: comece por calcular a função de distribuição acumulada de $Y$ e depois calcule a sua derivada.
+
+\tb{Resolução:}\\
+	$X \sim U(-1,1) \Leftrightarrow f_X(x) = 1/2, \; -1 < x < 1$. Temos $Y = g(X)$ onde $g(x) = 4 - x^2$ não é injetiva (para $-1 < x < 1$). Assim, não estamos em condições de utilizar o teorema enunciado anteriormente. Contudo, é fácil determinar a função de distribuição acumulada de $Y$, denotada por $F_Y$, e, a partir desta, obtemos a respetiva função densidade de probabilidade, $f_Y = dF_Y/dy$.
+	
+	\begin{center}
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\XSCALE}{5} 
+		\pgfmathsetmacro{\YSCALE}{1} 
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-1.1, 0) -- (1.1, 0) node[right] {$x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 4.3) node {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, domain=-1:-0.75, ultra thick, variable=\x]  plot ({\x}, {4 - \x*\x});
+		\draw[xscale=\XSCALE, yscale=\YSCALE, domain=0.75:1, ultra thick, variable=\x]  plot ({\x}, {4 - \x*\x});
+		\draw[xscale=\XSCALE, yscale=\YSCALE, domain=-0.75:0.75, variable=\x]  plot ({\x}, {4 - \x*\x});
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (-1, 3) -- (-1, 0) node[below] {$-1$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (1, 3) -- (1, 0) node[below] {1};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (-1, 3) -- (1, 3) node {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (0, 3) node[right] {3};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (0, 4) node[right] {4};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (0.5, 4-0.4*0.4) node[right] {$g$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (-1.1, 3.4375) -- (1.1, 3.4375) node {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (0, 3.4375) node[right] {$y$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (-0.75, 3.4375) -- (-0.75, 0) node[below] {$-\sqrt{4-y}$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (0.75, 3.4375) -- (0.75, 0) node[below] {$\sqrt{4-y}$};
+	\end{tikzpicture}
+	\end{center}
+	$$F_Y(3) = P(Y \leq 3) = 0, \quad F_Y(4) = P(Y \leq 4) = 1,$$
+	\begin{align*}
+	3 \leq y \leq 4 \implies F_Y(y) &= P(Y \leq y) = P(Y < 3) + P(3 \leq Y \leq y) = P(3 \leq Y \leq y) \\
+	&= P\left(-1 \leq X \leq -\sqrt{4-y}\right) + P\left(\sqrt{4-y} \leq X \leq 1\right) \\
+	&= \int_{-1}^{-\sqrt{4-y}} \frac{1}{2} \dx + \int_{\sqrt{4-y}}^{1} \frac{1}{2} \dx \\
+	&= 1 - \sqrt{4-y}.
+	\end{align*}
+	Assim,
+	$$F_Y(y) = \begin{cases}
+	0, \text{ se }y \leq 3 \\
+	1 - \sqrt{4-y}, \text{ se } 3 \leq y \leq 4 \\
+	1, \text{ se } y \geq 4
+	\end{cases}. \quad \text{(note que $F_Y$ é contínua!)}$$
+	$$f_Y(y) = \frac{dF_Y}{dy}(y) = \frac{1}{2 \sqrt{4-y}}, \quad 3 < y < 4.$$
+
+\item Seja $X$ uniformemente distribuída em $(0,4)$. Seja $Y=g(X)$ com $g(x)=\begin{cases} x \quad 0<x<1 \\ 1\quad 1<x<2\\ 3-x \quad 2<x<3 \\ 0 \quad \mbox{restantes valores}\end{cases}$. Ache a função de distribuição acumulada de $Y$.
+
+\tb{Resolução:}\\
+	$X \sim U(0,4) \Leftrightarrow f_X(x) = 1/4, \; 0 < x < 4$. Claramente, neste caso, $g$ não é injetiva.
+	
+	\begin{minipage}{0.45\linewidth}
+	\begin{center}
+		\begin{tikzpicture}
+			\pgfmathsetmacro{\XSCALE}{1.8} 
+			\pgfmathsetmacro{\YSCALE}{2} 
+			\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-0.2, 0) -- (4.2, 0) node[right] {$x$};
+			\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, -0.2) -- (0, 1.2) node {};
+			\draw[xscale=\XSCALE, yscale=\YSCALE, domain=-0.2:0, ultra thick, variable=\x]  plot ({\x}, {0});
+			\draw[xscale=\XSCALE, yscale=\YSCALE, domain=0:0.5, ultra thick, variable=\x]  plot ({\x}, {\x});
+			\draw[xscale=\XSCALE, yscale=\YSCALE, domain=0.5:1, variable=\x]  plot ({\x}, {\x});
+			\draw[xscale=\XSCALE, yscale=\YSCALE, domain=1:2, variable=\x]  plot ({\x}, {1});
+			\draw[xscale=\XSCALE, yscale=\YSCALE, domain=2:2.5, variable=\x]  plot ({\x}, {3-\x});
+			\draw[xscale=\XSCALE, yscale=\YSCALE, domain=2.5:3, ultra thick, variable=\x]  plot ({\x}, {3-\x});
+			\draw[xscale=\XSCALE, yscale=\YSCALE, domain=3:4.2, ultra thick, variable=\x]  plot ({\x}, {0});
+			\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (1, 1) -- (1, 0) node[below] {1};
+			\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (1, 1) -- (0, 1) node[left] {1};
+			\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (2, 1) -- (2, 0) node[below] {2};
+			\draw[xscale=\XSCALE, yscale=\YSCALE] (3, 0) node[below] {3};
+			\draw[xscale=\XSCALE, yscale=\YSCALE] (4, 0) node[below] {4};
+			\draw[xscale=\XSCALE, yscale=\YSCALE] (2.2, 1) node[right] {$g$};
+			\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (-0.2, 0.5) -- (4.2, 0.5) node {};
+			\draw[xscale=\XSCALE, yscale=\YSCALE] (0, 0.5) node[left] {$y$};
+			\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (0.5, 0.5) -- (0.5, 0) node[below] {$y$};
+			\draw[xscale=\XSCALE, yscale=\YSCALE, dotted] (2.5, 0.5) -- (2.5, 0) node[below] {$3-y$};
+		\end{tikzpicture}
+	\end{center}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+	\begin{align*}
+	F_Y(0) &= P(Y \leq 0) = P(Y = 0) \\
+	       &= P(X \leq 0) + P(X \geq 3) \\
+	       &= P(3 \leq X \leq 4) \\
+	       &= \int_{3}^{4} \frac{1}{4} \dx = \frac{1}{4},
+	\end{align*}
+	\end{minipage}
+	\begin{align*}
+	0 < y < 1 \implies F_Y(y) &= P(Y \leq y) = P(Y \leq 0) + P(0 < Y \leq y) \\
+	& = \frac{1}{4} + P(0 < X \leq y) + P(3-y \leq X < 3) \\
+	& = \frac{1}{4} + \int_{0}^{y} \frac{1}{4} \dx + \int_{3-y}^{3} \frac{1}{4} \dx \\
+	& = \frac{1}{4} + \frac{y}{2},
+	\end{align*}
+	$$F_Y(1) = P(Y \leq 1) = 1.$$
+	Então,
+	$$F_Y(y) = \begin{cases}
+	0, \text{ se } y < 0 \\
+	1/4 + y/2, \text{ se } 0 \leq y < 1 \\
+	1, \text{ se } y \geq 1
+	\end{cases}.$$
+	\underline{Nota:} Suponha que $Y$ tem uma função densidade de probabilidade $f_Y$. Se isso for verdade, $f_Y$ tem de ser tal que $\int_{-\infty}^{0^-} f_Y(y) \dy = F_Y(0^-) = 0$ e $\int_{-\infty}^{0^+} f_Y(y) \dy = F_Y(0^+) = 1/4$. Como não existe nenhuma função que satisfaça ambas as igualdades, concluímos que a v.a.\ $Y$ não tem função densidade de probabilidade. De facto, no caso geral, quando a função de distribuição acumulada é descontínua, não existe função densidade de probabilidade. Neste exemplo, $F_Y$ é descontínua em $y=0$ e $y=1$ e essas descontinuidades resultam de que $P(Y = 0) = 1/4 > 0$ e $P(Y = 1) = 1/4 > 0$.
+	
+\item Suponha que $T$ tem uma fdp exponencial com parâmetro $r$, $f(t)=r \exp(-rt), t >0$.
+Calcule a função de probabilidade de $\text{floor}(T)$.\\
+Definição da função floor em
+\url{https://en.wikipedia.org/wiki/Floor_and_ceiling_functions}
+
+\tb{Resolução (ideia):}\\
+	Definir $Y = \text{floor}(T)$. Observar que o contradomínio da função floor é o conjunto dos números inteiros, logo $Y$ será uma v.a.\ discreta. Determinar a função de probabilidade de $Y$ notando que, pela definição da função floor, $P(Y = y) = P(y \leq T < y+1)$. No final, deverá ter:
+	$$f_Y(y) = e^{-ry}(1-e^{-r}), \quad y \in \{0, 1, 2, \cdots\}.$$
+	
+\item Considere que $X$ segue uma distribuição de Poisson.
+Seja $Y$ tal que $Y = \begin{cases} 1 \quad \mbox{se } X \mbox{ é par} \\ -1\quad \mbox{se } X \mbox{ é ímpar}\end{cases}$. Calcule a função de probabilidade de $Y$.
+
+\tb{Resolução (ideia):}\\
+	Tem-se $X \sim \text{Pois}(\lambda)$. Notar que $P(Y=1) = P(X=0) + P(X=2) + P(X=4) + \cdots = \sum_{x=0}^\infty P(X=2x)$. Escrever a série obtida substituindo o termo geral $P(X=2x)$ pela expressão respetiva, dada pela função de probabilidade da distribuição de Poisson. Notar que a série obtida tem a forma de uma série de Taylor de uma função conhecida, pelo que a soma da série pode ser escrita à custa dessa função. Obter $P(Y=-1) = 1-P(Y=1)$. No final, deverá ter:
+	$$f_Y(y) = \begin{cases}
+	(1-e^{-2\lambda})/2, \text{ se } y = -1 \\
+	(1+e^{-2\lambda})/2, \text{ se } y = 1
+	\end{cases}.$$
+	
+\end{enumerate}
+
+ 
+\end{document}

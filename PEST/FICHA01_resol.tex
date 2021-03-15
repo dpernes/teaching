@@ -1,0 +1,217 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{fancybox}
+%\usepackage{amsthm}
+\usepackage{graphicx}
+
+\usepackage[latin1]{inputenc}
+\usepackage{xcolor}
+\selectlanguage{portuguese}
+
+%\usepackage{latexsym}
+
+%Tamanho da pagina
+\setlength{\oddsidemargin}{-0.54cm}
+\setlength{\topmargin}{-1.04cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{26cm}
+
+%Novos comandos
+\newcommand{\up}[1]{$^{\underline{\text{#1}}}$}
+\newcommand{\linespacing}[1]{\renewcommand{\baselinestretch}{#1}}
+%\renewcommand{\labelenumi}{\fbox{\textbf{\theenumi}} --- }
+%\renewcommand{\labelenumii}{\textbf{(\theenumii)}}
+\newcommand{\xx}{\ensuremath{\mathbf x }}
+\newcommand{\zz}{\ensuremath{\mathbf z }}
+\newcommand{\XX}{\ensuremath{\mathbf X }}
+\newcommand{\ww}{\ensuremath{\mathbf w }}
+\newcommand{\yy}{\ensuremath{\mathbf y }}
+\newcommand{\RR}{\ensuremath{\mathbf R }}
+\newcommand{\NN}{\ensuremath{\mathbf N }}
+\newcommand{\tb}{\textbf}
+\newcommand*{\Perm}[2]{{}^{#1}\!A_{#2}}
+
+%Outros
+\linespacing{1.2}
+%\newtheorem{teorema}{Teorema}
+%\setlength{\footnotesep}{0.5cm}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\mytitle}[1]
+{\clearpage
+\begin{center}
+\fbox{\begin{minipage}{0.99\textwidth}
+\begin{center}
+\vspace{1ex} \textsc{\Large FEUP --- MIEEC \hspace{\stretch{1}}
+PEST  2018/2019 {\small(1\up{o} Semestre)}}
+\end{center}
+\end{minipage}}
+
+\vspace{1cm} 
+
+\textbf{\Large FICHA 01 --- resolução}\\
+\vspace{2ex}
+\end{center}}
+
+
+\begin{document}
+\mytitle{1}
+
+DPC
+
+\begin{enumerate}
+\item A prevenção da propagação da fractura por fadiga em estruturas de aeronaves é um importante elemento de segurança.
+Um estudo de engenharia para investigar a fractura por fadiga em $n=9$ asas carregadas ciclicamente reportou os seguintes comprimentos (em mm) de fractura: $2.13; 2.96; 3.02; 1.82; 1.15; 1.37; 2.04; 2.47; 2.60$.
+	\begin{enumerate}
+	\item Calcule a média da amostra.
+	\item Calcule a variância e o desvio-padrão da amostra.
+	\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item $\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i = 2.1733$.\\
+	\item $s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2 = 0.4304$, $s = \sqrt{s^2} =0.6560$.
+	\end{enumerate}
+
+\item Considere a quantidade $\sum_{i=1}^n (x_i-a)^2$. Sendo $x_i$, $i=1..n$ conhecidos, qual o valor de $a$ que minimiza essa quantidade?
+
+\tb{Resolução:}\\
+Seja $L(a) = \sum_{i=1}^n (x_i-a)^2$, $a \in \RR$, a função que queremos minimizar. Trata-se de uma função quadrática com segunda derivada positiva, pelo que existe um minimizante único e global $a^*$. Assim,
+$$\frac{d L}{d a}(a^*) = 0 \, \Leftrightarrow \,
+-2\sum_{i=1}^n (x_i-a^*) = 0 \, \Leftrightarrow \,
+a^* = \frac{1}{n}\sum_{i=1}^{n}x_i.$$
+Concluímos, então, que $a^*$ é igual à média de $x_1, x_2, ..., x_n$. $\square$
+
+\item Dada uma amostra de valores $x_i, \quad i=1,\cdots, n$, mostre que a mediana é a solução de $$\arg\min_{a} \sum_{i=1}^n |x_i-a|.$$
+\tb{Resolução:}\\
+Seja $L_n(a) = \sum_{i=1}^n |x_i-a|$, $a \in \RR$, a sucessão das funções que queremos minimizar. Pretende-se demonstrar que, para cada $n \in \NN$, a função $L_n(a)$ é mínima para $a = \text{mediana}(x_1, x_2, ..., x_n)$. Neste caso, apesar de contínua, a função $L_n(a)$ não é diferenciável, pelo que não podemos utilizar o mesmo método que no exercício 2.\ (procurar os pontos onde a derivada é nula). Começamos então por assumir que $x_1 \leq x_2 \leq ... \leq x_n$, sem perda de generalidade (porquê?). Faremos agora a demonstração tratando separadamente os casos em que $n$ é ímpar e em que $n$ é par.
+
+\underline{$n$ ímpar:}\\
+Se $n$ é ímpar, então existe um inteiro $k$ tal que $n = 2k+1$. Note ainda que $\text{mediana}(x_1, x_2, ..., x_{2k+1}) = x_k$. Assim, temos:
+$$L_n(a) = L_{2k+1}(a) = \sum_{i=1}^{2k+1}|x_i - a| = |x_1-a| + |x_{2k+1}-a| + \sum_{i=2}^{2k}|x_i - a|.$$
+Observando que $L_{2k+1}(a)$ cresce à medida que $a$ se afasta do intervalo $[x_1,\; x_{2k+1}]$, conclui-se que os pontos de mínimo terão de ocorrer necessariamente nesse intervalo. Assim, para $a \in [x_1, x_{2k+1}]$, temos $|x_1-a| + |x_{2k+1}-a| = (a-x_1) + (x_{2k+1}-a) = x_{2k+1} - x_1$ e $L_{2k+1}(a) = x_{2k+1} - x_1 + \sum_{i=2}^{2k}|x_i - a|$. Aplicando o mesmo raciocínio recursivamente, conclui-se que o mínimo terá de ocorrer em $[x_{k-1}, x_{k}]$ e, para $a$ neste intervalo, temos:
+$$L_{2k+1}(a) = |x_k - a| + \underbrace{(x_{2k+1} - x_1) + (x_{2k} - x_2) + ... + (x_{k+1} - x_{k-1})}_{\text{constante}}.$$
+Daqui, é imediato observar que $a^* = x_k$ é o minimizante global de $L_{2k+1}(a)$.
+
+\underline{$n$ par:}\\
+A prova segue um raciocínio idêntico ao anterior. Neste caso, $n = 2k$ para algum inteiro $k$ e, assim, $\text{mediana}(x_1, x_2, ..., x_{2k}) = \frac{1}{2}(x_k + x_{k+1})$. Aplicando o mesmo raciocínio recursivo que anteriormente, observamos que $L_{2k}(a)$ será mínima para todo o $a \in {[x_k,\; x_{k+1}]}$, que contém a mediana (ponto médio do intervalo). $\square$
+
+\item Construa, relativamente a cada uma das experiências aleatórias a seguir indicadas, o espaço de resultados e classifique-o quanto ao número de elementos:
+	\begin{enumerate}
+	\item lançamento de uma moeda;
+	\item lançamento de uma moeda até aparecer ``coroa'';
+	\item escolha de um número real no intervalo $[ 0;10]$.
+	\end{enumerate}	
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item $\{\text{``cara''},\,\text{``coroa''}\}$, conjunto discreto e finito.
+	\item $\{\text{``coroa''},\, \text{``cara''-``coroa''},\, \text{``cara''-``cara''-``coroa''},\, ...\}$, conjunto discreto e infinito.
+	\item $\{x: x \in [0,\; 10]\}$, conjunto infinito não numerável.
+	\end{enumerate}
+
+\item Suponha que o espaço amostral $\Omega$ é formado pelos inteiros positivos de $1$ a $10$. Sejam $A=\{2,3,4\}, B=\{3,4,5\}$, e $C=\{5,6,7\}$. Enumere os elementos dos seguintes conjuntos:
+	\begin{enumerate}
+	\item $\bar{A}\cap B$;
+	\item $\bar{A}\cup B$;	
+	\item $\overline{\bar{A}\cap \bar{B}}$;
+	\item $\overline{A\cap (B\cup C)}$;
+	\end{enumerate}	
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item $\bar{A}\cap B = \{5\}$.
+	\item $\bar{A}\cup B = \{1, 3, 4, 5, 6, 7, 8 , 9, 10\} = \Omega \setminus \{2\}$.
+	\item $\overline{\bar{A}\cap \bar{B}} = A \cup B = \{2, 3, 4, 5\}$.
+	\item $\overline{A\cap (B\cup C)} = \Omega \setminus \{3, 4\}$.
+	\end{enumerate}
+
+\item Um sistema electrónico é formado por dois sub-sistemas A e B. De ensaios anteriores, sabe-se que:
+	\begin{itemize}
+	\item a probabilidade de A falhar é 20\%;
+	\item a probabilidade de B falhar sozinho é 15\%;
+	\item a probabilidade de A e B falharem é 15\%.
+	\end{itemize}	
+	Determine a probabilidade de:
+	\begin{enumerate}
+	\item B falhar;
+	\item falhar apenas A;
+	\item falhar A ou B;
+	\item não falhar nem A nem B;
+	\item A e B não falharem simultaneamente.
+	\end{enumerate}	
+	
+\tb{Resolução:}\\
+	Sejam $A$ e $B$ os acontecimentos ``sistema A falhar" e ``sistema B falhar", respetivamente. Do enunciado, temos $P(A) = 0.20$, $P(B \cap \bar{A}) = 0.15$ e $P(A \cap B) = 0.15$.
+	\begin{enumerate}
+	\item $P(B) = P(B \cap A) + P(B \cap \bar{A}) = 0.15 + 0.15 = 0.30.$
+	\item $P(A \cap \bar{B}) = P(A) - P(A \cap B) = 0.20 - 0.15 = 0.05.$
+	\item $P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0.20 + 0.30 - 0.15 = 0.35.$
+	\item $P(\bar{A} \cap \bar{B}) = P(\overline{A \cup B}) = 1 - P(A \cup B) = 1-0.35 = 0.65$.
+	\item $P(\overline{A \cap B}) = 1 - P(A \cap B) = 1 - 0.15 = 0.85.$
+	\end{enumerate}
+
+\item Um conjunto de letras de plástico A-Z (23 letras) é colocado num vaso. Tirando 4 letras ao acaso sem reposição, qual a probabilidade de obtermos PEST (por esta ordem)?
+
+\tb{Solução:}
+	$$\text{Prob}(\text{obter PEST}) = \frac{1}{\Perm{23}{4}} = \frac{1}{23 \times 22 \times 21 \times20}.$$
+
+\item Numa sala de jogos há duas máquinas análogas; uma delas funciona normalmente e oferece uma probabilidade de ganho de $0.2$; a outra, como está avariada, permite uma probabilidade de ganho de $0.6$. No entanto, não sabemos distingui-las ``a priori''. 
+Escolhemos uma máquina ao acaso. Qual é a probabilidade de que seja a máquina avariada,
+	\begin{enumerate}
+	\item Antes de iniciar o jogo?
+	\item Depois de haver jogado uma partida que ganhamos?
+	\item Depois de haver jogado uma partida que perdemos?
+	\item Depois de haver jogado duas partidas que ganhamos?
+	\item Depois de haver jogado duas partidas, das quais ganhamos a primeira e perdemos a segunda?
+	\end{enumerate}		
+
+\tb{Resolução:}\\
+	Vamos definir os seguintes acontecimentos: $A -$ escolher a máquina avariada, $G_i -$ ganhar a partida $i$, $i \in \{1, 2, 3, \cdots\}$. Temos $P(G_i \mid A) = 0.6$ e $P(G_i \mid \bar{A}) = 0.2$, de onde se obtém imediatamente $P(\bar{G_i} \mid A) = 0.4$ e $P(\bar{G_i} \mid \bar{A}) = 0.8$.
+	
+	\begin{enumerate}
+	\item $P(A) = 0.5$.
+	\item A probabilidade pedida é $P(A \mid G_1)$ e é obtida pela aplicação direta do teorema de Bayes:
+	\begin{align*}
+	P(A \mid G_1) &= \frac{P(A \cap G_1)}{P(G_1)} = \frac{P(G_1 \mid A) P(A)}{P(G_1 \cap A) + P(G_1 \cap \bar{A})} = \frac{P(G_1 \mid A) P(A)}{P(G_1 \mid A) P(A) + P(G_1 \mid \bar{A}) P(\bar{A})} \\
+	&= \frac{0.6 \times 0.5}{0.6 \times 0.5 + 0.2 \times 0.5} = 0.75.
+	\end{align*}
+	\item $$P(A \mid \bar{G_1}) = \frac{P(\bar{G_1} \mid A) P(A)}{P(\bar{G_1} \mid A) P(A) + P(\bar{G_1} \mid \bar{A}) P(\bar{A})} \approx 0.333.$$
+	\item Agora, é-nos dito que ganhámos duas partidas, pelo que a probabilidade pedida é $P(A \mid G_1 \cap G_2)$:
+	
+	$$P(A \mid G_1 \cap G_2) = \frac{P(A \cap G_1 \cap G_2)}{P(G_1 \cap G_2)} = \frac{P(G_1 \cap G_2 \mid A) P(A)}{P(G_1 \cap G_2 \mid A) P(A) + P(G_1 \cap G_2 \mid \bar{A}) P(\bar{A})}.$$
+	
+	Para prosseguirmos a resolução, temos de assumir que, em cada máquina, o resultado de uma jogada não influencia o resultado da jogada seguinte, ou seja, que $G_1$ e $G_2$ são acontecimentos independentes dados os acontecimentos $A$ ou $\bar{A}$. Desta forma, temos $P(G_1 \cap G_2 \mid A) = P(G_1 \mid A) P(G_2 \mid A) = 0.6^2$ e $P(G_1 \cap G_2 \mid \bar{A}) = P(G_1 \mid \bar{A}) P(G_2 \mid \bar{A}) = 0.2^2$ e, finalmente, $P(A \mid G_1 \cap G_2) = 0.9$.\\
+	
+	\underline{Nota:} Em cálculos intermédios, obtivemos $P(G_1) = P(G_2) = 0.4$ e $P(G_1 \cap G_2) = 0.2$, pelo que $P(G_1 \cap G_2) \neq P(G_1) P(G_2)$. Assim, verificamos que os acontecimentos $G_1$ e $G_2$ não são independentes. No entanto, antes tínhamos argumentado que $G_1$ e $G_2$ eram independentes dados os acontecimentos $A$ ou $\bar{A}$. Este fenómeno, no qual dois acontecimentos dependentes ($G_1$ e $G_2$) se tornam independentes dado um terceiro acontecimento ($A$ ou $\bar{A}$), tem o nome de \textit{independência condicional}. Apesar de aparentemente pouco intuitivo, a sua explicação é bastante simples. Quando não sabemos em qual das máquinas estamos a jogar ($A$ e $\bar{A}$ não são dados), o facto de ganharmos a primeira partida ($G_1$) faz aumentar a probabilidade de estarmos a jogar na máquina avariada ($A$, onde é mais provável ganhar) o que, por sua vez, torna mais provável ganharmos a segunda partida ($G_2$). Por outro lado, quando sabemos em que máquina estamos a jogar (isto é, quando $A$ ou $\bar{A}$ são dados), ganhar a primeira partida nada nos diz sobre a probabilidade de ganharmos a segunda, pelo que $G_1$ e $G_2$ se tornam independentes.
+	
+	O fenómeno oposto também é possível (e talvez ainda menos intuitivo!). Nesse caso, dois acontecimentos independentes tornam-se dependentes dado um terceiro acontecimento. Por outras palavras, dados três acontecimentos $A$, $B$ e $C$, é possível que $P(A \cap B) = P(A) P(B)$ e $P(A \cap B \mid C) \neq P(A \mid C) P(B \mid C)$. Consegue encontrar alguma situação prática em que isto aconteça?
+	
+	\item $$P(A \mid G_1 \cap \bar{G_2}) = \frac{P(G_1 \mid A) P(\bar{G_2} \mid A) P(A)}{P(G_1 \mid A)P(\bar{G_2} \mid A) P(A) + P(G_1 \mid \bar{A})P(\bar{G_2} \mid \bar{A}) P(\bar{A})} = 0.6.$$
+    \end{enumerate}
+
+\item O Professor Aleatório ensina PEST há muitos anos. Ele concluiu que 80\% dos alunos que resolvem as fichas práticas passam ao exame, enquanto 10\% dos alunos que não resolvem as fichas práticas passa ao exame. Sabe-se que 60\% dos alunos resolvem as fichas práticas. Entre os alunos que passam ao exame, qual a percentagem dos que resolve as fichas práticas?
+
+\tb{Resolução:}\\
+	$R -$ aluno resolve as fichas práticas, $E -$ aluno passa ao exame. $P(E \mid R) = 0.80$, $P(E \mid \bar{R}) = 0.10$, $P(R) = 0.60$.
+	$$P(R \mid E) = \frac{P(E \mid R)P(R)}{P(E \mid R)P(R) + P(E \mid \bar{R})P(\bar{R})} \approx 0.92.$$
+	
+\item Prove que $P(A \cap B \cap C)=P(A)P(B \mid A)P(C \mid A \cap B)$.
+
+\tb{Resolução:}\\
+	A expressão do lado direito da igualdade só está definida se $P(A)>0$ e $P(A \cap B)>0$, pelo que assumiremos que estas condições se verificam. Pela definição de probabilidade condicionada, temos $P(A \cap B) = P(A) P(B \mid A)$. De igual modo, $P(A \cap B \cap C) = P(C \cap (A \cap B)) = P(A \cap B) P(C \mid A \cap B) = P(A) P(B \mid A) P(C \mid A \cap B). \quad \square$
+	
+	\underline{Nota:} A igualdade demonstrada continua válida para $n$ acontecimentos e é vulgarmente chamada de \textit{regra da cadeia} do cálculo de probabilidades (não confundir com a regra da cadeia para o cálculo de derivadas):
+	
+	Sejam $A_1, A_2, \cdots, A_n$ acontecimentos de um espaço amostral tais que $P(A_1)>0, P(A_1 \cap A_2)>0, \cdots, P(A_1 \cap A_2 \cap \cdots \cap A_{n-1}) > 0$. Então,
+	$$P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) P(A_2 \mid A_1) P(A_3 \mid A_1 \cap A_2) \cdots P(A_n \mid A_1 \cap A_2 \cap \cdots \cap A_{n-1}).$$
+	 
+\end{enumerate}
+
+\end{document}

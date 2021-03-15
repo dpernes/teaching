@@ -1,0 +1,377 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{fancybox}
+%\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.6}
+
+\usepackage[latin1]{inputenc}
+\selectlanguage{portuguese}
+
+%\usepackage{latexsym}
+
+%Tamanho da pagina
+\setlength{\oddsidemargin}{-0.54cm}
+\setlength{\topmargin}{-1.04cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{26cm}
+
+%Novos comandos
+\newcommand{\up}[1]{$^{\underline{\text{#1}}}$}
+\newcommand{\linespacing}[1]{\renewcommand{\baselinestretch}{#1}}
+%\renewcommand{\labelenumi}{\fbox{\textbf{\theenumi}} --- }
+%\renewcommand{\labelenumii}{\textbf{(\theenumii)}}
+\newcommand{\xx}{\ensuremath{\mathbf x }}
+\newcommand{\zz}{\ensuremath{\mathbf z }}
+\newcommand{\XX}{\ensuremath{\mathbf X }}
+\newcommand{\ww}{\ensuremath{\mathbf w }}
+\newcommand{\yy}{\ensuremath{\mathbf y }}
+\newcommand{\RR}{\ensuremath{\mathbf R }}
+\newcommand{\tb}{\textbf}
+\newcommand*{\Perm}[2]{{}^{#1}\!A_{#2}}
+
+%Outros
+\linespacing{1.2}
+%\newtheorem{teorema}{Teorema}
+%\setlength{\footnotesep}{0.5cm}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\mytitle}[1]
+{\clearpage
+\begin{center}
+\fbox{\begin{minipage}{0.99\textwidth}
+\begin{center}
+\vspace{1ex} \textsc{\Large FEUP --- MIEEC \hspace{\stretch{1}}
+PEST  2018/2019 {\small(1\up{o} Semestre)}}
+\end{center}
+\end{minipage}}
+
+\vspace{1cm} 
+
+\textbf{\Large FICHA 03 -- resolução}\\
+%\textbf{Due: Tue, Oct 11, 23h59, by email to {\tt jaime.cardoso@fe.up.pt}}
+\vspace{2ex}
+\end{center}}
+
+
+\begin{document}
+\mytitle{1}
+
+DPC
+\begin{enumerate}
+
+\item Se $p(k)= \alpha q^k, \quad k=2, 3, \cdots$ é uma função de probabilidade válida, quais são os valores possíveis de $\alpha$ e $q$?
+
+\tb{Resolução:}\\
+	Se $p$ é uma função de probabilidade válida, então $\alpha$ e $q$ devem ser tais que $0 \leq p(k) \leq 1$, para todo o $k \geq 2$, e $\sum_{k=2}^\infty p(k) = 1$. $$p(k) \geq 0 \; \forall \; k \geq 2 \implies \alpha \geq 0, \; q \geq 0.$$
+	$$\sum_{k=2}^\infty p(k) = 1 \Leftrightarrow \alpha \sum_{k=2}^\infty q^k = 1 \implies \alpha \neq 0, \, q \neq 0.$$
+	A série acima converge se e só se $|q| < 1$ e a sua soma é conhecida (série geométrica). Aplicando a fórmula respetiva, vem:
+	$$ 1 = \alpha \sum_{k=2}^\infty q^k = \alpha \frac{q^2}{1-q} \Leftrightarrow \alpha = \frac{1-q}{q^2}.$$
+	Tendo em conta as restrições anteriores, concluimos então que $0 < q < 1$ e $\alpha = (1-q)/q^2$.
+
+\item Uma senhora reivindica que consegue adivinhar se, numa chávena de chá com leite, foi colocado primeiro o chá ou o leite. Para testar a sua reivindicação foi realizada uma experiência em que se colocava o leite ou o chá em primeiro lugar de uma forma aleatória.
+Esta experiência foi repetida 10 vezes. Quão provável seria a senhora identificar corretamente em 8 das 10 vezes, sabendo-se que estava a adivinhar à sorte?
+
+\tb{Resolução:}\\
+	$p \in [0, 1] -$ probabilidade de a senhora adivinhar se se colocou o leite ou o chá em primeiro lugar em cada experiência; $X \in \{0, 1, 2, \cdots, 10\} -$ número de vezes que a senhora adivinhou em 10 experiências.\\
+	Dado o valor de $p$, a probabilidade de a senhora acertar exatamente $x$ vezes em 10 tentativas segue uma distribuição binomial, pois temos 10 experiências independentes e, em cada uma delas, a probabilidade de sucesso é $p$. Assim,
+	$$P(X=x \mid p) = {10 \choose x} p^x (1-p)^{10-x}.$$
+	Se a senhora está a adivinhar ``à sorte", então, em cada tentativa, tem a mesma probabilidade de acertar e de errar, ou seja, $p = 0.5$. Assim, a probabilidade pedida é:
+	$$P(X=8 \mid p=0.5) = {10 \choose 8} 0.5^8 (1-0.5)^{10-8} \approx 4.4\%.$$
+
+\item	A procura semanal de certo bem perecível segue, em dado estabelecimento, a seguinte lei de probabilidade:
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$X$	& 3 & 	4	& 5	& 6 &	7\\
+\hline
+$f(x)$&	0.1&	0.3&	0.3&	0.1&	0.2\\
+\hline
+\end{tabular}
+
+	O preço de custo é 5.00Eur e o preço de venda 7.50Eur. O abastecimento é feito no início de cada semana, sabendo-se que o bem se torna irrecuperável se não for vendido na semana em causa. Admitindo um stock inicial de 5 unidades, calcule:
+
+		\begin{enumerate}
+		\item	A probabilidade de haver ``falhas'' de stock.
+		\item	A probabilidade de haver ``sobras'' de stock.
+		\item	A tabela de probabilidade do lucro semanal.
+		\end{enumerate}	
+
+	\tb{Resolução:}
+	\begin{enumerate}
+		\item Há falha de stock se a procura ($X$ unidades) exceder o stock inicialmente disponível (5 unidades), logo a probabilidade pedida é $P(X > 5) = P(X=6) + P(X=7) = f(6) + f(7) = 0.3$.
+		\item  $\text{Prob}(\text{haver sobras}) = P(X < 5) = 0.4.$
+		\item O lucro semanal é função da procura semanal $X$, que é uma variável aleatória. Assim sendo, o lucro semanal $L$ torna-se ele próprio uma variável aleatória, cuja função (ou tabela) de probabilidade pode ser obtida a partir da função (ou tabela) de probabilidade de $X$. Em primeiro lugar, temos de escrever a função $g$ que nos dá o lucro ($L$, em euros) em função da procura ($X$ unidades):
+		\begin{equation*}
+		L = g(X) = \begin{cases}
+			7.50X - 5.00 \times 5 = 7.5X - 25, \text{ se $X \leq 5$,}\\
+			12.50, \text{ se $X \geq 5$.}
+		\end{cases}
+		\end{equation*}
+		Daqui, conclui-se que $X=3 \implies L=-2.50\text{Eur}$, $X=4 \implies L=5.00\text{Eur}$ e $X \geq 5 \implies L=12.50\text{Eur}$, logo $P(L=-2.50) = P(X=3)$, $P(L=5.00) = P(X=4)$ e $P(L=12.50) = P(X \geq 5)$:
+		
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			$L$	(Eur) & -2.50 & 5.00 & 12.50 \\
+			\hline
+			$P(L)$ & 0.1& 0.3 & 0.6\\
+			\hline
+		\end{tabular}
+		
+	\end{enumerate}
+
+\item De uma variável aleatória $X$ sabe-se que:
+	\begin{itemize}
+	\item os valores possíveis são 0, 2 e 4;
+	\item $P(X=0 \vee X=2) = 80\%$;
+	\item $f_X(0) = (3/2)f_X(4)$, onde $f_X$ é a função de probabilidade de $X$. 
+	\end{itemize}
+
+	\begin{enumerate}
+	\item Construa a tabela de probabilidade de $X$ e represente graficamente $f_X(x)$.
+	\item Determine a função distribuição e utilize-a para calcular as seguintes probabilidades:
+		\begin{enumerate}
+		\item	$P( X \leq 1 )$;
+		\item	$P( X < 4 )$;
+		\item	$P( X \geq 1 )$;
+		\item	$P( X \geq 4 )$;
+		\item	$P( 0<X \leq 2 )$;
+		\end{enumerate}	
+	\end{enumerate}
+
+	\tb{Resolução:}
+	\begin{enumerate}
+		\item $$P(X = 0 \vee X = 2) = 80\% \Leftrightarrow f_X(0) + f_X(2) = 0.80,$$
+		 $$\sum_{x \in \{0,2,4\}}f_X(x) = 1 \Leftrightarrow f_X(0) + f_X(2) + f_X(4) = 1 \Leftrightarrow 0.80 + f_X(4) = 1 \Leftrightarrow f_X(4) = 0.20,$$
+		 $$f_X(0) = (3/2)f_X(4) = 0.30, \quad f_X(2) = 0.80 - 0.30 = 0.50.$$
+		\begin{center}
+		\begin{tikzpicture}
+		\pgfmathsetmacro{\XSCALE}{0.75} 
+		\pgfmathsetmacro{\YSCALE}{3.5} 
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-2.5, 0) -- (6.5, 0) node[right] {$x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, 0) -- (0, 0.7) node[left] {$f_X$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (-2, 0) -- (-2, 0) node[below] {$-2$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (-2, 0) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (-1, 0) -- (-1, 0) node[below] {$-1$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (-1, 0) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (0, 0.30) -- (0, 0) node[below] {$0$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (0, 0.30) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (1, 0) -- (1, 0) node[below] {$1$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (1, 0) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (2, 0.50) -- (2, 0) node[below] {$2$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (2, 0.50) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (3, 0) -- (3, 0) node[below] {$3$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (3, 0) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (4, 0.20) -- (4, 0) node[below] {$4$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (4, 0.20) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (5, 0) -- (5, 0) node[below] {$5$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (5, 0) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (6, 0) -- (6, 0) node[below] {$6$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (6, 0) node[shape=circle,fill=black,scale=0.5] {};
+		
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (0, 0.30) -- (0, 0.30) node[left] {$0.30$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (2, 0.50) -- (0, 0.50) node[left] {$0.50$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (4, 0.20) -- (0, 0.20) node[left] {$0.20$};
+		%\end{axis}
+		\end{tikzpicture}
+		\end{center} 
+		
+		\item 
+		\begin{minipage}{0.45\linewidth}
+		\begin{center}
+		\begin{tikzpicture}
+		\pgfmathsetmacro{\XSCALE}{0.75} 
+		\pgfmathsetmacro{\YSCALE}{3.5} 
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (-1.5, 0) -- (6, 0) node[right] {$x$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ->] (0, 0) -- (0, 1.2) node[left] {$F_X$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (-1.5, 0) -- (0, 0) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (0, 0.3) -- (2, 0.3) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (2, 0.8) -- (4, 0.8) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, ultra thick] (4, 1.0) -- (6, 1.0) node[left] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (0, 0) node[below] {$0$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (2, 0.8) -- (2, 0) node[below] {$2$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (4, 1.0) -- (4, 0) node[below] {$4$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (0, 0.3) -- (0, 0.3) node[left] {$0.30$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (2, 0.8) -- (0, 0.8) node[left] {$0.80$};
+		\draw[xscale=\XSCALE, yscale=\YSCALE, dashed] (4, 1.0) -- (0, 1.0) node[left] {$1$};
+		
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (0, 0) node[shape=circle,draw=black,fill=white,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (0, 0.30) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (2, 0.30) node[shape=circle,draw=black,fill=white,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (2, 0.80) node[shape=circle,fill=black,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (4, 0.80) node[shape=circle,draw=black,fill=white,scale=0.5] {};
+		\draw[xscale=\XSCALE, yscale=\YSCALE] (4, 1) node[shape=circle,fill=black,scale=0.5] {};
+		
+		
+		\end{tikzpicture}
+		\end{center}
+		\end{minipage}
+		\begin{minipage}{0.45\linewidth}
+		$$F_X(x) = P(X \leq x) = \begin{cases}
+		0, \; x < 0 \\
+		0.30, \; 0 \leq x < 2, \\
+		0.80, \; 2 \leq x < 4, \\
+		1, \; x \geq 4 \\
+		\end{cases}$$
+		\end{minipage}
+		
+		\begin{enumerate}
+		\item	$P( X \leq 1 ) = F_X(1) = 0.30$;
+		\item	$P( X < 4 ) = F_X(4^-) = \lim_{x \to 4^-} F_X(x) = 0.80$;
+		\item	$P( X \geq 1 ) = 1 - P(X < 1) = 1 - F_X(1^-) = 1-0.30 = 0.70$;
+		\item	$P( X \geq 4 ) = 1 - P(X < 4) = 1-0.80 = 0.20$;
+		\item	$P( 0<X \leq 2 ) = P(X \leq 2) - P(X \leq 0) = F_X(2) - F_X(0) = 0.80 - 0.30 = 0.50$.
+		\end{enumerate}	
+		
+	\end{enumerate}
+			
+\item Alípio pretende oferecer um jantar a Zenão. Como não tem dinheiro para comprar comida, resolve então ir pescar 5 peixinhos no lago que existe em frente de sua casa. Neste lago existem 14 peixes, dos quais 6 são vermelhos e 8 são dourados. Só os dourados são comestíveis. Além disso, a água está turva e Alípio só consegue distinguir a cor dos peixes depois de os ter pescado.
+	Seja $X$ a variável aleatória que representa o número de peixes vermelhos pescados por Alípio.
+	\begin{enumerate}
+	\item Determine a função de probabilidade da variável aleatória $X$.
+	\item Calcule $P (1 \leq X \leq 2)$.
+	\end{enumerate}	
+	
+	\tb{Resolução:}
+	\begin{enumerate}
+		\item Como só os peixes dourados são comestíveis, os 5 peixes que Alípio irá servir no jantar têm de ser dourados. Assim, Alípio terá de pescar peixes sucessivamente até obter 5 peixes dourados. A variável aleatória $X$ (número de peixes vermelhos pescados) pode assim tomar cada valor no conjunto $\{0, 1, \cdots, 6\}$. Vamos assumir que Alípio só devolve os peixes vermelhos ao lago (para não os matar) após pescar os 5 peixes dourados que pretende, ou seja, assumimos que todo o processo decorre sem reposição. Para resolver o problema, é útil imaginar que os 14 peixes se colocam aleatoriamente em fila e que irão ser pescados pela ordem que ocupam nessa fila imaginária. Alípio irá assim retirar peixes da fila por ordem até encontrar o 5º peixe dourado e, nessa altura, para.
+		
+		\underline{Casos possíveis:}\\
+		O número de casos possíveis é dado pelo número de formas de colocar os 14 peixes em fila, isto é, pelo número de permutações de 14 elementos: $14 \times 13 \times \cdots \times 1 = 14!$
+		
+		\underline{Casos favoráveis:}\\
+		Temos 14 peixes na fila, 8 dourados e 6 vermelhos. Alípio vai pescar (isto é, retirar da fila imaginária) um total de $5+x$ peixes, dos quais 5 são dourados e $x$ são vermelhos. Assim, temos de garantir que, nas $5+x$ primeiras posições da fila, temos exatamente 5 peixes dourados e $x$ vermelhos. Assumindo que os $x$ primeiros peixes eram vermelhos e os 5 seguintes eram dourados, teríamos $\Perm{6}{x} \Perm{8}{5}$ permutações possíveis. Como tal não é garantido, temos ainda de considerar as permutações entre cores. Há então $5+x$ posições e, a cada uma delas, temos de atribuir a cor dourada (5 vezes) ou vermelha ($x$ vezes), sendo que a última posição terá obrigatoriamente cor dourada. Assim, das $4+x$ posições que falta colorir, escolhemos $4$ para terem cor dourada (e as restantes $x$ ficam com cor vermelha). Esta escolha pode ser feita de ${4+x \choose 4}$ formas distintas. A ordem dos restantes $14-5-x=9-x$ peixes na fila é arbitrária, pelo que todas as $ (9-x)!$ permutações são admissíveis. Assim, o número de casos favoráveis é dado, em função de $x$ (número de peixes vermelhos pescados), por $\Perm{6}{x} \Perm{8}{5} {4+x \choose 4} (9-x)!$
+		
+		A função de probabilidade de $X$ é, então:
+		$$f_X(x) = P(X=x) = \frac{\Perm{6}{x} \Perm{8}{5} {4+x \choose 4} (9-x)!}{14!} = \frac{\Perm{6}{x} \Perm{8}{5} {4+x \choose 4}}{\Perm{14}{5+x}}, \quad x \in \{0, 1, \cdots, 6\}.$$
+		
+		\underline{Nota:} Para facilitar a compreensão deste exercício, pode ser-lhe útil considerar, em primeiro lugar, uma versão simplificada do problema, onde ignora a informação de que ``só os peixes dourados são comestíveis". Nesse caso, Alípio pesca um total de 5 peixes (de qualquer cor) e o problema reduz-se a calcular a probabilidade de $x$ deles serem vermelhos. A solução seria então dada por uma distribuição hipergeométrica:
+		$$P(X = x) = \frac{{6 \choose x} {8 \choose 5-x}}{{14 \choose 5}}, \quad x \in \{0, 1, \cdots, 5\}.$$
+		
+		\item $P(1 \leq X \leq 2) = f_X(1) + f_X(2) \approx 0.268.$
+	\end{enumerate}
+
+\item A liga de futebol de um país tem quatro equipas: equipa 1, equipa 2, equipa 3 e equipa 4. Uma equipa estrangeira em excursão pelo país vai jogar um amigável contra cada uma das equipas 1, 2 e 3. Suponha que contra a equipa 1 esta equipa tem probabilidade 1/4 de conquistar a vitória, enquanto que essa probabilidade vale 1/2 quando o adversário é a equipa 2 e vale 2/5 quando o adversário é a equipa 3. 
+Assuma também que os resultados dos três amigáveis são independentes. Seja $X$ o número de vitórias conquistadas pela equipa estrangeira nos três amigáveis.
+	\begin{enumerate}
+	\item Obtenha a função de probabilidade de $X$.
+	\item Qual a probabilidade de que a equipa obtenha pelo menos uma vitória? %31/40
+	\end{enumerate}		
+Suponha agora que, dependendo do seu desempenho nos três amigáveis, a equipa estrangeira decidirá fazer um quarto jogo, contra a equipa 4. Caso conquiste três vitórias nos três amigáveis, jogará contra a equipa 4; caso obtenha exatamente duas vitórias, fará o quarto jogo com probabilidade 4/5 e não realizará o quarto jogo caso obtenha apenas uma vitória ou não vença nenhum dos três amigáveis.
+	\begin{enumerate}
+	\item[(c)] Determine a probabilidade de que o quarto jogo seja realizado. %0.27
+	\item[(d)] Dado que o quarto jogo se realizou, qual a probabilidade de que a equipa estrangeira tenha vencido os três amigáveis iniciais? %0.185
+	\end{enumerate}	
+	
+	\tb{Resolução:}
+	\begin{enumerate}
+		\item $X \in \{0, 1, 2, 3\}$. Definimos ainda as variáveis aleatórias binárias $V_i \in \{0, 1\} -$ perder ($V_i=0$) ou ganhar ($V_i=1$) o jogo contra a equipa $i$, $i \in \{1, 2, 3\}$. Assim, $X = V_1 + V_2 + V_3$. Do enunciado, $P(V_1 = 1) = 1/4$, $P(V_2 = 1) = 1/2$ e $P(V_3 = 1) = 2/5$ e sabemos que $V_1$, $V_2$ e $V_3$ são independentes.
+		\begin{align*}
+		f_X(0) &= P(X = 0) = P(V_1 + V_2 + V_3 = 0) = P(V_1 = 0 \wedge V_2 = 0 \wedge V_3 = 0) \\
+		&= P(V_1 = 0) P(V_2 = 0) P(V_3 = 0) \tag*{\begin{small}(v.a.\ indep.)\end{small}} \\
+		&= \left(1-\frac{1}{4}\right) \left(1-\frac{1}{2}\right) \left(1-\frac{2}{5}\right) = \frac{9}{40}, \\
+		f_X(1) &= P(X = 1) = P(V_1 + V_2 + V_3 = 1) \\
+		&= P(V_1 = 1 \wedge V_2 = 0 \wedge V_3 = 0) + P(V_1 = 0 \wedge V_2 = 1 \wedge V_3 = 0) + P(V_1 = 0 \wedge V_2 = 0 \wedge V_3 = 1) \\
+		&= P(V_1 = 1) P(V_2 = 0) P(V_3 = 0) \\
+		&\hphantom{=}+ P(V_1 = 0) P(V_2 = 1) P(V_3 = 0) \\
+		&\hphantom{=}+ P(V_1 = 0) P(V_2 = 0) P(V_3 = 1) = \frac{9}{20}, \\
+		f_X(2) &= \cdots = \frac{11}{40}, \quad f_X(3) = P(X=3) = P(V_1=1) P(V_2=1) P(V_3=1) = \frac{1}{20}.
+		\end{align*}
+		
+		\item $P(X \geq 1) = 1 - f_X(0) = 31/40.$
+		\item $J_4 -$ acontecimento ``realizar quarto jogo". Do enunciado, $P(J_4 \mid X = 3) = 1$, $P(J_4 \mid X=2) = 4/5$, $P(J_4 \mid X \leq 1) = 0$.
+		\begin{align*}
+		P(J_4) & = P(J_4 \cap \{X = 0\}) + P(J_4 \cap \{X = 1\}) + P(J_4 \cap \{X = 2\}) + P(J_4 \cap \{X = 3\}) \\
+		&= \sum_{x=0}^3 P(J_4 \cap \{X = x\}) = \sum_{x=0}^3 P(J_4 \mid X = x) P(X = x) = \frac{27}{100}.
+		\end{align*}
+		\item $P(X = 3 \mid J_4) = \frac{P(J_4 \cap \{X = 3\})}{P(J_4)} = \frac{P(J_4 \mid X = 3)P(X=3)}{P(J_4)} = 5/27.$
+	\end{enumerate}
+	
+\item \label{jogo} Considere um jogo de perguntas onde são dadas duas perguntas a uma pessoa e ela deve decidir a qual responder primeiro. A pergunta 1 será respondida correctamente com probabilidade 0.8 e a pessoa recebe um prémio de 100Eur se acertar; a pergunta 2 será respondida correctamente com probabilidade 0.5 e a pessoa recebe 200Eur se acertar.
+Se a pessoa falhar na primeira pergunta que tente o jogo termina. Se acertar na primeira pergunta tentada a pessoa pode tentar a outra. Que pergunta deve ser tentada inicialmente para maximizar o valor esperado do prémio total?
+
+	\tb{Resolução:}\\
+	A definição de valor esperado de uma função $g$ da variável aleatória discreta $X$ com função de probabilidade $f_X$ é:
+	$$E_{f_X}\left[g(X)\right] = \sum_{\forall x} g(x)f_X(x).$$
+	Como a função de probabilidade $(f_X)$ utilizada no cálculo do valor é esperado é quase sempre óbvia pelo contexto, muitas vezes escrevemos simplesmente $E[g(X)]$. Quando falamos em valor esperado da variável aleatória $X$, referimo-nos a $E_{f_X}(X)$ (ou, simplesmente, $E(X)$). Note que esse é um caso particular da definição acima, no qual $g$ é a função identidade (isto é, $g(x)=x$).
+	
+	No presente exercício, sejam $X_1$ e $X_2$ as variáveis aleatórias que designam os prémios totais obtidos quando se responde em primeiro lugar à questão 1 ou 2, respetivamente. Queremos comparar os valores esperados $E(X_1)$ e $E(X_2)$. Para isso, temos de determinar as funções de probabilidade de $X_1$ e $X_2$, denotadas por $f_{X_1}$ e $f_{X_2}$, respetivamente. Sejam $A_i$ os acontecimentos  ``acertar na resposta à pergunta $i \in \{1, 2\}$". Temos $P(A_1) = 0.8$ e $P(A_2) = 0.5$. Desta forma,
+	\begin{align*}
+	f_{X_1}(0) & = P(A_1') = 0.2, \quad f_{X_1}(100) = P(A_1) P(A_2') =  0.4, \quad f_{X_1}(300) = P(A_1) P(A_2) = 0.4, \\
+	f_{X_2}(0) &= P(A_2') = 0.5, \quad f_{X_2}(200) = P(A_2) P(A_1') = 0.1, \quad f_{X_2}(300) = P(A_2) P(A_1) = 0.4,
+	\end{align*}
+	e então,
+	\begin{align*}
+	E(X_1) &= \sum_{x \in \{0, 100, 300\}} x f_{X_1}(x) = 0 f_{X_1}(0) + 100 f_{X_1}(100) + 300 f_{X_1}(300) = 160\text{Eur}, \\
+	&\hphantom{=} \\
+	E(X_2) &= \sum_{x \in \{0, 200, 300\}} x f_{X_2}(x) = 0  f_{X_2}(0) + 200 f_{X_2}(200) + 300 f_{X_2}(300) = 140\text{Eur}.
+	\end{align*}
+	$E(X_1) > E(X_2)$, logo a opção que maximiza o prémio esperado é começar pela pergunta 1. 
+	
+\item Suponha que à entrada do seu apartamento a luz falha. Tem cinco chaves no bolso, das quais somente uma abre a porta. Tirando ao acaso e sucessivamente as chaves do bolso, calcule a probabilidade de
+	\begin{enumerate}
+	\item abrir a porta à quarta tentativa;
+	\item abrir a porta à quinta tentativa, sabendo que não abriu às três primeiras.
+	\item Qual o número esperado de tentativas para abrir a porta?
+	\end{enumerate}
+
+\tb{Resolução:}\\
+	$X \in \{1, 2, 3, 4, 5\}-$ número de tentativas até abrir a porta.
+	\begin{enumerate}
+	\item Todas as cinco chaves têm a mesma probabilidade de abrir a porta, logo $P(X = 4) = 1/5$.
+	\item Se as três primeiras chaves não abriram a porta, então a chave correta terá de ser uma das duas que sobram e ambas têm igual probabilidade, logo $P(X = 5 \mid X > 3) = 1/2$. Pode ser elucidativo resolver o exercício pela definição de probabilidade condicionada e ver que se obtém o mesmo resultado:
+	$$P(X = 5 \mid X > 3) = \frac{P(X = 5 \wedge X > 3)}{P(X > 3)} = \frac{P(X = 5)}{P(X = 4) + P(X = 5)} = \frac{1/5}{1/5 + 1/5} = \frac{1}{2}.$$
+	\item Temos $f_X(x) = 1/5$, $x \in \{1, 2, \cdots, 5\}$. Assim, $E(X) = \sum_{x=1}^5 x/5 = 3$.
+	\end{enumerate}
+	
+\item Uma tabacaria faz a seguinte promoção sobre o preço de um dado: o cliente, ao passar pelo caixa, lança o dado. Se sair face 6 tem um desconto de 20\% sobre o preço. Se sair 5 ou 4 o desconto é de 15\%. Se ocorrerem faces 1, 2 ou 3 o desconto é de 5\%.
+	\begin{enumerate}
+	\item Qual a função de probabilidade da variável $X$ que representa o desconto no preço do dado?
+	\item Qual o desconto médio que um cliente pode ter sobre o preço do dado?
+	\item Qual a probabilidade de um cliente ter um desconto com dois dígitos, sabendo que o cliente obteve face ímpar no lançamento do dado?
+	\end{enumerate}	
+	
+	\tb{Resolução:}
+	\begin{enumerate}
+	\item Seja $D \in \{1, 2, \cdots, 6\}$ a v.a.\ que representa o resultado do lançamento do dado. O desconto obtido, $X \in \{5, 15, 20\}$ (em percentagem), é uma função (determinística) de $D$: 
+	\begin{equation*}
+	X = g(D) = \begin{cases}
+	5\%, \text{ se $1 \leq D \leq 3$,}\\
+	15\%, \text{ se $4 \leq D \leq 5$,}\\
+	20\%, \text{ se $D = 6$.} 
+	\end{cases}
+	\end{equation*}
+	Assim, $X$ torna-se também uma variável aleatória. Sejam $f_D$ e $f_X$ as funções de probabilidade de $D$ e de $X$, respetivamente. Assumindo que o dado é equilibrado, $f_D(d) = 1/6$, $d \in \{1, 2, \cdots, 6\}$. Relativamente a $X$, temos:
+	\begin{align*}
+	&P(X=5\%) = P(1 \leq D \leq 3) \Leftrightarrow f_X(5) = f_D(1) + f_D(2) + f_D(3) = \frac{1}{2}, \\
+	&P(X=15\%) = P(4 \leq D \leq 5) \Leftrightarrow f_X(15) = f_D(4) + f_D(5) = \frac{1}{3}, \\
+	&P(X=20\%) = P(D=6) \Leftrightarrow f_X(20) = f_D(6) = \frac{1}{6}.
+	\end{align*}
+	
+	\item Visto que já determinámos $f_X$, poderíamos calcular o valor esperado do desconto diretamente pela respetiva definição, $E_{f_X}(X) = \sum_{\forall x} x f_X(x)$. A resolução por esse método é imediata e deixada como exercício. Em alternativa, vamos utilizar $f_D$ e o facto de que $X = g(D)$. Temos:
+	\begin{align*}
+		E_{f_X}(X) &= E_{f_D} \left[g(D)\right] = \sum_{d = 1}^6 g(d)f_D(d) \\
+		&= \left(g(1)+g(2)+g(3)+g(4)+g(5)+g(6)\right)\frac{1}{6} \\
+		&=\left(3 \times 5\% + 2 \times 15\% + 20\% \right)\frac{1}{6} \approx 10.83 \%.
+	\end{align*}
+	
+	\underline{Nota:} Utilizámos, sem demonstração, a igualdade $E_{f_X}(X) = E_{f_D} \left[g(D)\right]$. Se resolver o exercício como sugerido anteriormente (isto é, utilizando diretamente a definição de $E_{f_X}(X)$), terá de obter o mesmo resultado. De facto, a igualdade é verdadeira no caso geral:
+	
+	Considere uma v.a.\  $X$, com função de probabilidade $f_X$, e uma função $g$. Seja $Y$ a v.a.\ obtida através de $Y = g(X)$ e seja $f_Y$ a respetiva função de probabilidade. Então, $E_{f_Y}(Y) = E_{f_X} \left[g(X)\right]$. Consegue demonstrar este resultado?
+	
+	\item \begin{align*}
+		\text{Prob}(\text{desconto 2 dígitos} \mid \text{face ímpar no dado}) &= P(X \in \{15, 20\} \mid D \in \{1, 3, 5\}) \\
+		&= P(D \in \{4, 5, 6\} \mid D \in \{1, 3, 5\}) \\
+		&= \frac{P(D = 5)} {P(D \in \{1, 3, 5\})} = \frac{1}{3}.
+	\end{align*}
+	
+	\end{enumerate}
+	\end{enumerate}
+
+\end{document}

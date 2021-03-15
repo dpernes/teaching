@@ -1,0 +1,223 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{fancybox}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+
+\usepackage[latin1]{inputenc}
+\selectlanguage{portuguese}
+
+%\usepackage{latexsym}`
+
+%Tamanho da pagina
+\setlength{\oddsidemargin}{-0.54cm}
+\setlength{\topmargin}{-1.04cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{26cm}
+
+%Novos comandos
+\newcommand{\up}[1]{$^{\underline{\text{#1}}}$}
+\newcommand{\linespacing}[1]{\renewcommand{\baselinestretch}{#1}}
+%\renewcommand{\labelenumi}{\fbox{\textbf{\theenumi}} --- }
+%\renewcommand{\labelenumii}{\textbf{(\theenumii)}}
+\newcommand{\xx}{\ensuremath{\mathbf x }}
+\newcommand{\zz}{\ensuremath{\mathbf z }}
+\newcommand{\XX}{\ensuremath{\mathbf X }}
+\newcommand{\ww}{\ensuremath{\mathbf w }}
+\newcommand{\yy}{\ensuremath{\mathbf y }}
+\newcommand{\RR}{\ensuremath{\mathbf R }}
+\newcommand{\tb}{\textbf}
+\newcommand{\dx}{\,dx}
+\newcommand{\dy}{\,dy}
+\newcommand{\cov}{\text{cov}}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
+%Outros
+\linespacing{1.2}
+%\newtheorem{teorema}{Teorema}
+%\setlength{\footnotesep}{0.5cm}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\mytitle}[1]
+{\clearpage
+\begin{center}
+\fbox{\begin{minipage}{0.99\textwidth}
+\begin{center}
+\vspace{1ex} \textsc{\Large FEUP --- MIEEC \hspace{\stretch{1}}
+PEST  2018/2019 {\small(1\up{o} Semestre)}}
+\end{center}
+\end{minipage}}
+
+\vspace{1cm} 
+
+\textbf{\Large FICHA 08 -- resolução}\\
+%\textbf{Due: Tue, Oct 11, 23h59, by email to {\tt jaime.cardoso@fe.up.pt}}
+\vspace{2ex}
+\end{center}}
+
+
+\begin{document}
+\mytitle{1}
+
+DPC
+\begin{enumerate}
+
+\item Mostre que se $\hat{\theta}$ é um estimador centrado (= não tendencioso) de $\theta$, então $\hat{\theta}^2$ não é um
+estimador centrado de $\theta^2$.
+
+\tb{Resolução:}\\
+Se $\hat{\theta}$ é um estimador centrado de $\theta$, então, por definição, $E(\hat{\theta}) = \theta$. Queremos mostrar que, nestas condições, $\hat{\theta}^2$ é um estimador tendencioso de $\theta^2$, ou seja, que $E(\hat{\theta}^2) \neq \theta^2$. Temos:
+$$V(\hat{\theta}) = E(\hat{\theta}^2) - (E(\hat{\theta}))^2 = E(\hat{\theta}^2) - \theta^2,$$
+Então, $E(\hat{\theta}^2) = \theta^2 \implies V(\hat{\theta}) = 0$, ou seja, $\hat{\theta}^2$ só é um estimador centrado de $\theta^2$ se a sua variância for nula, o que significa que $\hat{\theta}$ seria determinístico (isto é, não aleatório). Como $\hat{\theta}$ é, em geral, obtido a partir de amostras aleatórias $X_1, X_2, \cdots, X_n$ de uma distribuição $f_X$ (com variância não nula), $\hat{\theta}$ é ele próprio uma v.a.\ com variância não nula, logo $\hat{\theta}^2$ é um estimador tendencioso de $\theta^2$.
+
+\item Considere uma amostra de tamanho $n$ de uma variável aleatória $X$ com distribuição Poisson (função de probabilidade a seguir).
+		$$f_X(x)=\frac{e^{-\lambda}\lambda^{x}}{x!}, \quad x=0,1,2,...$$
+		Calcule o estimador de $\lambda$ pelo método dos momentos.% e pelo método da máxima verosimilhança.
+
+\tb{Resolução:}\\
+	Seja $\{x_1, x_2, \cdots, x_n\}$ a amostra obtida, de tamanho $n$, da v.a.\ $X$ com função (densidade) de probabilidade $f_X$. Suponha que $f_X$ tem $k$ parâmetros desconhecidos $\theta_1, \theta_2, \cdots, \theta_k$, os quais queremos estimar a partir da amostra observada. Para cada $j \in \{1, 2, \cdots\}$, seja $\mu_j = E(X^j)$ (chamado \textit{momento de ordem} $j$ da v.a.\ $X$) e seja $\hat{\mu}_j = \frac{1}{n}\sum_{i=1}^{n}x_i^j$ (momento de ordem $j$ estimado a partir da amostra).  O método dos momentos encontra estimativas $\hat{\theta}_1, \hat{\theta}_2, \cdots, \hat{\theta}_k$, respetivas aos $k$ parâmetros desconhecidos, resolvendo o seguinte sistema de equações (com  $k$ equações e $k$ incógnitas):
+	$$\begin{cases}
+	\mu_1(\hat{\theta}_1, \hat{\theta}_2, \cdots, \hat{\theta}_k) = \hat{\mu}_1 \\
+	\mu_2(\hat{\theta}_1, \hat{\theta}_2, \cdots, \hat{\theta}_k) = \hat{\mu}_2 \\
+	\quad \vdots \\
+	\mu_k(\hat{\theta}_1, \hat{\theta}_2, \cdots, \hat{\theta}_k) = \hat{\mu}_k
+	\end{cases}$$
+	Neste exercício, queremos estimar um único parâmetro, $\lambda$. Temos $\mu_1(\lambda) = E(X) = \lambda$ e, assim, pelo método dos momentos:
+	\begin{align*}
+	\mu_1(\hat{\lambda}) = \hat{\mu}_1 \Leftrightarrow &\hat{\lambda} = \frac{1}{n} \sum_{i=1}^{n} x_i, \quad \text{\begin{small}(estimativa)\end{small}} \\
+	&\hat{\lambda} = \frac{1}{n} \sum_{i=1}^{n} X_i. \quad \text{\begin{small}(estimador)\end{small}}
+	\end{align*}
+	
+	\underline{Nota:} Por abuso de notação, utilizamos a mesma letra ($\hat{\lambda}$) para designar a estimativa e o estimador. Note, no entanto, que estimativa e estimador correspondem a conceitos diferentes, embora relacionados. A estimativa é o resultado de um processo de estimação, sendo por isso um valor numérico, calculado a partir dos valores observados na amostra recolhida, $x_1, x_2, \cdots, x_n$. O estimador é a regra (função) que permite calcular a estimativa. Escreve-se como uma função das variáveis aleatórias $X_1, X_2, \cdots, X_n$, que representam o processo de amostragem aleatória. Por esse motivo, o próprio estimador é uma variável aleatória. 
+	
+	Por outras palavras, a estimativa é o resultado obtido quando se avalia o estimador para o caso particular em que as variáveis aleatórias $X_1, X_2, \cdots, X_n$ tomam os valores numéricos $x_1, x_2, \cdots, x_n$.
+	
+\item Considere uma amostra de tamanho $n$ de uma variável aleatória com distribuição uniforme no intervalo $[0, a]$. Calcule
+ 	\begin{enumerate}
+	\item O estimador de $a$ pelo método dos momentos.
+%	\item O estimador de máxima verosimilhança de $a$.
+	%\item Discuta se estes são estimadores sem tendência.
+	\item Discuta se este é um estimador sem tendência (=estimador centrado).
+%
+\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item $X \sim U(0, a) \Leftrightarrow f_X(x) = 1/a$, $0 \leq x \leq a$, amostra $\{x_1, x_2, \cdots, x_n\}$.
+	$$\mu_1(a) = E(X) = \frac{a}{2},$$
+	$$\mu_1(\hat{a}) = \hat{\mu}_1 \Leftrightarrow \frac{\hat{a}}{2} = \frac{1}{n} \sum_{i=1}^{n} X_i \Leftrightarrow \hat{a} = \frac{2}{n} \sum_{i=1}^{n} X_i.$$
+	\item Para estudarmos a tendência do estimador $\hat{a}$, temos de calcular o seu valor esperado. Isso faz-se assumindo que cada $X_i$ segue a mesma distribuição que $X$ (notação: $X_i \overset{d}{=} X$), ou seja, assumindo que $f_{X_i} = f_X$ para todo o $i$. Temos então $E(X_i) = E(X) = a/2$ e:
+	$$E(\hat{a}) = E \left(\frac{2}{n} \sum_{i=1}^{n} X_i \right) = \frac{2}{n} \sum_{i=1}^{n} E(X_i) = \frac{2}{n} \sum_{i=1}^{n} \frac{a}{2} = \frac{2}{n} n \frac{a}{2} = a,$$
+	logo $\hat{a}$ é um estimador centrado de $a$.
+	\end{enumerate}	
+
+\item Para estimar a probabilidade de sair cara, $p$, associada ao lançamento de uma dada moeda, repete-se a experiência $n$ vezes de forma independente e conta-se o número de sucessos ($Y$). Se $X$ for uma variável aleatória com $$\begin{cases}X=1,\mbox{ se sai cara}\\X=0,\mbox{ se sai coroa}\end{cases}$$ então 
+$Y=\sum_{i=1}^n X_i$.
+
+Considere os seguintes dois estimadores de $p$: $\hat{P_1 } = Y/n$ e $\hat{P_2}=(Y+1)/(n+2)$.
+ 	\begin{enumerate}
+	\item  Averigue se $\hat{P_1}$ e $\hat{P_2}$ são estimadores centrados de $p$.
+\item  Calcule o erro quadrático médio de $\hat{P_1}$ e de $\hat{P_2}$. Verifique que o de $\hat{P_2}$ é inferior ao de  $\hat{P_1}$ quando $p = 0.5$.
+\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item $$E(X) = 1\times p + 0 \times (1-p) = p,$$
+	$$E(Y) = E\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n E(X_i) = \sum_{i=1}^n p = np,$$
+	$$E(\hat{P_1}) = E\left(\frac{Y}{n}\right) = \frac{E(Y)}{n} = p,$$
+	$$E(\hat{P_2}) = E\left(\frac{Y+1}{n+2}\right) = \frac{E(Y)+1}{n+2} = \frac{np + 1}{n+2},$$
+	logo $\hat{P_1}$ é centrado e $\hat{P_2}$ é tendencioso.
+	\item O erro quadrático médio de um estimador $\hat{\theta}$ define-se por $E\left[(\hat{\theta} - \theta)^2\right]$ e pode ser calculado através da fórmula:
+	$$E\left[(\hat{\theta} - \theta)^2\right] = \left(E(\hat{\theta}) - \theta\right)^2 + V(\hat{\theta}). \quad \text{(demonstre!)}$$
+	O termo $|E(\hat{\theta}) - \theta|$ é conhecido por \textit{tendência} ou \textit{viés} do estimador e é nulo se $\hat{\theta}$ for um estimador centrado. O segundo termo é a variância do estimador. Assim, o erro quadrático médio pode ser reduzido encontrando um estimador com menor tendência e/ou menor variância. Infelizmente, em muitas situações, estimadores com menor tendência apresentam maior variância e vice-versa. Este exercício ilustrará isso mesmo.
+	$$V(X) = E\left[(X-p)^2\right] = (1-p)^2p + (0-p)^2(1-p) = p(1-p),$$
+	$$V(Y) = V\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n V(X_i) = np(1-p), \quad \text{(a 2ª igualdade assume $X_i$ indep.)}$$
+	\begin{align*}
+	&E(\hat{P_1}) = p \implies \left(E(\hat{P_1}) - p\right)^2 = 0, \\
+	&V(\hat{P_1 }) = V\left(\frac{Y}{n}\right) = \frac{V(Y)}{n^2} = \frac{p(1-p)}{n}, \\
+	&E\left[(\hat{P_1} - p)^2\right] = \frac{p(1-p)}{n}.
+	\end{align*}
+	\begin{align*}
+	&E(\hat{P_2}) = \frac{np + 1}{n+2} \implies \left(E(\hat{P_2}) - p\right)^2 = \left( \frac{np + 1}{n+2} - p \right)^2 = \left(\frac{1-2p}{n+2}\right)^2, \\
+	&V(\hat{P_2}) = V\left(\frac{Y+1}{n+2}\right) = \frac{V(Y+1)}{(n+2)^2} = \frac{V(Y)}{(n+2)^2} = \frac{np(1-p)}{(n+2)^2}, \\
+	&E\left[(\hat{P_2} - p)^2\right] = \left(\frac{1-2p}{n+2}\right)^2 + \frac{np(1-p)}{(n+2)^2}.
+	\end{align*}
+	Agora, assumindo $p=0.5$ (caso em que a variância de $X$ é máxima), teríamos:
+	\begin{align*}
+	E\left[(\hat{P_1} - 0.5)^2\right] &= \frac{0.25}{n}, \\
+	E\left[(\hat{P_2} - 0.5)^2\right] &= \frac{0.25n}{(n+2)^2},
+	\end{align*}
+	logo, apesar de $\hat{P_1}$ ser centrado e $\hat{P_2}$ tendencioso, temos $E\left[(\hat{P_2} - 0.5)^2\right] < E\left[(\hat{P_1} - 0.5)^2\right]$ (para todo o $n \geq 1$).
+	
+	\end{enumerate}
+
+\item Considere a seguinte fdp
+$$f(x)=c(1+\theta x), \quad -1\leq x\leq 1$$
+ 	\begin{enumerate}
+	\item Calcule o valor da constante $c$.
+	\item Utilize o método dos momentos para calcular o estimador de $\theta$.
+	\item Demonstre que $\hat{\theta}=3\bar{X}$ é um estimador de $\theta$ sem tendência.
+	%\item Determine o estimador de máxima verosimilhança para $\theta$.
+	\end{enumerate}	
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item Se $f$ é uma função densidade de probabilidade, então: $$1 = \int_{-\infty}^{\infty} f(x) \dx = \int_{-1}^{1} c(1+\theta x) \dx = c \left[x + \theta \frac{x^2}{2}\right]_{x=-1}^1 = 2c \implies c=\frac{1}{2}.$$
+	\item $$\mu_1(\theta) = E(X) = \int_{-\infty}^{\infty} xf(x)\dx = \int_{-1}^{1} \frac{x}{2}(1+\theta x) \dx = \frac{\theta}{3}.$$
+	$$\mu_1(\hat{\theta}) = \hat{\mu}_1 \Leftrightarrow \frac{\hat{\theta}}{3} = \frac{1}{n} \sum_{i=1}^n X_i \Leftrightarrow \hat{\theta} = \frac{3}{n} \sum_{i=1}^n X_i.$$
+	\item Note que $\bar{X}$ é uma notação habitual para designar a v.a. que representa a média amostral, ou seja, $\bar{X} = (1/n) \sum_{i=1}^n X_i$. Assim, $$E(\hat\theta) = E(3\bar{X}) = E\left(\frac{3}{n} \sum_{i=1}^n X_i\right) = \frac{3}{n} \sum_{i=1}^n E(X_i) = \frac{3}{n} n \frac{\theta}{3} = \theta,$$
+	logo $\hat{\theta}=3\bar{X}$ é um estimador sem tendência.
+	\end{enumerate}
+	
+\item Considere uma amostra de tamanho $n$ de uma variável aleatória com distribuição
+$$f(x)=\frac{1}{\theta^2}xe^{-x/\theta}, \quad 0\leq x< \infty$$
+%Calcule o estimador de máxima verosimilhança de $\theta$.
+Calcule o estimador pelo método dos momentos de $\theta$.
+
+\tb{Resolução:}\\
+	\begin{align*}
+	\mu_1(\theta) &= E(X) = \int_{-\infty}^{\infty} xf(x) \dx = \int_{0}^{\infty} \frac{1}{\theta^2}x^2 e^{-x/\theta} \dx  \tag*{\begin{small}(int. p/ partes: $u'=e^{-x/\theta}$, $v=x^2$)\end{small}}\\
+	&= -\frac{1}{\theta}\left[x^2e^{-x/\theta}\right]_{x=0}^\infty + \frac{1}{\theta}\int_{0}^{\infty} 2x e^{-x/\theta} \dx  \tag*{\begin{small}(int. p/ partes: $u'=e^{-x/\theta}$, $v=x$)\end{small}} \\
+	&= -2\left[x e^{-x/\theta}\right]_{x=0}^\infty + 2 \int_{0}^{\infty} e^{-x/\theta} \dx \\
+	&= -2\theta\left[e^{-x/\theta}\right]_{x=0}^\infty = 2\theta,
+	\end{align*}	
+	$$\mu_1(\hat{\theta}) = \hat{\mu}_1 \Leftrightarrow 2\hat{\theta} = \frac{1}{n} \sum_{i=1}^n X_i \Leftrightarrow \hat{\theta} = \frac{1}{2n} \sum_{i=1}^n X_i.$$
+\item Uma variável aleatória $X$ tem fdp $f(x)= (\beta+1) x^\beta,0<x<1$. 
+ 	\begin{enumerate}
+	\item  Determine a estimativa do método dos momentos de $\beta$ baseado numa amostra de tamanho $n$. 
+	\item Calcule a estimativa quando os valores amostrais forem $0.3; 0.8; 0.27; 0.35; 0.62; 0.55; 0.4; 0.6$. Sabe-se que a soma destes valores é $3.89$, o produto é $0.0019$, o logaritmo da soma é $1.3584$ e o logaritmo do produto é $-6.2893$.
+	\end{enumerate}
+
+\tb{Resolução:}
+	\begin{enumerate}
+	\item
+	$$\mu_1(\beta) = E(X) = \int_{0}^{1} x (\beta+1)x^\beta \dx = \frac{\beta+1}{\beta+2},$$
+	$$\mu_1(\hat{\beta}) = \hat{\mu}_1 \Leftrightarrow  \frac{\hat{\beta}+1}{\hat{\beta}+2} = \hat{\mu}_1 \Leftrightarrow \hat{\beta} = \frac{2 \hat{\mu}_1 - 1}{1 - \hat{\mu}_1},$$ onde $\hat{\mu}_1 = (1/n)\sum_{i=1}^{n}x_i$.
+	\item Temos $n=8$, $\sum_{i=1}^8 x_i = 3.89$, logo a estimativa de $\beta$ é:
+	$$\hat{\beta} = \frac{2 \times 3.89/8 - 1}{1 - 3.89/8} \approx -0.054.$$
+	\end{enumerate}
+
+%\item Uma variável aleatória X tem fdp $f(x)= (\beta+1) x^\beta,0<x<1$. 
+ 	%\begin{enumerate}
+	%\item  Determine a estimativa de Máxima Verosimilhança de $\beta$ baseado numa amostra de tamanho $N$. 
+	%\item Calcule a estimativa quando os valores amostrais forem $0.3; 0.8; 0.27; 0.35; 0.62; 0.55$. Sabe-se que a soma destes valores é $2.89$, o produto é $0.0077$, o logaritmo da soma é $1.0613$ e o logaritmo do produto é $-4.8621$.
+	%\end{enumerate}	
+%
+%\item Estamos a medir altura dum foguete em intervalos de tempo fixos como um par de dados $(s; t)$. O tempo $t$ é em segundos e a altura $s$ é em metros. As observações são: para os tempos 5, 10, 15, 20, 25 e 30, com alturas 722, 1073, 1178, 1177, 781, 102 respectivamente. Suponha um modelo $s = a+bt+ct^2$. Calcule os
+%valores de $a$, $b$, e $c$ com o método dos mínimos quadrados.
+%
+%\item Um radar da polícia sobrestima a velocidade dos veículos por um valor que está distribuído uniformemente de 0 a 10 km/h. Suponha que a distribuição das velocidades dos veículos é uniforme entre 90 e 120 km/h. Qual é o valor estimado de mínimos quadrados dum veículo dada uma medição do radar?
+%
+%\item Se $X$ tem uma distribuição uniforme entre 4 e 10. Suponha que observamos X com um erro aleatório W, isto é $Y = X + W$, onde Y é a observação. Suponha que W é uniformemente distribuída entre -1 e 1 e é independente de X. Qual é o estimador de mínimos quadrados de X dada uma observação y de Y?
+
+\end{enumerate}
+
+ 
+\end{document}
