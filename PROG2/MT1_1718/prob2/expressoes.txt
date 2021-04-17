@@ -1,0 +1,22 @@
+* + 3 5 - 7 2	prefixa
+(3 + 4) + 7 * 2 - 1 - 9	infixa
+2 5 * 4 + 3 2 * 1 + /	rpn
+(8 - 1 + 3) * 6 - (((3 + 7) * 2)	infixa
+3 * 6 - 7 + 2	infixa
+– + – x 4 3 2 50 / x 7 8 4	prefixa
+× (− 5 6) 7	prefixa
+(3 + 4)) + 7 * 2 - 1 - 9	infixa
+5 - 2 + 4 * (8 - (5 + 1)) + 9	infixa
+6 * 2 + (5 - 3) * 3 - 8	infixa
+x 5 – 4 3	prefixa
+50 4 3 x 2 – + 7 8 x 4 / –	rpn
+4 2 +	rpn
+2 4 5 + * 3 /	rpn
+5 - 2 + 4 * (8 - (5 + 1)) + 9	infixa
+(8 - 1 + 3) * 6 - ((3 + 7) * 2)	infixa
+3 * 6 - 7 + 2	infixa
+6 * 2 + (5 - 3) * 3 - 8	infixa
+4 + 2	infixa
+3 6 * 7 - 2 +	rpn
+4 + 2)	infixa
+4 2 5 * + 1 3 2 * + /	rpn
