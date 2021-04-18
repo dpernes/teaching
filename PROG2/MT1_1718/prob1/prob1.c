@@ -50,7 +50,7 @@ lista* filtra_titulos(lista *lista1, lista *lista2)
 /*** problema 1.2 ***/
 int retira_comecados_por(lista *lst, char *inicio)
 {
-    if(!lst || !inicio || lst->tamanho == 0)
+    if(!lst || lst->tamanho == 0 || !inicio)
         return 0;
 
     int removidos = 0;
@@ -93,7 +93,7 @@ int insere_na_pilha(pilha *p, char *titulo)
         char *top = pilha_top(p);
         int cmp = strcmp(top, titulo);
         if(cmp == 0)
-            break;  // titulo ja existe na pilha p
+            break;  // titulo já existe na pilha p
         else if(cmp > 0)
         {
             // titulo ainda é menor do que o topo da pilha p, logo continua a mover para p_aux
