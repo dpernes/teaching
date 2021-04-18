@@ -22,7 +22,7 @@ vetor* contar_remetente_destinatario(vetor *vrem, vetor *vdest)
     int n_pessoas_max = vrem->tamanho + vdest->tamanho;  // máximo número possível de pessoas distintas
     int n_cartas[n_pessoas_max];  // contador do número de cartas de cada pessoa
 
-    // percorre vdest contando as cartas de cada pessoa
+    // percorre vrem contando as cartas de cada pessoa
     for(int i = 0; i < vrem->tamanho; i++)
     {
         const char *rem = vetor_elemento(vrem, i);
@@ -40,7 +40,7 @@ vetor* contar_remetente_destinatario(vetor *vrem, vetor *vdest)
             n_cartas[pos]++;
     }
 
-    // percorre vrem contando as cartas de cada pessoa
+    // percorre vdest contando as cartas de cada pessoa
     for(int i = 0; i < vdest->tamanho; i++)
     {
         const char *dest = vetor_elemento(vdest, i);
