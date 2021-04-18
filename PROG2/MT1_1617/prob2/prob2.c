@@ -46,7 +46,7 @@ int verifica_expressao(const char *expr)
 
         else if(expr[i] == ')')  // se encontrar parêntesis a fechar, remove elemento da pilha (se for possível)
         {
-            if(pilha_vazia(p))  // se a pilha estive vazia, então não houve parêntesis a abrir antes, logo é erro
+            if(pilha_vazia(p))  // se a pilha estiver vazia, então não houve parêntesis a abrir antes, logo é erro
                 return 0;
 
             pilha_pop(p);
