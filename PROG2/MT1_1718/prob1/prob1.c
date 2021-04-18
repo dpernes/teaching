@@ -82,6 +82,14 @@ int insere_na_pilha(pilha *p, char *titulo)
     int inserido = 0;
     while(1)
     {
+        // se a pilha p está vazia, insere titulo em p e termina o ciclo
+        if(pilha_vazia(p))
+        {
+            pilha_push(p, titulo);
+            inserido = 1;
+            break;
+        }
+
         char *top = pilha_top(p);
         int cmp = strcmp(top, titulo);
         if(cmp == 0)
@@ -94,7 +102,7 @@ int insere_na_pilha(pilha *p, char *titulo)
         }
         else  // cmp < 0
         {
-            // posição correta encontrada, logo insere titulo em p
+            // posição correta encontrada, logo insere titulo em p e termina o ciclo
             pilha_push(p, titulo);
             inserido = 1;
             break;
