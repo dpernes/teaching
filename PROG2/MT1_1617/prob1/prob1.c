@@ -12,7 +12,7 @@
 lista* junta_nomes(lista *lst1, lista *lst2)
 {
 	/* complexidade do algoritmo: O(n1+n2) onde n1 e n2 são os tamanhos de lst1 e lst2, respetivamente */
-	if(!lst1 && !lst2)
+	if(!lst1 || !lst2)
 		return NULL;
 
 	lista *lst = lista_nova();
