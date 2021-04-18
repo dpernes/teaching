@@ -54,10 +54,8 @@ lista* lista_remove_duplicados(lista *lst)
 
     for(l_elemento *elem1 = lst->inicio; elem1 != NULL; elem1 = elem1->proximo)
     {
-        // printf("elem1: %s\n", elem1->str);
         for(l_elemento *elem2 = elem1->proximo; elem2 != NULL; elem2 = elem2->proximo)
         {
-            // printf("elem2: %s\n", elem2->str);
             // se encontrar um elemento repetido, insere-o na nova lista e remove-o da lista original
             if(strcmp(elem1->str, elem2->str) == 0)
             {
@@ -66,7 +64,7 @@ lista* lista_remove_duplicados(lista *lst)
 
                 elem2 = lista_remove(lst, elem2);  // a função retorna apontador para elem2->proximo
                 if(elem2)
-                    elem2 = elem2->anterior;  // recua uma posição para compensar o ciclo for
+                    elem2 = elem2->anterior;  // recua uma posição para compensar o avanço no ciclo for
                 else  // se retornou NULL, salta fora do segundo for
                     break;
             }
