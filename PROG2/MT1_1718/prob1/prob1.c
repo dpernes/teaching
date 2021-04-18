@@ -35,7 +35,7 @@ lista* filtra_titulos(lista *lista1, lista *lista2)
         }
         if(!encontrado)
         {
-            // se elem1 não foi encontrado em lista2, insere-o na nova lista
+            // elem1 não foi encontrado em lista2, logo insere-o na nova lista
             if(!lista_insere(lst, elem1->str, NULL))
             {
                 lista_apaga(lst);
