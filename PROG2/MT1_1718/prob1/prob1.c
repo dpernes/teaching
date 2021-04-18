@@ -35,7 +35,7 @@ lista* filtra_titulos(lista *lista1, lista *lista2)
         }
         if(!encontrado)
         {
-            // se o elemento não foi encontrado em lista2, insere-o na nova lista
+            // se elem1 não foi encontrado em lista2, insere-o na nova lista
             if(!lista_insere(lst, elem1->str, NULL))
             {
                 lista_apaga(lst);
@@ -88,13 +88,13 @@ int insere_na_pilha(pilha *p, char *titulo)
             break;  // titulo ja existe na pilha p
         else if(cmp > 0)
         {
-            // titulo ainda é menor do que o topo da pilha p, logo continua a copiar para p_aux
+            // titulo ainda é menor do que o topo da pilha p, logo continua a mover para p_aux
             pilha_push(p_aux, top);
             pilha_pop(p);
         }
         else  // cmp < 0
         {
-            // posição correta encontrada: insere titulo em p
+            // posição correta encontrada, logo insere titulo em p
             pilha_push(p, titulo);
             inserido = 1;
             break;

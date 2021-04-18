@@ -20,7 +20,7 @@ int avalia_expressoes(FILE *ficheiro, vetor *expressoes)
     {
         const char *expr = vetor_elemento(expressoes, i);
         fprintf(ficheiro, "%s ", expr);
-        if(verifica_expressao(expr))
+        if(verifica_expressao(expr) == 1)
             fprintf(ficheiro, "-> OK\n");
         else
             fprintf(ficheiro, "-> NOK\n");
