@@ -12,18 +12,18 @@
 */
 typedef struct _l_elemento
 {
-	/* string armazenada */
-	char* str;
-	/* apontadores para elementos vizinhos */
+    /* string armazenada */
+    char* str;
+    /* apontadores para elementos vizinhos */
     struct _l_elemento *proximo;
     struct _l_elemento *anterior;
 } l_elemento;
 
 typedef struct
 {
-	l_elemento *inicio;
-	l_elemento *fim;
-	int tamanho;
+    l_elemento *inicio;
+    l_elemento *fim;
+    int tamanho;
 } lista;
 
 #define LISTA_INICIO 0

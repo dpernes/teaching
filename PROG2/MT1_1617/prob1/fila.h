@@ -10,8 +10,8 @@
 */
 struct fitem
 {
-	char *string;
-	struct fitem *proximo;
+    char *string;
+    struct fitem *proximo;
 };
 
 typedef struct fitem filaItem;
@@ -23,8 +23,8 @@ typedef struct fitem filaItem;
 */
 typedef struct
 {
-	filaItem *cabeca;
-	filaItem *cauda;
+    filaItem *cabeca;
+    filaItem *cauda;
 } fila;
 
 /**
@@ -37,16 +37,16 @@ fila* fila_nova();
 /**
  *  \brief esvazia a fila e liberta-a da memoria
  *  \param f_ref endereco do apontador para a fila em causa
- *	\remark o apontador para a fila em causa deve ficar a apontar para NULL
+ *    \remark o apontador para a fila em causa deve ficar a apontar para NULL
  */
 void fila_apaga(fila *f);
 
 /**
  *  \brief testa se a fila esta' vazia
  *  \param f apontador para a fila em causa
- *	\return 1, se estiver vazia. 0, caso contrario
+ *    \return 1, se estiver vazia. 0, caso contrario
  */
-int	fila_vazia(fila *f);
+int    fila_vazia(fila *f);
 
 /**
  *  \brief retorna o tamanho actual da fila

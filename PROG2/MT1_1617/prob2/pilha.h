@@ -1,5 +1,5 @@
 /*****************************************************************/
-/*                Pilha | PROG2 | MIEEC | 2016/17                */      
+/*                Pilha | PROG2 | MIEEC | 2016/17                */
 /*****************************************************************/
 
 #ifndef PILHA_H
@@ -11,14 +11,14 @@
 */
 typedef struct item_p
 {
-	char* elemento;
+    char* elemento;
     struct item_p *proximo;
 } pilhaItem;
 
 typedef struct
 {
-	pilhaItem *raiz;
-	int tamanho;
+    pilhaItem *raiz;
+    int tamanho;
 } pilha;
 
 /**
@@ -37,9 +37,9 @@ void pilha_apaga(pilha *p);
 /**
  *  \brief testa se a pilha esta' vazia
  *  \param p apontador para a pilha em causa
- *	\return 1, se estiver vazia. 0, caso contrario
+ *    \return 1, se estiver vazia. 0, caso contrario
  */
-int	pilha_vazia(pilha *p);
+int    pilha_vazia(pilha *p);
 
 /**
  *  \brief indica o comprimento da pilha
