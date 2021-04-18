@@ -84,7 +84,7 @@ const char* vetor_elemento(vetor* vec, int indice)
 
 int vetor_insere(vetor* vec, const char* valor, int pos)
 {
-    int i, n;
+    int i;
 
     if(vec == NULL || pos < -1 || pos > vec->tamanho)
         return -1;
