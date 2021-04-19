@@ -60,7 +60,10 @@ lista* lista_remove_duplicados(lista *lst)
             if(strcmp(elem1->str, elem2->str) == 0)
             {
                 if(!lista_insere(lst_dup, elem2->str, NULL))
+                {
+                    lista_apaga(lst_dup);
                     return NULL;
+                }
 
                 elem2 = lista_remove(lst, elem2);  // a função retorna apontador para elem2->proximo
                 if(!elem2)
