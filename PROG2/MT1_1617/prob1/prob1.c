@@ -45,7 +45,7 @@ lista* junta_nomes(lista *lst1, lista *lst2)
 /*** problema 1.2 ***/
 lista* lista_remove_duplicados(lista *lst)
 {
-    if(!lst || lst->tamanho==0)
+    if(!lst || lst->tamanho == 0)
         return NULL;
 
     lista *lst_dup = lista_nova();
@@ -63,10 +63,10 @@ lista* lista_remove_duplicados(lista *lst)
                     return NULL;
 
                 elem2 = lista_remove(lst, elem2);  // a função retorna apontador para elem2->proximo
-                if(elem2)
-                    elem2 = elem2->anterior;  // recua uma posição para compensar o avanço no ciclo for
-                else  // se retornou NULL, salta fora do segundo for
-                    break;
+                if(!elem2)
+                    break;  // removeu o último, logo termina o ciclo
+
+                elem2 = elem2->anterior;  // recua uma posição para compensar o avanço no ciclo for
             }
         }
     }

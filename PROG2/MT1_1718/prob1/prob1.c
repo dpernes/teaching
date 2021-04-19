@@ -59,8 +59,11 @@ int retira_comecados_por(lista *lst, char *inicio)
         if(strstr(elem->str, inicio) == elem->str)  // strstr retorna apontador para o primeiro caráter correspondente
         {
             elem = lista_remove(lst, elem);  // lista_remove retorna apontador para o elemento seguinte ao removido
-            elem = elem->anterior;  // para compensar o avanço do for
             removidos++;
+            if(!elem)
+                break;  // removeu o último, logo termina o ciclo for
+
+            elem = elem->anterior;  // para compensar o avanço do ciclo for
         }
     }
 
