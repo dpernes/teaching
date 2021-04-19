@@ -22,7 +22,7 @@ lista* junta_nomes(lista *lst1, lista *lst2)
     // insere todos os elementos de lst1 em lst
     for(l_elemento *elem = lst1->inicio; elem != NULL; elem = elem->proximo)
     {
-        if(lista_insere(lst, elem->str, NULL) == NULL)
+        if(!lista_insere(lst, elem->str, NULL))
         {
             lista_apaga(lst);
             return NULL;
