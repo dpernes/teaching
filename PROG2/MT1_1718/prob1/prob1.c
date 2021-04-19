@@ -13,11 +13,11 @@
 lista* filtra_titulos(lista *lista1, lista *lista2)
 {
     /* complexidade do algoritmo: O(n1*n2), onde n1 e n2 são os tamanhos de lista1 e lista2, respetivamente */
-    if(!lista1 || !lista2)
+    if(lista1 == NULL || lista2 == NULL)
         return NULL;
 
     lista *lst = lista_nova();
-    if(!lst)
+    if(lst == NULL)
         return NULL;
 
     // compara cada elemento de lista1 com todos os elementos de lista2
@@ -36,7 +36,7 @@ lista* filtra_titulos(lista *lista1, lista *lista2)
         if(!encontrado)
         {
             // elem1 não foi encontrado em lista2, logo insere-o na nova lista
-            if(!lista_insere(lst, elem1->str, NULL))
+            if(lista_insere(lst, elem1->str, NULL) == NULL)
             {
                 lista_apaga(lst);
                 return NULL;
@@ -50,7 +50,7 @@ lista* filtra_titulos(lista *lista1, lista *lista2)
 /*** problema 1.2 ***/
 int retira_comecados_por(lista *lst, char *inicio)
 {
-    if(!lst || lst->tamanho == 0 || !inicio)
+    if(lst == NULL || lst->tamanho == 0 || inicio == NULL)
         return 0;
 
     int removidos = 0;
@@ -60,7 +60,7 @@ int retira_comecados_por(lista *lst, char *inicio)
         {
             elem = lista_remove(lst, elem);  // lista_remove retorna apontador para o elemento seguinte ao removido
             removidos++;
-            if(!elem)
+            if(elem == NULL)
                 break;  // removeu o último, logo termina o ciclo for
 
             elem = elem->anterior;  // para compensar o avanço do ciclo for
@@ -73,11 +73,11 @@ int retira_comecados_por(lista *lst, char *inicio)
 /*** problema 1.3 ***/
 int insere_na_pilha(pilha *p, char *titulo)
 {
-    if(!p || !titulo)
+    if(p == NULL || titulo == NULL)
         return -1;
 
     pilha *p_aux = pilha_nova();
-    if(!p_aux)
+    if(p_aux == NULL)
         return -1;
 
     // retira todos os elementos da pilha p e coloca-os na pilha auxiliar p_aux

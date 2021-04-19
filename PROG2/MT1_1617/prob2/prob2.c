@@ -13,7 +13,7 @@ int verifica_expressao(const char *expr);  // função auxiliar
 
 int avalia_expressoes(FILE *ficheiro, vetor *expressoes)
 {
-    if(!ficheiro || !expressoes)
+    if(ficheiro == NULL || expressoes == NULL)
         return 0;
 
     for(int i = 0; i < expressoes->tamanho; i++)
@@ -31,11 +31,11 @@ int avalia_expressoes(FILE *ficheiro, vetor *expressoes)
 
 int verifica_expressao(const char *expr)
 {
-    if(!expr)
+    if(expr == NULL)
         return -1;
 
     pilha *p = pilha_nova();
-    if(!p)
+    if(p == NULL)
         return -1;
 
     int tamanho = strlen(expr);

@@ -12,11 +12,11 @@
 /*** problema 2 ***/
 vetor* contar_remetente_destinatario(vetor *vrem, vetor *vdest)
 {
-    if(!vrem || !vdest)
+    if(vrem == NULL || vdest == NULL)
         return NULL;
 
     vetor *pessoas = vetor_novo();
-    if(!pessoas)
+    if(pessoas == NULL)
         return NULL;
 
     int n_pessoas_max = vrem->tamanho + vdest->tamanho;  // máximo número possível de pessoas distintas

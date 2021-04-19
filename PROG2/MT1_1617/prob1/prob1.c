@@ -12,17 +12,17 @@
 lista* junta_nomes(lista *lst1, lista *lst2)
 {
     /* complexidade do algoritmo: O(n1+n2) onde n1 e n2 são os tamanhos de lst1 e lst2, respetivamente */
-    if(!lst1 || !lst2)
+    if(lst1 == NULL || lst2 == NULL)
         return NULL;
 
     lista *lst = lista_nova();
-    if(!lst)
+    if(lst == NULL)
         return NULL;
 
     // insere todos os elementos de lst1 em lst
     for(l_elemento *elem = lst1->inicio; elem != NULL; elem = elem->proximo)
     {
-        if(!lista_insere(lst, elem->str, NULL))
+        if(lista_insere(lst, elem->str, NULL) == NULL)
         {
             lista_apaga(lst);
             return NULL;
@@ -32,7 +32,7 @@ lista* junta_nomes(lista *lst1, lista *lst2)
     // insere todos os elementos de lst2 em lst
     for(l_elemento *elem = lst2->inicio; elem != NULL; elem = elem->proximo)
     {
-        if(!lista_insere(lst, elem->str, NULL))
+        if(lista_insere(lst, elem->str, NULL) == NULL)
         {
             lista_apaga(lst);
             return NULL;
@@ -45,11 +45,11 @@ lista* junta_nomes(lista *lst1, lista *lst2)
 /*** problema 1.2 ***/
 lista* lista_remove_duplicados(lista *lst)
 {
-    if(!lst || lst->tamanho == 0)
+    if(lst == NULL || lst->tamanho == 0)
         return NULL;
 
     lista *lst_dup = lista_nova();
-    if(!lst_dup)
+    if(lst_dup == NULL)
         return NULL;
 
     for(l_elemento *elem1 = lst->inicio; elem1 != NULL; elem1 = elem1->proximo)
@@ -59,14 +59,14 @@ lista* lista_remove_duplicados(lista *lst)
             // se encontrar um elemento repetido, insere-o na nova lista e remove-o da lista original
             if(strcmp(elem1->str, elem2->str) == 0)
             {
-                if(!lista_insere(lst_dup, elem2->str, NULL))
+                if(lista_insere(lst_dup, elem2->str, NULL) == NULL)
                 {
                     lista_apaga(lst_dup);
                     return NULL;
                 }
 
                 elem2 = lista_remove(lst, elem2);  // a função retorna apontador para elem2->proximo
-                if(!elem2)
+                if(elem2 == NULL)
                     break;  // removeu o último, logo termina o ciclo
 
                 elem2 = elem2->anterior;  // recua uma posição para compensar o avanço no ciclo for
@@ -80,11 +80,11 @@ lista* lista_remove_duplicados(lista *lst)
 /*** problema 1.3 ***/
 fila* pesquisa_nomes(lista *lst, char *nome)
 {
-    if(!lst || lst->tamanho == 0 || !nome)
+    if(lst == NULL || lst->tamanho == 0 || nome == NULL)
         return NULL;
 
     fila *f = fila_nova();
-    if(!f)
+    if(f == NULL)
         return NULL;
 
     for(l_elemento *elem = lst->inicio; elem != NULL; elem = elem->proximo)
