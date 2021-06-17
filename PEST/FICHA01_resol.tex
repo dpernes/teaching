@@ -205,11 +205,11 @@ Escolhemos uma máquina ao acaso. Qual é a probabilidade de que seja a máquina av
 \item Prove que $P(A \cap B \cap C)=P(A)P(B \mid A)P(C \mid A \cap B)$.
 
 \tb{Resolução:}\\
-	A expressão do lado direito da igualdade só está definida se $P(A)>0$ e $P(A \cap B)>0$, pelo que assumiremos que estas condições se verificam. Pela definição de probabilidade condicionada, temos $P(A \cap B) = P(A) P(B \mid A)$. De igual modo, $P(A \cap B \cap C) = P(C \cap (A \cap B)) = P(A \cap B) P(C \mid A \cap B) = P(A) P(B \mid A) P(C \mid A \cap B). \quad \square$
+	A expressão do lado direito da igualdade só está definida se $P(A \cap B)>0$, pelo que assumiremos que esta condição se verifica. Pela definição de probabilidade condicionada, temos $P(A \cap B) = P(A) P(B \mid A)$. De igual modo, $P(A \cap B \cap C) = P(C \cap (A \cap B)) = P(A \cap B) P(C \mid A \cap B) = P(A) P(B \mid A) P(C \mid A \cap B). \quad \square$
 	
 	\underline{Nota:} A igualdade demonstrada continua válida para $n$ acontecimentos e é vulgarmente chamada de \textit{regra da cadeia} do cálculo de probabilidades (não confundir com a regra da cadeia para o cálculo de derivadas):
 	
-	Sejam $A_1, A_2, \cdots, A_n$ acontecimentos de um espaço amostral tais que $P(A_1)>0, P(A_1 \cap A_2)>0, \cdots, P(A_1 \cap A_2 \cap \cdots \cap A_{n-1}) > 0$. Então,
+	Sejam $A_1, A_2, \cdots, A_n$ acontecimentos de um espaço amostral tais que $P(A_1 \cap A_2 \cap \cdots \cap A_{n-1}) > 0$. Então,
 	$$P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) P(A_2 \mid A_1) P(A_3 \mid A_1 \cap A_2) \cdots P(A_n \mid A_1 \cap A_2 \cap \cdots \cap A_{n-1}).$$
 	 
 \end{enumerate}

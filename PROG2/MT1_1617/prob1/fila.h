@@ -46,7 +46,7 @@ void fila_apaga(fila *f);
  *  \param f apontador para a fila em causa
  *    \return 1, se estiver vazia. 0, caso contrario
  */
-int    fila_vazia(fila *f);
+int fila_vazia(fila *f);
 
 /**
  *  \brief retorna o tamanho actual da fila

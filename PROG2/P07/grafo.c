@@ -199,7 +199,7 @@ int grafo_completo(grafo* g)
     if(!g)
         return -1;
 
-    // complexidade: O(g->tamanho^2)
+    // complexidade: O(n^2), onde n é o número de nós no grafo (n = g->tamanho)
     for(int i = 0; i < g->tamanho; i++)
     {
         for(int j = 0; j < i; j++)
@@ -220,7 +220,7 @@ int grafo_eCelebridade(grafo* g, int i)
     if(!g || (i < 0))
         return -1;
 
-    // complexidade: O(n) (onde n = g->tamanho)
+    // complexidade: O(n), onde n é o número de nós no grafo (n = g->tamanho)
     for(int j = 0; j < g->tamanho; j++)
     {
         if(j == i)
@@ -240,7 +240,7 @@ int grafo_temCelebridade(grafo* g)
     if(!g)
         return -1;
 
-    // complexidade: O(n^2) (onde n = g->tamanho)
+    // complexidade: O(n^2) onde n é o número de nós no grafo (n = g->tamanho)
     for(int i = 0; i < g->tamanho; i++)
     {
         if(grafo_eCelebridade(g, i))
