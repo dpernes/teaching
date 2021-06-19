@@ -57,7 +57,7 @@ int grafo_maisdistante_rec(grafo *g, int origem, int *visitados, int *distancia)
     visitados[origem] = 1; // marca o nó atual como visitado
     int max_dist = -1, max_vertice = origem;
 
-    // percorre os filhos do nó atual e procurar aquele que retorna a maior distância
+    // percorre os filhos do nó atual e procura aquele que retorna a maior distância
     for (lista_no *aresta = g->adjacencias[origem].inicio; aresta != NULL; aresta = aresta->proximo)
     {
         if (visitados[aresta->vertice]) // se já visitámos este nó, este caminho não é mínimo, logo é descartado
