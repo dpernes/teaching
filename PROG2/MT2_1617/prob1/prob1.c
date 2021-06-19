@@ -14,7 +14,7 @@ char *avl_maiorstring(no_avl *no)
     char *str_esq = avl_maiorstring(no->esquerda); // procurar a maior string na sub-árvore da esquerda
     char *str_dir = avl_maiorstring(no->direita);  // procurar a maior string na sub-árvore da direita
 
-    // calcular os tamanhos das 3 strings (string NULL tem tamanho 0)
+    // calcular os tamanhos das três strings (string NULL tem tamanho 0)
     int len_no = 0, len_esq = 0, len_dir = 0;
     if (str_no != NULL)
         len_no = strlen(str_no);
@@ -52,18 +52,18 @@ Solução 2 (menos óbvia, mais eficiente): ver código abaixo.
 */
 
 /* função auxiliar de grafo_maisdistante (chamada recursivamente) */
-int grafo_maisdistante_rec(grafo *g, int origem, int *distancia, int *visitados)
+int grafo_maisdistante_rec(grafo *g, int origem, int *visitados, int *distancia)
 {
-    visitados[origem] = 1; // registar o nó atual como visitado
+    visitados[origem] = 1; // marca o nó atual como visitado
     int max_dist = -1, max_vertice = origem;
 
-    // percorrer os filhos do nó atual e procurar aquele que retorna a maior distância
+    // percorre os filhos do nó atual e procurar aquele que retorna a maior distância
     for (lista_no *aresta = g->adjacencias[origem].inicio; aresta != NULL; aresta = aresta->proximo)
     {
-        if (visitados[aresta->vertice]) // se já visitámos este nó, este caminho não é mínimo
+        if (visitados[aresta->vertice]) // se já visitámos este nó, este caminho não é mínimo, logo é descartado
             continue;
 
-        int dist, vertice = grafo_maisdistante_rec(g, aresta->vertice, &dist, visitados);
+        int dist, vertice = grafo_maisdistante_rec(g, aresta->vertice, visitados, &dist);
         if (dist > max_dist)
         {
             max_dist = dist;
@@ -81,13 +81,12 @@ int grafo_maisdistante(grafo *g, int origem, int *distancia)
     if ((g == NULL) || (origem < 0) || (origem > g->tamanho - 1) || (distancia == NULL))
         return -1;
 
-    // utilizar array auxiliar para registar que nós já foram visitados
-    int visitados[g->tamanho];
+    int visitados[g->tamanho]; // array auxiliar para registar que nós já foram visitados
     for (int i = 0; i < g->tamanho; i++)
-        visitados[i] = 0;
+        visitados[i] = 0; // inicialmente, nenhum nó foi ainda visitado
 
     // chamar a função auxiliar recursivamente a partir do nó origem
-    return grafo_maisdistante_rec(g, origem, distancia, visitados);
+    return grafo_maisdistante_rec(g, origem, visitados, distancia);
 }
 
 /* Aqui comeca o codigo de teste. Nao modificar! */
