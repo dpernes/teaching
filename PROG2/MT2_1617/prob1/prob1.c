@@ -14,7 +14,7 @@ char *avl_maiorstring(no_avl *no)
     char *str_esq = avl_maiorstring(no->esquerda); // procurar a maior string na sub-árvore da esquerda
     char *str_dir = avl_maiorstring(no->direita);  // procurar a maior string na sub-árvore da direita
 
-    // calcular os tamanhos das três strings (string NULL tem tamanho 0)
+    // calcular os tamanhos das três strings (se apontador NULL, o tamanho é 0)
     int tam_no = 0, tam_esq = 0, tam_dir = 0;
     if (str_no != NULL)
         tam_no = strlen(str_no);
@@ -26,14 +26,14 @@ char *avl_maiorstring(no_avl *no)
     // comparar os tamanhos para determinar qual a maior das três strings
     int max_tam = tam_no;
     char *max_str = str_no;
-    if (tam_esq > max_len)
+    if (tam_esq > max_tam)
     {
-        max_len = tam_esq;
+        max_tam = tam_esq;
         max_str = str_esq;
     }
-    if (tam_dir > max_len)
+    if (tam_dir > max_tam)
     {
-        max_len = tam_dir;
+        max_tam = tam_dir;
         max_str = str_dir;
     }
 
