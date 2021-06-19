@@ -14,11 +14,13 @@ vetor *heap_ordena(vetor *v)
     if (h == NULL)
         return NULL;
 
+    // insere todos os elementos do vetor na heap,
+    // atribuindo-lhes a prioridade como definida no enunciado
     for (int i = 0; i < v->tamanho; i++)
     {
         char *str = v->elementos[i].str;
         int prioridade = (str[0] << 8) + str[1];
-        if( heap_insere(h, str, prioridade) == 0)
+        if (heap_insere(h, str, prioridade) == 0)
         {
             heap_apaga(h);
             return NULL;
@@ -26,13 +28,15 @@ vetor *heap_ordena(vetor *v)
     }
 
     vetor *v_ord = vetor_novo();
-    if(v_ord == NULL)
+    if (v_ord == NULL)
     {
         heap_apaga(h);
         return NULL;
     }
 
-    while(h->tamanho > 0)
+    // insere todos os elementos da heap no final do vetor a retornar
+    // (nota que inserir no final do vetor é mais eficiente do que inserir no início: O(1) vs. O(n))
+    while (h->tamanho > 0)
     {
         char *str = heap_remove(h);
         if (vetor_insere(v_ord, str, -1) == -1)
@@ -44,7 +48,9 @@ vetor *heap_ordena(vetor *v)
     }
     heap_apaga(h);
 
-    for(int i = 0; i < v_ord->tamanho / 2; i++)
+    // o vetor, neste momento, está ordenado por ordem crescente
+    // para o termos por ordem decrescente, invertemo-lo
+    for (int i = 0; i < v_ord->tamanho / 2; i++)
     {
         v_elemento aux = v_ord->elementos[i];
         v_ord->elementos[i] = v_ord->elementos[v_ord->tamanho - i - 1];
