@@ -48,7 +48,7 @@ vetor *heap_ordena(vetor *v)
     }
     heap_apaga(h);
 
-    // o vetor, neste momento, está ordenado por ordem crescente
+    // neste momento, o vetor está ordenado por ordem crescente
     // para o termos por ordem decrescente, invertemo-lo
     for (int i = 0; i < v_ord->tamanho / 2; i++)
     {
