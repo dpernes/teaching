@@ -52,13 +52,13 @@ Solução 2 (menos óbvia, mais eficiente): ver código abaixo.
 */
 
 /* função auxiliar de grafo_maisdistante (chamada recursivamente) */
-int grafo_maisdistante_rec(grafo *g, int origem, int *visitados, int *distancia)
+int grafo_maisdistante_rec(grafo *g, int no_atual, int *visitados, int *distancia)
 {
-    visitados[origem] = 1; // marca o nó atual como visitado
-    int max_dist = -1, max_vertice = origem;
+    visitados[no_atual] = 1; // marca o nó atual como visitado
+    int max_dist = -1, max_vertice = no_atual;
 
     // percorre os filhos do nó atual e procura aquele que retorna a maior distância
-    for (lista_no *aresta = g->adjacencias[origem].inicio; aresta != NULL; aresta = aresta->proximo)
+    for (lista_no *aresta = g->adjacencias[no_atual].inicio; aresta != NULL; aresta = aresta->proximo)
     {
         if (visitados[aresta->vertice]) // se já visitámos este nó, este caminho não é mínimo, logo é descartado
             continue;
