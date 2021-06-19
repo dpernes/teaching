@@ -1,0 +1,67 @@
+dragonstone,the crownlands
+myr,essos
+chroyane,rhoyne
+lordsport,iron islands
+norvos,essos
+tyria,bay of dragons
+new ghis,gulf of grief
+qarth,jade sea
+wickendon,the vale of arryn
+rook's rest,the crownlands
+meereen,bay of dragons
+new ghis,bay of dragons
+meereen,bay of dragons
+mummer's ford,the riverlands
+tolos,bay of dragons
+stoney sept,the riverlands
+sunspear,dorne
+astapor,bay of dragons
+qohor,essos
+pyke,iron islands
+sow's horn,the crownlands
+saltpans,the riverlands
+port of ibben,ib island
+samyrian,jade sea
+lannisport,the westerlands
+sathar,kingdom of sarnor
+elyria,bay of dragons
+rosby,the crownlands
+volantis,essos
+highgarden,the reach
+bhorash,bay of dragons
+duskendale,the crownlands
+ar noy,rhoyne
+oxcross,the westerlands
+asshai,the dothraki sea
+the eyrie,the vale of arryn
+tumbleton,the reach
+pentos,essos
+mantarys,bay of dragons
+ny sar,rhoyne
+yunkai,bay of dragons
+storm's end,the stormlands
+king's landing,the crownlands
+maidenpool,the riverlands
+ashford,the reach
+lorath,essos
+oldtown,the reach
+vulture's roost,dorne
+riverrun,the riverlands
+pennytree,the riverlands
+winterfell,the north
+casterly rock,the westerlands
+tyrosh,essos
+valyria,bay of dragons
+white harbor,the north
+braavos,essos
+bayasabhad,jade sea
+old ghis,bay of dragons
+lys,essos
+vaes dothrak,the dothraki sea
+gulltown,the vale of arryn
+fairmarket,the riverlands
+sisterton,the vale of arryn
+wendish town,the riverlands
+barrowton,the north
+sar mell,rhoyne
+oros,bay of dragons
