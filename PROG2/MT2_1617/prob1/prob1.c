@@ -7,7 +7,7 @@
 /*** problema 1.1 ***/
 char *avl_maiorstring(no_avl *no)
 {
-    if (!no)
+    if (no == NULL)
         return NULL;
 
     char *str_no = no->str;
