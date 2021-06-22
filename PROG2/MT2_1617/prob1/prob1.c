@@ -44,9 +44,8 @@ char *avl_maiorstring(no_avl *no)
 
 /*
 Solução 1 (mais simples, menos eficiente):
-    Utilizar a função grafo_bfs para determinar a distância entre a origem e cada um dos restantes nós.
-    Guardar as distâncias entre a origem e cada um dos nós num vetor.
-    Procurar o máximo do vetor de distâncias.
+    Utilizar a função grafo_bfs para determinar a distância entre a origem e cada um dos restantes nós,
+registando qual a distância máxima encontrada e qual o nó correspondente.
 
 Solução 2 (menos óbvia, mais eficiente): ver código abaixo.
 */
